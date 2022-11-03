@@ -11,7 +11,11 @@
     "@types/react-dom": "^18.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "react-query": "^3.39.2",
     "react-scripts": "5.0.1",
+    "recoil": "^0.7.6",
+    "styled-components": "^5.3.6",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
@@ -43,11 +47,13 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@types/eslint": "^8",
+    "@types/styled-components": "^5",
     "@types/testing-library__jest-dom": "^5",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "latest"
+    "eslint-plugin-react": "latest",
+    "msw": "^0.47.4"
   }
 }
