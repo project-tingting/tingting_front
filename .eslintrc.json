@@ -15,8 +15,8 @@
     "no-var": "error",
     "require-await": "error",
     "eqeqeq": "error",
-    "react/prop-types": 0,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react/prop-types": 0
+    // "react-hooks/rules-of-hooks": "error",
+    // "react-hooks/exhaustive-deps": "warn"
   }
 }
