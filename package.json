@@ -9,6 +9,7 @@
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "babel-preset-next": "^1.4.0",
     "next": "12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -16,6 +17,7 @@
     "react-query": "^3.39.2",
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
+    "styled-reset": "^4.4.2",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
@@ -29,7 +31,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "prettier"
     ]
   },
   "browserslist": {
@@ -52,6 +55,7 @@
     "@types/testing-library__jest-dom": "^5",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
+    "babel-plugin-styled-components": "^2.0.7",
     "eslint": "latest",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "latest",
