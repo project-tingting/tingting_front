@@ -5,8 +5,9 @@ import UserInput from '../components/UserInput';
 export default function index() {
   return (
     <>
-      <div>index</div>
-      <UserInput text="아이디" size="big" />
+      <div>
+        <UserInput type="password" size="big" text="비밀번호" />
+      </div>
     </>
   );
 }

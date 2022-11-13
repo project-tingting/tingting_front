@@ -2,19 +2,21 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 type SizeType = 'big' | 'small';
+type InputType = 'number' | 'email' | 'password' | 'text';
 
 interface IProps {
   size: SizeType;
   text: string;
+  type: InputType;
 }
 
 interface IInnerScreen {
   size: string
 }
 
-export default function UserInput({ size, text }: IProps) {
+export default function UserInput({ size, text, type }: IProps) {
   return (
-    <InputBox placeholder={text} size={size} />
+    <InputBox placeholder={text} size={size} type={type} min='1990' max='2003' />
   )
 }
 
@@ -36,7 +38,7 @@ const InputBox = styled.input<IInnerScreen>`
         background-color: #DEDEDE;
       `
     )}
-    width: 396px;
+    width: 100%;
     border: none;
     line-height: 33px;
     font-size: 18px;
