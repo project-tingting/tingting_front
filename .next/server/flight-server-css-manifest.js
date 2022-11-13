@@ -1,1 +1,1 @@
-self.__RSC_CSS_MANIFEST={"__entry_css__":{"C:\\Users\\USER\\Desktop\\tingting_front\\app\\page":[]}}
+self.__RSC_CSS_MANIFEST={"__entry_css__":{"C:\\Users\\ming0\\Desktop\\tingting_front\\app\\page":[]},"C:\\Users\\ming0\\Desktop\\tingting_front\\app\\layout.tsx":["C:\\Users\\ming0\\Desktop\\tingting_front\\app\\styles\\global.css"]}
