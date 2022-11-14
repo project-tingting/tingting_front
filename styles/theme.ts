@@ -1,5 +1,15 @@
 import css from 'styled-jsx/css';
 
+const colors = {
+  mainColor: '#5E5E5E',
+  textColor: '#404040',
+  bgColor: '#F8F8F8',
+  inputColor: '#EFEFEF',
+  disabledColor: '#B7B7B7',
+  enabledColor: '#424242',
+  redColor: 'red',
+};
+
 const a11yHidden = {
   overflow: 'hidden',
   position: 'absolute',
@@ -10,6 +20,7 @@ const a11yHidden = {
   border: 0,
   padding: 0,
 };
+
 const TextShortening = css`
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -18,6 +29,7 @@ const TextShortening = css`
   text-overflow: ellipsis;
   word-break: break-all;
 `;
+
 const ScrollbarStyle = css`
   &::-webkit-scrollbar {
     width: '0.4rem';
@@ -40,15 +52,6 @@ const ScrollbarStyle = css`
     scrollbar-color: #d9d9d9 transparent;
   }
 `;
-const colors = {
-  mainColor: '#5E5E5E',
-  textColor: '#404040',
-  bgColor: '#F8F8F8',
-  inputColor: '#EFEFEF',
-  disabledColor: '#B7B7B7',
-  enabledColor: '#424242',
-  redColor: 'red',
-};
 
 const theme = {
   colors,
