@@ -11,5 +11,10 @@ declare module 'styled-components' {
       enabledColor: string;
       redColor: string;
     };
+    size: {
+      mobie: string;
+      tablet: string;
+      desktop: string;
+    };
   }
 }

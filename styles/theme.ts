@@ -21,6 +21,12 @@ const a11yHidden = {
   padding: 0,
 };
 
+const size = {
+  mobile: '@media screen and (max-width: 768px)',
+  tablet: '@media screen and (max-width: 1024px)',
+  desktop: '@media screen and (max-width: 1200px)',
+};
+
 const TextShortening = css`
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -55,6 +61,7 @@ const ScrollbarStyle = css`
 
 const theme = {
   colors,
+  size,
   a11yHidden,
   TextShortening,
   ScrollbarStyle,
