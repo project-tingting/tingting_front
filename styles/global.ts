@@ -11,7 +11,11 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${theme.colors.bgColor};
     }
 
-    a{
+    * {
+        box-sizing: border-box;
+    }
+
+    a {
         text-decoration: none;
         color: inherit;
     }
