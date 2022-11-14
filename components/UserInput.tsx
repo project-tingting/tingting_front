@@ -23,27 +23,27 @@ export default function UserInput({ size, text, type }: IProps) {
 const InputBox = styled.input<IInnerScreen>`
     ${(props) => props.size === 'big' ? (
       css`
-        height: 56px;
-        border-radius: 20px;
-        padding: 12px 0 11px 12px;
-        background-color: #EFEFEF;
+        height: 5.6rem;
+        border-radius: 2rem;
+        padding: 1.2rem 0 1.1rem 1.2rem;
+        background-color: ${({ theme }) => theme.colors.inputColor};
         color: #A7A7A7;
       `
     ) : (
       css`
-        height: 48px;
-        border-radius: 10px;
-        padding: 10px 0 9px 16px;
+        height: 4.8rem;
+        border-radius: 1rem;
+        padding: 1rem 0 0.9rem 1.6rem;
         color: #646464;
         background-color: #DEDEDE;
       `
     )}
     width: 100%;
     border: none;
-    line-height: 33px;
-    font-size: 18px;
+    line-height: 3.3rem;
+    font-size: 1.8rem;
 
     &:focus {
-      border: 2px solid #828282;
+      border: 0.2rem solid #828282;
     }
 `;
