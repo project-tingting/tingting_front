@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     }
     button{
         cursor: pointer;
+        border: 0rem;
     }
     img{
         vertical-align: top;
