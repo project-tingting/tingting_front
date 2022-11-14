@@ -7,6 +7,7 @@ const colors = {
   inputColor: '#EFEFEF',
   disabledColor: '#B7B7B7',
   enabledColor: '#424242',
+  whiteColor: '#FFFFFF',
   redColor: 'red',
 };
 
