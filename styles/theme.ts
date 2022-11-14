@@ -22,9 +22,9 @@ const a11yHidden = {
 };
 
 const size = {
-  mobile: '@media screen and (max-width: 768px)',
-  tablet: '@media screen and (max-width: 1024px)',
-  desktop: '@media screen and (max-width: 1200px)',
+  mobile: 'screen and (max-width: 768px)',
+  tablet: 'screen and (max-width: 1024px)',
+  desktop: 'screen and (max-width: 1200px)',
 };
 
 const TextShortening = css`
