@@ -1,3 +1,4 @@
+import { DefaultTheme } from 'styled-components';
 import css from 'styled-jsx/css';
 
 const colors = {
@@ -61,7 +62,7 @@ const ScrollbarStyle = css`
   }
 `;
 
-const theme = {
+const theme: DefaultTheme = {
   colors,
   size,
   a11yHidden,

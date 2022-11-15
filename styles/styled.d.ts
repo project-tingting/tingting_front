@@ -14,9 +14,12 @@ declare module 'styled-components' {
       redColor: string;
     };
     size: {
-      mobie: string;
+      mobile: string;
       tablet: string;
       desktop: string;
     };
+    a11yHidden: CSSobject;
+    TextShortening: CSSobject;
+    ScrollbarStyle: CSSobject;
   }
 }
