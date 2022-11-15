@@ -8,11 +8,12 @@ interface IBtnPattern {
 
 interface IBtn extends IBtnPattern {
   text: string;
+  onClick: () => void;
 }
 
-export default function Button({ text, isRound, disabled }: IBtn) {
+export default function Button({ text, isRound, disabled, onClick }: IBtn) {
   return (
-    <Btn isRound={isRound} disabled={disabled}>
+    <Btn isRound={isRound} disabled={disabled} onClick={onClick}>
       {text}
     </Btn>
   );
