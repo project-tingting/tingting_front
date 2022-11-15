@@ -8,6 +8,7 @@ const colors = {
   disabledColor: '#B7B7B7',
   enabledColor: '#424242',
   whiteColor: '#FFFFFF',
+  blackColor: '#000000',
   redColor: 'red',
 };
 

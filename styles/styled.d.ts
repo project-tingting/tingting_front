@@ -10,6 +10,7 @@ declare module 'styled-components' {
       disabledColor: string;
       enabledColor: string;
       whiteColor: string;
+      blackColor: string;
       redColor: string;
     };
     size: {
