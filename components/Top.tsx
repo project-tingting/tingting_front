@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import back from '../public/assets/icons/back.svg';
 
-interface ITopText {
+interface TopTextProps {
   text: string;
 }
 
-export default function Top({ text }: ITopText) {
+export default function Top({ text }: TopTextProps) {
   const router = useRouter();
   const onClickBack = () => {
     router.back();
