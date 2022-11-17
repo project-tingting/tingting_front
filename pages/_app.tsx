@@ -7,6 +7,11 @@ import theme from '../styles/theme';
 import Top from '../components/Top';
 
 export default function _app({ Component, pageProps }: AppProps) {
+  if (process.env.NODE_ENV === 'development') {
+    const MockServer = () => import('../mocks');
+    MockServer();
+  }
+
   return (
     <>
       <Head>
