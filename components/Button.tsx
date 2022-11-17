@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface IBtnPattern {
+interface BtnPatternProps {
   isRound: boolean;
   disabled: boolean;
 }
 
-interface IBtn extends IBtnPattern {
+interface BtnProps extends BtnPatternProps {
   text: string;
   onClick: () => void;
 }
 
-export default function Button({ text, isRound, disabled, onClick }: IBtn) {
+export default function Button({ text, isRound, disabled }: BtnProps) {
   return (
-    <Btn isRound={isRound} disabled={disabled} onClick={onClick}>
+    <StyledButton isRound={isRound} disabled={disabled}>
       {text}
-    </Btn>
+    </StyledButton>
   );
 }
 
-const Btn = styled.button<IBtnPattern>`
+const StyledButton = styled.button<BtnPatternProps>`
   width: 100%;
   color: ${({ theme }) => theme.colors.whiteColor};
   font-size: 2.4rem;
@@ -30,4 +30,6 @@ const Btn = styled.button<IBtnPattern>`
       ? ({ theme }) => theme.colors.disabledColor
       : ({ theme }) => theme.colors.enabledColor};
   border-radius: ${(props) => (props.isRound ? '1.8rem' : '0rem')};
+
+  /* color: ${(props) => [props.theme.colors]}; */
 `;
