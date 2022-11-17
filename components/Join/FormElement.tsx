@@ -1,26 +1,12 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 
-type SizeType = 'large' | 'small';
-type InputType = 'number' | 'email' | 'password' | 'text';
-
-type Props = {
-  size: SizeType;
-  text: string;
-  type: InputType;
-};
-
-type IInnerScreen = {
+type InputProps = {
   size: string;
 };
 
-export default function UserInput({ size, text, type }: Props) {
-  return <InputBox placeholder={text} size={size} type={type} min="1990" max="2003" />;
-}
-
-export const InputBox = styled.input<IInnerScreen>`
-  ${(props) =>
-    props.size === 'large'
+export const StyledInput = styled.input<InputProps>`
+  ${({ size }) =>
+    size === 'large'
       ? css`
           height: 5.6rem;
           border-radius: 2rem;
