@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import GlobalStyle from '../styles/global';
 import { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
-import Top from '../components/Top';
+import { RecoilRoot } from 'recoil';
 
 export default function _app({ Component, pageProps }: AppProps) {
   return (
@@ -14,8 +14,9 @@ export default function _app({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Top text="하이"></Top>
-        <Component {...pageProps} />
+        <RecoilRoot>
+          <Component {...pageProps} />
+        </RecoilRoot>
       </ThemeProvider>
     </>
   );

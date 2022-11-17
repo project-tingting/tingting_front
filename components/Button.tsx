@@ -8,6 +8,7 @@ interface BtnPatternProps {
 
 interface BtnProps extends BtnPatternProps {
   text: string;
+  onClick: () => void;
 }
 
 export default function Button({ text, isRound, disabled }: BtnProps) {
