@@ -2,8 +2,7 @@ import { rest } from 'msw';
 import { User } from './types';
 
 export const handlers = [
-  rest.post<User>('/', async (req, res, ctx) => {
-    // const { id, pw } = req.body;
+  rest.post<User>('/join', (req, res, ctx) => {
     localStorage.setItem('is-authenticated', 'true');
     if (!req.body.id) {
       return res(
@@ -15,7 +14,7 @@ export const handlers = [
         }),
       );
     }
-    if (!req.body.pw) {
+    if (!req.body.password) {
       return res(
         ctx.status(402),
         ctx.json({
