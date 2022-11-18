@@ -14,7 +14,12 @@ interface MotionProps {
 
 export default function InputContainer({ children }: Props) {
   return (
-    <StyledInputContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+    <StyledInputContainer
+      key="joinForm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {children}
     </StyledInputContainer>
   );
