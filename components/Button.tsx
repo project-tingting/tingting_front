@@ -11,9 +11,9 @@ interface BtnProps extends BtnPatternProps {
   onClick: () => void;
 }
 
-export default function Button({ text, isRound, disabled }: BtnProps) {
+export default function Button({ text, isRound, disabled, onClick }: BtnProps) {
   return (
-    <StyledButton isRound={isRound} disabled={disabled}>
+    <StyledButton isRound={isRound} disabled={disabled} onClick={onClick}>
       {text}
     </StyledButton>
   );

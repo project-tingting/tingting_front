@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
 
-import { pageNumState } from '../core/recoil/pageNumAtom';
+type Props = {
+  stage: number;
+};
 
 interface IInnerScreen {
   width: string;
 }
 
-export default function ProgressBar() {
-  const [pageNum] = useRecoilState(pageNumState);
+export default function ProgressBar({ stage }: Props) {
   return (
     <Container>
-      <Progress width={(pageNum / 4) * 100 + '%'} />
+      <Progress width={(stage / 4) * 100 + '%'} />
     </Container>
   );
 }
@@ -29,5 +29,4 @@ const Progress = styled.section<IInnerScreen>`
   background-color: #5e5e5e;
   width: ${(props) => props.width};
   height: 100%;
-  transition: width 1s;
 `;
