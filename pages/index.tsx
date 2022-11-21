@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { joinAPI } from '../core/recoil/api/joinAPI';
-
 export default function index() {
   const handleClickLoginButton = () => {
-    joinAPI('yjs', '0000');
+    // console.log('hi');
   };
   return (
     <>
       <div>home</div>
-      <button onClick={handleClickLoginButton}>회원가입</button>
+      <button onClick={() => handleClickLoginButton()}>회원가입</button>
     </>
   );
 }

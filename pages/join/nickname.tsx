@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import Router from 'next/router';
 import { useRecoilState } from 'recoil';
-
 import { userInfoState } from '../../core/recoil/userInfoAtom';
 
 import Top from '../../components/Top';
@@ -18,6 +17,7 @@ export default function nickname() {
 
   const handleNickNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
+    // setUserInfo((prev) => {...prev, nickname:nickname});
   };
 
   console.log(userName);
