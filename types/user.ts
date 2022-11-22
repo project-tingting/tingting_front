@@ -4,8 +4,8 @@ export interface LoginProps {
 }
 
 export interface RegisterProps {
-  // id: string;
-  // password: string;
+  id: string;
+  password: string;
   nickName: string;
   birthYear: string;
   university: string;

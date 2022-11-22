@@ -9,16 +9,17 @@ import Button from '../../components/Button';
 import { registerAPI } from '../../core/api/registerAPI';
 import { useRecoilState } from 'recoil';
 import { userInfoState } from '../../core/recoil/userInfoAtom';
-import { useMutation } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
+import { RegisterProps } from '../../types/user';
 
 export default function sex() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const usePost = useMutation({ mutationFn: () => registerAPI(userInfo) });
+  const { data } = useQuery<RegisterProps>(['register'], () => registerAPI(userInfo));
 
   const handleClickContinueButton = useCallback(() => {
     console.log('hi');
-    usePost.mutate();
-  }, []);
+    registerAPI(userInfo);
+  }, [data]);
   return (
     <>
       <Top text="회원가입" />
