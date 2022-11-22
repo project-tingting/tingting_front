@@ -2,15 +2,17 @@ import { DefaultTheme } from 'styled-components';
 import css from 'styled-jsx/css';
 
 const colors = {
-  mainColor: '#5E5E5E',
+  mainColor: '#764AF1',
+  secondaryColor: '#9772FB',
   textColor: '#404040',
   bgColor: '#F8F8F8',
-  inputColor: '#EFEFEF',
-  disabledColor: '#B7B7B7',
-  enabledColor: '#424242',
+  inputColor: '#EBEAED',
+  inputTextColor: '#918F97',
+  buttonDisabledColor: '#867E91',
+  subTitleColor: '#4C4956',
+  descriptionColor: '#6B6B6B',
   whiteColor: '#FFFFFF',
   blackColor: '#000000',
-  redColor: 'red',
 };
 
 const a11yHidden = {

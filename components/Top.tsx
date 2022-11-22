@@ -23,7 +23,7 @@ export default function Top({ text }: TopTextProps) {
 
 const TopComponent = styled.header`
   padding: 0.9rem;
-  color: ${({ theme }) => theme.colors.blackColor};
+  color: ${({ theme }) => theme.colors.subTitleColor};
   font-weight: 600;
   font-size: 1.8rem;
   display: flex;

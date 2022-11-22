@@ -10,7 +10,7 @@ export default function Guide({ text }: Props) {
 }
 
 const GuideText = styled.h1`
-  font-size: 1.75rem;
+  font-size: 2.8rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.textColor};
   line-height: 2.0625rem;

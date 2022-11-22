@@ -26,7 +26,7 @@ const Container = styled.section`
 `;
 
 const Progress = styled.section<IInnerScreen>`
-  background-color: #5e5e5e;
+  background-color: ${({ theme }) => theme.colors.secondaryColor};
   width: ${(props) => props.width};
   height: 100%;
 `;

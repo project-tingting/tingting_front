@@ -28,7 +28,7 @@ const StyledButton = styled.button<BtnPatternProps>`
   background-color: ${(props) =>
     props.disabled
       ? ({ theme }) => theme.colors.disabledColor
-      : ({ theme }) => theme.colors.enabledColor};
+      : ({ theme }) => theme.colors.mainColor};
   border-radius: ${(props) => (props.isRound ? '1.8rem' : '0rem')};
 
   /* color: ${(props) => [props.theme.colors]}; */

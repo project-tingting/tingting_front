@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import '../public/assets/fonts/style.css';
 
 export default function _app({ Component, pageProps }: AppProps) {
   if (process.env.NODE_ENV === 'development') {

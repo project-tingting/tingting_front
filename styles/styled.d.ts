@@ -4,14 +4,16 @@ declare module 'styled-components' {
   export interface DefaultTheme extends Theme {
     colors: {
       mainColor: string;
+      secondaryColor: string;
       textColor: string;
       bgColor: string;
       inputColor: string;
-      disabledColor: string;
-      enabledColor: string;
+      inputTextColor: string;
+      buttonDisabledColor: string;
+      subTitleColor: string;
+      descriptionColor: string;
       whiteColor: string;
       blackColor: string;
-      redColor: string;
     };
     size: {
       mobile: string;
