@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import Router from 'next/router';
 import { useRecoilState } from 'recoil';
-
 import { userInfoState } from '../../core/recoil/userInfoAtom';
 
 import Top from '../../components/Top';
