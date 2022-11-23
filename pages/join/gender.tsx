@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Router from 'next/router';
+import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-
 import { userInfoState } from '../../core/recoil/userInfoAtom';
 
 import Top from '../../components/Top';
@@ -9,37 +9,40 @@ import ProgressBar from '../../components/ProgressBar';
 import Container from '../../components/Join/Container';
 import InputContainer from '../../components/Join/InputContainer';
 import Guide from '../../components/Join/Guide';
-import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
+import GenderButton from '../../components/Join/GenderButton';
 
-export default function year() {
+export default function sex() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [birthYear, setBirthYear] = useState('2003');
+  const [gender, setGender] = useState('');
 
   useEffect(() => {
-    setUserInfo({ ...userInfo, birthYear: birthYear });
-  }, [birthYear]);
+    setUserInfo({ ...userInfo, gender: gender });
+  }, [gender]);
 
-  const handleBirthYearInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthYear(e.target.value);
+  const handleClickMaleButton = () => {
+    setGender('male');
   };
+
+  const handleClickFemaleButton = () => {
+    setGender('female');
+  };
+
   const handleClickContinueButton = useCallback(() => {
-    Router.push('/join/gender');
+    Router.push('/join/school');
   }, []);
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={2} />
+      <ProgressBar stage={3} />
       <Container>
         <InputContainer>
-          <Guide text="출생연도를 입력해주세요" />
-          <StyledInput
-            type="number"
-            size="large"
-            placeholder="2003"
-            onChange={handleBirthYearInput}
-          />
+          <Guide text="성별을 알려주세요" />
         </InputContainer>
+        <GenderButtonContainer>
+          <GenderButton gender="male" onClick={handleClickMaleButton} />
+          <GenderButton gender="female" onClick={handleClickFemaleButton} />
+        </GenderButtonContainer>
         <Button
           onClick={handleClickContinueButton}
           isRound={true}
@@ -50,3 +53,10 @@ export default function year() {
     </>
   );
 }
+
+const GenderButtonContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: -554px;
+`;

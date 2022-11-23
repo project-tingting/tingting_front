@@ -8,8 +8,8 @@ export const registerAPI = async (user: RegisterProps) => {
       password: user.password,
       username: user.nickName,
       birthyear: user.birthYear,
+      gender: user.gender,
       university: user.university,
-      sex: user.sex,
     });
     return res.data;
   } catch (error) {

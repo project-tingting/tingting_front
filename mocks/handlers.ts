@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import { RegisterProps } from '../types/user';
 
 export const handlers = [
-  rest.post<RegisterProps>('/join/sex', (req, res, ctx) => {
+  rest.post<RegisterProps>('/join/gender', (req, res, ctx) => {
     localStorage.setItem('is-authenticated', 'true');
     return res(
       ctx.status(200),

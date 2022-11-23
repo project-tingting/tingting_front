@@ -39,8 +39,4 @@ export const InputBox = styled.input<IInnerScreen>`
   border: none;
   line-height: 3.3rem;
   font-size: 1.8rem;
-
-  &:focus {
-    border: 0.2rem solid #828282;
-  }
 `;

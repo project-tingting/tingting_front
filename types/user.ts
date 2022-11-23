@@ -6,8 +6,7 @@ export interface LoginProps {
 export interface RegisterProps {
   id: string;
   password: string;
-  nickName: string;
   birthYear: string;
+  gender: string;
   university: string;
-  sex: string;
 }
