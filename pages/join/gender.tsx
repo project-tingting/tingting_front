@@ -46,7 +46,7 @@ export default function sex() {
         <Button
           onClick={handleClickContinueButton}
           isRound={true}
-          disabled={false}
+          disabled={!gender}
           text="계속하기"
         />
       </Container>

@@ -3,6 +3,7 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { userInfoState } from '../../core/recoil/userInfoAtom';
+import { checkIdValid } from '../../util/checkIdValid';
 
 import Top from '../../components/Top';
 import ProgressBar from '../../components/ProgressBar';
@@ -21,11 +22,8 @@ export default function nickname() {
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
   useEffect(() => {
-    id ? setIsIdValid(true) : setIsIdValid(false);
-    password ? setIsPasswordValid(true) : setIsPasswordValid(false);
-  }, [id, password]);
-
-  useEffect(() => {
+    checkIdValid(id) ? setIsIdValid(true) : setIsIdValid(false);
+    password.length >= 8 ? setIsPasswordValid(true) : setIsPasswordValid(false);
     setUserInfo({ ...userInfo, id: id, password: password });
   }, [id, password]);
 
@@ -47,19 +45,13 @@ export default function nickname() {
       <Container>
         <InputContainer>
           <Guide text={isIdValid ? '비밀번호를 설정해주세요' : '아이디를 설정해주세요'} />
-          {isIdValid && (
-            <>
-              <StyledInput
-                type="password"
-                size="large"
-                placeholder="비밀번호"
-                onChange={handlePasswordInput}
-              />
-              {!isPasswordValid && <InputMessage text="8자 이상이 필요합니다 *" />}
-              <Blank />
-            </>
-          )}
-          <StyledInput type="text" size="large" placeholder="아이디" onChange={handleIdInput} />
+          <StyledInput
+            type="text"
+            size="large"
+            placeholder="아이디"
+            onChange={handleIdInput}
+            isIdValid={isIdValid}
+          />
           <InputMessage
             text={
               isIdValid
@@ -67,11 +59,24 @@ export default function nickname() {
                 : '아이디는 대, 소문자, 특수기호만 가능합니다 *'
             }
           />
+          {isIdValid && (
+            <>
+              <Blank />
+              <StyledInput
+                type="password"
+                size="large"
+                placeholder="비밀번호"
+                isPasswordValid={isPasswordValid}
+                onChange={handlePasswordInput}
+              />
+              {!isPasswordValid && <InputMessage text="8자 이상이 필요합니다 *" />}
+            </>
+          )}
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}
           isRound={true}
-          disabled={false}
+          disabled={!(isIdValid && isPasswordValid)}
           text="계속하기"
         />
       </Container>

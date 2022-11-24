@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 type InputProps = {
   size: string;
+  isIdValid?: boolean;
+  isPasswordValid?: boolean;
 };
 
 export const StyledInput = styled.input<InputProps>`
