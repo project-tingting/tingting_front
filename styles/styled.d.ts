@@ -9,6 +9,8 @@ declare module 'styled-components' {
       bgColor: string;
       inputColor: string;
       inputTextColor: string;
+      inputTextUserColor: string;
+      inputErrorColor: string;
       buttonDisabledColor: string;
       subTitleColor: string;
       descriptionColor: string;

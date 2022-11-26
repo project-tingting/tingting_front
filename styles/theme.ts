@@ -8,6 +8,8 @@ const colors = {
   bgColor: '#F8F8F8',
   inputColor: '#EBEAED',
   inputTextColor: '#918F97',
+  inputTextUserColor: '#353535',
+  inputErrorColor: '#F75B77',
   buttonDisabledColor: '#867E91',
   subTitleColor: '#4C4956',
   descriptionColor: '#6B6B6B',

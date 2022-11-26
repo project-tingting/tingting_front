@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     html {
         font-size: 62.5%;
         font-family: 'Pretendard';
-        color: ${({ theme }) => theme.colors.blackColor};
+        color: ${({ theme }) => theme.colors.textColor};
         background-color: ${({ theme }) => theme.colors.bgColor};
     }
 
@@ -25,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
     }
     input{
         background-color: ${({ theme }) => theme.colors.inputColor};
+        outline: 0;
+        &::placeholder {
+            color: ${({ theme }) => theme.colors.inputTextColor};
+        }
     }
     button{
         cursor: pointer;

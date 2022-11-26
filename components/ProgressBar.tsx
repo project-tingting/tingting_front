@@ -3,16 +3,17 @@ import styled from 'styled-components';
 
 type Props = {
   stage: number;
+  total: number;
 };
 
 interface IInnerScreen {
   width: string;
 }
 
-export default function ProgressBar({ stage }: Props) {
+export default function ProgressBar({ stage, total }: Props) {
   return (
     <Container>
-      <Progress width={(stage / 4) * 100 + '%'} />
+      <Progress width={(stage / total) * 100 + '%'} />
     </Container>
   );
 }
