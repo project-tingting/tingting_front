@@ -16,19 +16,19 @@ import Button from '../../components/Button';
 
 export default function nickname() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [id, setId] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [isIdValid, setIsIdValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
   useEffect(() => {
-    checkIdValid(id) ? setIsIdValid(true) : setIsIdValid(false);
+    checkIdValid(userId) ? setIsIdValid(true) : setIsIdValid(false);
     password.length >= 8 ? setIsPasswordValid(true) : setIsPasswordValid(false);
-    setUserInfo({ ...userInfo, id: id, password: password });
-  }, [id, password]);
+    setUserInfo({ ...userInfo, userId: userId, password: password });
+  }, [userId, password]);
 
   const handleIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setId(e.target.value);
+    setUserId(e.target.value);
   };
 
   const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,7 @@ export default function nickname() {
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={1} />
+      <ProgressBar stage={1} total={4} />
       <Container>
         <InputContainer>
           <Guide text={isIdValid ? '비밀번호를 설정해주세요' : '아이디를 설정해주세요'} />
@@ -51,6 +51,7 @@ export default function nickname() {
             placeholder="아이디"
             onChange={handleIdInput}
             isIdValid={isIdValid}
+            className={!isIdValid && userId ? 'error' : ''}
           />
           <InputMessage
             text={
@@ -68,6 +69,7 @@ export default function nickname() {
                 placeholder="비밀번호"
                 isPasswordValid={isPasswordValid}
                 onChange={handlePasswordInput}
+                className={!isPasswordValid && password ? 'error' : ''}
               />
               {!isPasswordValid && <InputMessage text="8자 이상이 필요합니다 *" />}
             </>

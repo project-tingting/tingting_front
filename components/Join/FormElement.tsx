@@ -4,6 +4,7 @@ type InputProps = {
   size: string;
   isIdValid?: boolean;
   isPasswordValid?: boolean;
+  classname?: string;
 };
 
 export const StyledInput = styled.input<InputProps>`
@@ -32,4 +33,17 @@ export const StyledInput = styled.input<InputProps>`
     outline: none;
     border: 0.2rem solid ${({ theme }) => theme.colors.mainColor};
   }
+
+  &.error {
+    border: 0.2rem solid ${({ theme }) => theme.colors.inputErrorColor};
+  }
+`;
+
+export const ValidateButton = styled.button`
+  width: 59px;
+  border-radius: 1.25rem;
+  background-color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.whiteColor};
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 `;

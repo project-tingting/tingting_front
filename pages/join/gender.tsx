@@ -34,14 +34,22 @@ export default function sex() {
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={3} />
+      <ProgressBar stage={3} total={4} />
       <Container>
         <InputContainer>
           <Guide text="성별을 알려주세요" />
         </InputContainer>
         <GenderButtonContainer>
-          <GenderButton gender="male" onClick={handleClickMaleButton} />
-          <GenderButton gender="female" onClick={handleClickFemaleButton} />
+          <GenderButton
+            gender="male"
+            onClick={handleClickMaleButton}
+            className={gender === 'male' ? 'maleClicked' : ''}
+          />
+          <GenderButton
+            gender="female"
+            onClick={handleClickFemaleButton}
+            className={gender === 'female' ? 'femaleClicked' : ''}
+          />
         </GenderButtonContainer>
         <Button
           onClick={handleClickContinueButton}

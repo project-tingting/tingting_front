@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 import Router from 'next/router';
 import { useRecoilValue } from 'recoil';
 
@@ -11,6 +12,7 @@ import InputContainer from '../../components/Join/InputContainer';
 import Guide from '../../components/Join/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
+import { ValidateButton } from '../../components/Join/FormElement';
 
 export default function school() {
   const userInfo = useRecoilValue(userInfoState);
@@ -21,11 +23,14 @@ export default function school() {
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={4} />
+      <ProgressBar stage={4} total={4} />
       <Container>
         <InputContainer>
           <Guide text="다니는 학교를 알려주세요" />
-          <StyledInput type="text" size="large" placeholder="대학교" />
+          <FormContainer>
+            <StyledInput type="email" size="large" placeholder="학교 웹메일" />
+            <ValidateButton>인증</ValidateButton>
+          </FormContainer>
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}
@@ -37,3 +42,9 @@ export default function school() {
     </>
   );
 }
+
+const FormContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+`;

@@ -8,14 +8,26 @@ type Props = {
   size: SizeType;
   text: string;
   type: InputType;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  classname: string;
 };
 
 type IInnerScreen = {
   size: string;
 };
 
-export default function UserInput({ size, text, type }: Props) {
-  return <InputBox placeholder={text} size={size} type={type} min="1990" max="2003" />;
+export default function UserInput({ size, text, type, onChange, classname }: Props) {
+  return (
+    <InputBox
+      placeholder={text}
+      size={size}
+      type={type}
+      min="1990"
+      max="2003"
+      onChange={onChange}
+      className={classname}
+    />
+  );
 }
 
 export const InputBox = styled.input<IInnerScreen>`
@@ -25,18 +37,30 @@ export const InputBox = styled.input<IInnerScreen>`
           height: 5.6rem;
           border-radius: 2rem;
           padding: 1.2rem 0 1.1rem 1.2rem;
-          background-color: ${({ theme }) => theme.colors.inputColor};
-          color: #a7a7a7;
         `
       : css`
           height: 4.8rem;
           border-radius: 1rem;
-          padding: 1rem 0 0.9rem 1.6rem;
-          color: #646464;
-          background-color: #dedede;
+          padding: 1.2rem 0 1.1rem 1.2rem;
         `}
   width: 100%;
   border: none;
   line-height: 3.3rem;
-  font-size: 1.8rem;
+  font-size: 2.8rem;
+  color: ${({ theme }) => theme.colors.inputTextUserColor};
+  &:focus {
+    border: 0.2rem solid ${({ theme }) => theme.colors.mainColor};
+  }
+  &.error {
+    border: 0.2rem solid ${({ theme }) => theme.colors.inputErrorColor};
+  }
+`;
+
+export const ErrorText = styled.p`
+  color: ${({ theme }) => theme.colors.inputTextUserColor};
+  font-size: 2rem;
+  margin-top: 1.2rem;
+  & span {
+    color: ${({ theme }) => theme.colors.secondaryColor};
+  }
 `;
