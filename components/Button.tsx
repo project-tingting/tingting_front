@@ -25,6 +25,8 @@ const StyledButton = styled.button<BtnPatternProps>`
   font-size: 2.4rem;
   padding: 1.7rem;
   line-height: 2.9rem;
+  margin-bottom: 2.1rem;
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
   background-color: ${(props) =>
     props.disabled
       ? ({ theme }) => theme.colors.buttonDisabledColor
