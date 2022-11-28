@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MainText, ProfileSection } from '.';
 import Button from '../../components/Button';
@@ -63,7 +63,7 @@ export default function mbti() {
         <Button
           onClick={handleContinueButton}
           text="계속하기"
-          disabled={isDisabled ? true : false}
+          disabled={isDisabled}
           isRound={true}
         />
       </Wrap>

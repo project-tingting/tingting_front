@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ProfileSection } from '.';
 import Button from '../../components/Button';
@@ -7,18 +7,27 @@ import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import { Wrap } from '../../components/Wrap';
 import { LeftMainText } from './mbti';
-import O from '../../public/assets/icons/purpleO.svg';
-import X from '../../public/assets/icons/purpleX.svg';
+import purpleO from '../../public/assets/icons/purpleO.svg';
+import purpleX from '../../public/assets/icons/purpleX.svg';
+import whiteO from '../../public/assets/icons/whiteO.svg';
+import whiteX from '../../public/assets/icons/whiteX.svg';
+import Router from 'next/router';
 
 export default function alcohol() {
-  const [clicked, setClicked] = useState(false);
+  const [alcohol, setAlcohol] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
+  useEffect(() => {
+    if (alcohol === '') setIsDisabled(true);
+    else setIsDisabled(false);
+  });
   const handleContinueButton = () => {
-    console.log('완료~!');
-    // Router.push('/profile/interest');
+    Router.push('/profile/completed');
   };
-  const handleOXButton = () => {
-    console.log('O');
-    setClicked(true);
+  const handleOButton = () => {
+    setAlcohol('O');
+  };
+  const handleXButton = () => {
+    setAlcohol('X');
   };
   return (
     <ProfileSection>
@@ -28,17 +37,22 @@ export default function alcohol() {
         <Wrap>
           <LeftMainText>술을 선호하시나요?</LeftMainText>
           <OXButtonGroup>
-            <OXButton onClick={handleOXButton} clicked={clicked}>
-              <Image src={O} />
+            <OXButton onClick={handleOButton} className={alcohol === 'O' ? 'clicked' : ''}>
+              <Image src={alcohol === 'O' ? whiteO : purpleO} />
             </OXButton>
-            <OXButton clicked={clicked}>
-              <Image src={X} />
+            <OXButton onClick={handleXButton} className={alcohol === 'X' ? 'clicked' : ''}>
+              <Image src={alcohol === 'X' ? whiteX : purpleX} />
             </OXButton>
           </OXButtonGroup>
         </Wrap>
       </div>
       <Wrap>
-        <Button onClick={handleContinueButton} text="계속하기" disabled={false} isRound={true} />
+        <Button
+          onClick={handleContinueButton}
+          text="계속하기"
+          disabled={isDisabled}
+          isRound={true}
+        />
       </Wrap>
     </ProfileSection>
   );
@@ -52,16 +66,14 @@ const OXButtonGroup = styled.div`
 const OXButton = styled.button`
   padding: 6.6rem;
   border-radius: 2.4rem;
-  /* color: ${({ theme }) => theme.colors.mainColor}; */
-  background-color: ${(props) =>
-    props.clicked ? ({ theme }) => theme.colors.mainColor : ({ theme }) => theme.colors.whiteColor};
+  background-color: ${({ theme }) => theme.colors.whiteColor};
   box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+  &.clicked {
+    background-color: ${({ theme }) => theme.colors.mainColor};
+  }
   &:active {
     box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     position: relative;
     top: 0.2rem;
   }
-  /* &:hover {
-    background-color: ${({ theme }) => theme.colors.mainColor};
-  } */
 `;

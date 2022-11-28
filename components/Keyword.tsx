@@ -1,59 +1,20 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { keyword, onKeywordSelector } from '../core/recoil/keyword';
 
 interface KeywordButtonProps {
   text: string;
-  // disabled: boolean;
-  // onClick: () => void;
+  isClicked: (clicked: boolean) => void;
 }
 
-export default function Keyword({ text }: KeywordButtonProps) {
+export default function Keyword({ text, isClicked }: KeywordButtonProps) {
   const [onclick, setOnclick] = useState(false);
-
-  // const [onclick, setOnclick] = useRecoilState(keyword);
-  // const [count, setCount] = useState(0);
-  // const [isDisabled, setIsDisabled] = useState(false);
-  // const onClickKeyword = () => {
-  //   // useMemo(() => {
-  //   setIsDisabled(!isDisabled);
-  //   console.log(isDisabled);
-  //   // }, [isDisabled]);
-  // };
-  // const onClickKeyword = useCallback(() => {
-  //   // setIsDisabled(!isDisabled);
-  //   isClicked;
-  //   // console.log(isDisabled);
-  // }, []);
-
-  // const memo = useMemo(() => {
-  //   setOnclick(!onclick);
-  // }, [onclick]);
-  // useEffect(() => {
-  //   if (onclick === true) {
-  //     setCount(count + 1);
-  //     console.log(count);
-  //   } else {
-  //     setCount(count - 1);
-  //     console.log(count);
-  //   }
-  // if(onclick>3) {
-  //   console.log('3개이상임!')
-  // }
-  // }, [onclick]);
-  // const onKeyword = () => {
-  //   setIsDisabled(!isDisabled);
-  // };
 
   const onClickKeyword = () => {
     setOnclick(!onclick);
-    console.log(onclick);
-    // disabled ? setOnClick(!onClick) : setOnClick(onClick);
+    isClicked(onclick);
   };
   return (
-    // <StyledKeywordButton disabled={isDisabled} onClick={onClickKeyword} clicked={onclick}>
-    <StyledKeywordButton onClick={onClickKeyword} clicked={onclick}>
+    <StyledKeywordButton onClick={onClickKeyword} clicked={onclick} isClicked={isClicked}>
       {text}
     </StyledKeywordButton>
   );

@@ -6,7 +6,6 @@ import Button from '../../components/Button';
 export default function index() {
   const handleCancleButton = () => console.log('아니요!');
   const handleYesButton = () => {
-    // console.log('예!');
     Router.push('/profile/mbti');
   };
   return (
