@@ -17,7 +17,7 @@ export default function interest() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    if (count === 3) {
+    if (count <= 3 && count !== 0) {
       setIsDisabled(false);
     } else if (count > 3) {
       setIsDisabled(true);
@@ -30,9 +30,8 @@ export default function interest() {
     }
   });
 
-  const isClicked = (clicked: boolean) => {
-    clicked ? setCount(count - 1) : setCount(count + 1);
-    console.log(count);
+  const isClicked = (onclick: boolean) => {
+    onclick ? setCount(count - 1) : setCount(count + 1);
   };
 
   const handleContinueButton = () => {
