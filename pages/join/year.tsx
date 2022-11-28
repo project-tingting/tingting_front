@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Router from 'next/router';
 import { useRecoilState } from 'recoil';
 
@@ -11,18 +11,16 @@ import InputContainer from '../../components/Join/InputContainer';
 import Guide from '../../components/Join/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
+import useInput from '../../util/hooks/useInput';
 
 export default function year() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [birthYear, setBirthYear] = useState('2003');
+  const [birthYear, handleBirthYear] = useInput('2003');
 
   useEffect(() => {
     setUserInfo({ ...userInfo, birthYear: birthYear });
   }, [birthYear]);
 
-  const handleBirthYearInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthYear(e.target.value);
-  };
   const handleClickContinueButton = useCallback(() => {
     Router.push('/join/gender');
   }, []);
@@ -33,12 +31,7 @@ export default function year() {
       <Container>
         <InputContainer>
           <Guide text="출생연도를 입력해주세요" />
-          <StyledInput
-            type="number"
-            size="large"
-            placeholder="2003"
-            onChange={handleBirthYearInput}
-          />
+          <StyledInput type="number" size="large" placeholder="2003" onChange={handleBirthYear} />
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}

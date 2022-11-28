@@ -13,11 +13,12 @@ import Guide from '../../components/Join/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
 import Button from '../../components/Button';
+import useInput from '../../util/hooks/useInput';
 
 export default function nickname() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+  const [userId, handleUserId] = useInput('');
+  const [password, handlePassword] = useInput('');
   const [isIdValid, setIsIdValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
@@ -26,14 +27,6 @@ export default function nickname() {
     password.length >= 8 ? setIsPasswordValid(true) : setIsPasswordValid(false);
     setUserInfo({ ...userInfo, userId: userId, password: password });
   }, [userId, password]);
-
-  const handleIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserId(e.target.value);
-  };
-
-  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
 
   const handleClickContinueButton = useCallback(() => {
     Router.push('/join/year');
@@ -49,7 +42,7 @@ export default function nickname() {
             type="text"
             size="large"
             placeholder="아이디"
-            onChange={handleIdInput}
+            onChange={handleUserId}
             isIdValid={isIdValid}
             className={!isIdValid && userId ? 'error' : ''}
           />
@@ -68,7 +61,7 @@ export default function nickname() {
                 size="large"
                 placeholder="비밀번호"
                 isPasswordValid={isPasswordValid}
-                onChange={handlePasswordInput}
+                onChange={handlePassword}
                 className={!isPasswordValid && password ? 'error' : ''}
               />
               {!isPasswordValid && <InputMessage text="8자 이상이 필요합니다 *" />}
