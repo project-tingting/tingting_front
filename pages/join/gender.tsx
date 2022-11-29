@@ -29,7 +29,7 @@ export default function sex() {
   };
 
   const handleClickContinueButton = useCallback(() => {
-    Router.push('/join/school');
+    Router.push('/join/university');
   }, []);
   return (
     <>
