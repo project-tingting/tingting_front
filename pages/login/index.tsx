@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import TingTingLogo from '../../public/assets/icons/tingting_logo.svg';
-import { loginAPI } from '../../core/api/loginAPI';
+import useLoginForm from '../../util/hooks/useLoginForm';
 
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
@@ -12,13 +12,11 @@ export default function index() {
   const [userId, handleUserId] = useInput('');
   const [password, handlePassword] = useInput('');
 
-  const handleClickLoginButton = useCallback(() => {
-    loginAPI(userId, password);
-  }, []);
+  const { submitLoginForm } = useLoginForm(userId, password);
   return (
     <StyledContainer>
       <Image src={TingTingLogo} alt="팅팅 로고"></Image>
-      <FormContainer>
+      <FormContainer onSubmit={submitLoginForm}>
         <StyledInput size="small" placeholder="아이디" type="text" onChange={handleUserId} />
         <StyledInput
           size="small"
@@ -26,12 +24,7 @@ export default function index() {
           type="password"
           onChange={handlePassword}
         />
-        <Button
-          text="로그인"
-          isRound={true}
-          disabled={!userId || !password}
-          onClick={handleClickLoginButton}
-        />
+        <Button text="로그인" isRound={true} disabled={!userId || !password} />
       </FormContainer>
     </StyledContainer>
   );
