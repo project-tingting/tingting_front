@@ -1,8 +1,9 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
+import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
-import Container from '../../components/Join/Container';
-import Guide from '../../components/Join/Guide';
+import Container from '../../components/Container';
+import Guide from '../../components/Guide';
 import Keyword from '../../components/Keyword';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
@@ -40,7 +41,7 @@ export default function interest() {
       <Top text="프로필" />
       <ProgressBar stage={2} total={3} />
       <Container>
-        <div>
+        <InputContainer>
           <Guide text="관심사 키워드를 선택해주세요" />
           <Keyword text="게임" isClicked={isClicked} />
           <Keyword text="자기계발" isClicked={isClicked} />
@@ -60,7 +61,7 @@ export default function interest() {
               {msg} <span>*</span>
             </ErrorText>
           )}
-        </div>
+        </InputContainer>
         <Button
           onClick={handleContinueButton}
           text="계속하기"

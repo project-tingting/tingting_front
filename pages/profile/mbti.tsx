@@ -1,11 +1,10 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { MainText } from '.';
+import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
-import Container from '../../components/Join/Container';
-import Guide from '../../components/Join/Guide';
-import InputContainer from '../../components/Join/InputContainer';
+import Container from '../../components/Container';
+import Guide from '../../components/Guide';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import UserInput, { ErrorText } from '../../components/UserInput';
@@ -42,7 +41,7 @@ export default function mbti() {
       <Top text="프로필" />
       <ProgressBar stage={1} total={3} />
       <Container>
-        <div>
+        <InputContainer>
           <Guide text="MBTI를 알려주세요" />
           <UserInput
             type="text"
@@ -56,7 +55,7 @@ export default function mbti() {
               {msg} <span>*</span>
             </ErrorText>
           )}
-        </div>
+        </InputContainer>
         <Button
           onClick={handleContinueButton}
           text="계속하기"
@@ -67,8 +66,3 @@ export default function mbti() {
     </>
   );
 }
-
-export const LeftMainText = styled(MainText)`
-  text-align: left;
-  padding-bottom: 4.8rem;
-`;

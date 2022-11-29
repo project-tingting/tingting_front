@@ -21,13 +21,6 @@ export default function index() {
   );
 }
 
-export const MainText = styled.p`
-  font-size: 2.8rem;
-  font-weight: 600;
-  text-align: center;
-  padding-top: 5rem;
-`;
-
 const ButtonGroup = styled.div`
   display: flex;
   & button:nth-child(1) {

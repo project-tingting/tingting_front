@@ -3,14 +3,15 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Button from '../../components/Button';
-import Guide from '../../components/Join/Guide';
-import Container from '../../components/Join/Container';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import purpleO from '../../public/assets/icons/purpleO.svg';
 import purpleX from '../../public/assets/icons/purpleX.svg';
 import whiteO from '../../public/assets/icons/whiteO.svg';
 import whiteX from '../../public/assets/icons/whiteX.svg';
+import InputContainer from '../../components/AnimationContainer';
+import Container from '../../components/Container';
+import Guide from '../../components/Guide';
 
 export default function alcohol() {
   const [alcohol, setAlcohol] = useState('');
@@ -33,7 +34,7 @@ export default function alcohol() {
       <Top text="프로필" />
       <ProgressBar stage={3} total={3} />
       <Container>
-        <div>
+        <InputContainer>
           <Guide text="술을 선호하시나요?"></Guide>
           <OXButtonGroup>
             <OXButton onClick={handleOButton} className={alcohol === 'O' ? 'clicked' : ''}>
@@ -43,7 +44,7 @@ export default function alcohol() {
               <Image src={alcohol === 'X' ? whiteX : purpleX} />
             </OXButton>
           </OXButtonGroup>
-        </div>
+        </InputContainer>
         <Button
           onClick={handleContinueButton}
           text="계속하기"
