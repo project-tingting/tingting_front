@@ -10,9 +10,9 @@ export default function Container({ children }: Props) {
 }
 
 const StyledContainer = styled.section`
-  padding: 0 16px 34px 16px;
+  padding: 0 2em;
   display: flex;
-  height: calc(100vh - 42px);
+  height: calc(100vh - 4.2rem);
   flex-direction: column;
   justify-content: space-between;
 `;
