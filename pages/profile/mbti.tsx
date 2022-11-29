@@ -1,6 +1,5 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
