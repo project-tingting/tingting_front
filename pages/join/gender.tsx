@@ -6,9 +6,9 @@ import { userInfoState } from '../../core/recoil/userInfoAtom';
 
 import Top from '../../components/Top';
 import ProgressBar from '../../components/ProgressBar';
-import Container from '../../components/Join/Container';
-import InputContainer from '../../components/Join/InputContainer';
-import Guide from '../../components/Join/Guide';
+import Container from '../../components/Container';
+import InputContainer from '../../components/AnimationContainer';
+import Guide from '../../components/Guide';
 import Button from '../../components/Button';
 import GenderButton from '../../components/Join/GenderButton';
 
