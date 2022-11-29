@@ -1,14 +1,12 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { ProfileSection } from '.';
 import Button from '../../components/Button';
+import Container from '../../components/Join/Container';
+import Guide from '../../components/Join/Guide';
 import Keyword from '../../components/Keyword';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import { ErrorText } from '../../components/UserInput';
-import { Wrap } from '../../components/Wrap';
-
-import { LeftMainText } from './mbti';
 
 export default function interest() {
   const [count, setCount] = useState(0);
@@ -38,12 +36,12 @@ export default function interest() {
     Router.push('/profile/alcohol');
   };
   return (
-    <ProfileSection>
-      <div>
-        <Top text="프로필" />
-        <ProgressBar stage={2} total={3} />
-        <Wrap>
-          <LeftMainText>관심사 키워드를 선택해주세요</LeftMainText>
+    <>
+      <Top text="프로필" />
+      <ProgressBar stage={2} total={3} />
+      <Container>
+        <div>
+          <Guide text="관심사 키워드를 선택해주세요" />
           <Keyword text="게임" isClicked={isClicked} />
           <Keyword text="자기계발" isClicked={isClicked} />
           <Keyword text="스포츠" isClicked={isClicked} />
@@ -62,16 +60,14 @@ export default function interest() {
               {msg} <span>*</span>
             </ErrorText>
           )}
-        </Wrap>
-      </div>
-      <Wrap>
+        </div>
         <Button
           onClick={handleContinueButton}
           text="계속하기"
           disabled={isDisabled}
           isRound={true}
         />
-      </Wrap>
-    </ProfileSection>
+      </Container>
+    </>
   );
 }

@@ -1,12 +1,14 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { MainText, ProfileSection } from '.';
+import { MainText } from '.';
 import Button from '../../components/Button';
+import Container from '../../components/Join/Container';
+import Guide from '../../components/Join/Guide';
+import InputContainer from '../../components/Join/InputContainer';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import UserInput, { ErrorText } from '../../components/UserInput';
-import { Wrap } from '../../components/Wrap';
 
 export default function mbti() {
   const [userMbti, setUserMbti] = useState('');
@@ -28,23 +30,20 @@ export default function mbti() {
       setIsError(false);
     }
   }, [userMbti]);
-  console.log(isDisabled);
 
   const handleMbtiInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserMbti(e.target.value);
   };
-  console.log(userMbti);
   const handleContinueButton = () => {
-    console.log('완료~!');
     Router.push('/profile/interest');
   };
   return (
-    <ProfileSection>
-      <div>
-        <Top text="프로필" />
-        <ProgressBar stage={1} total={3} />
-        <Wrap>
-          <LeftMainText>MBTI를 알려주세요</LeftMainText>
+    <>
+      <Top text="프로필" />
+      <ProgressBar stage={1} total={3} />
+      <Container>
+        <div>
+          <Guide text="MBTI를 알려주세요" />
           <UserInput
             type="text"
             size="small"
@@ -57,17 +56,15 @@ export default function mbti() {
               {msg} <span>*</span>
             </ErrorText>
           )}
-        </Wrap>
-      </div>
-      <Wrap>
+        </div>
         <Button
           onClick={handleContinueButton}
           text="계속하기"
           disabled={isDisabled}
           isRound={true}
         />
-      </Wrap>
-    </ProfileSection>
+      </Container>
+    </>
   );
 }
 

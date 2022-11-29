@@ -2,29 +2,24 @@ import Router from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../../components/Button';
+import Notice from '../../components/Notice';
 
 export default function index() {
-  const handleCancleButton = () => console.log('아니요!');
+  const handleNoButton = () => console.log('아니요!');
   const handleYesButton = () => {
     Router.push('/profile/mbti');
   };
   return (
-    <ProfileSection>
-      <MainText>바로 프로필을 설정하시겠어요?</MainText>
-      <ButtonGroup>
-        <Button onClick={handleCancleButton} text="아니요" disabled={false} isRound={false} />
-        <Button onClick={handleYesButton} text="예" disabled={false} isRound={false} />
-      </ButtonGroup>
-    </ProfileSection>
+    <>
+      <Notice message="바로 프로필을 설정하시겠어요?">
+        <ButtonGroup>
+          <Button onClick={handleNoButton} text="아니요" disabled={false} isRound={false} />
+          <Button onClick={handleYesButton} text="예" disabled={false} isRound={false} />
+        </ButtonGroup>
+      </Notice>
+    </>
   );
 }
-
-export const ProfileSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-`;
 
 export const MainText = styled.p`
   font-size: 2.8rem;

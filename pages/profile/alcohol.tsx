@@ -1,17 +1,16 @@
+import Router from 'next/router';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { ProfileSection } from '.';
 import Button from '../../components/Button';
+import Guide from '../../components/Join/Guide';
+import Container from '../../components/Join/Container';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
-import { Wrap } from '../../components/Wrap';
-import { LeftMainText } from './mbti';
 import purpleO from '../../public/assets/icons/purpleO.svg';
 import purpleX from '../../public/assets/icons/purpleX.svg';
 import whiteO from '../../public/assets/icons/whiteO.svg';
 import whiteX from '../../public/assets/icons/whiteX.svg';
-import Router from 'next/router';
 
 export default function alcohol() {
   const [alcohol, setAlcohol] = useState('');
@@ -30,12 +29,12 @@ export default function alcohol() {
     setAlcohol('X');
   };
   return (
-    <ProfileSection>
-      <div>
-        <Top text="프로필" />
-        <ProgressBar stage={3} total={3} />
-        <Wrap>
-          <LeftMainText>술을 선호하시나요?</LeftMainText>
+    <>
+      <Top text="프로필" />
+      <ProgressBar stage={3} total={3} />
+      <Container>
+        <div>
+          <Guide text="술을 선호하시나요?"></Guide>
           <OXButtonGroup>
             <OXButton onClick={handleOButton} className={alcohol === 'O' ? 'clicked' : ''}>
               <Image src={alcohol === 'O' ? whiteO : purpleO} />
@@ -44,17 +43,15 @@ export default function alcohol() {
               <Image src={alcohol === 'X' ? whiteX : purpleX} />
             </OXButton>
           </OXButtonGroup>
-        </Wrap>
-      </div>
-      <Wrap>
+        </div>
         <Button
           onClick={handleContinueButton}
           text="계속하기"
           disabled={isDisabled}
           isRound={true}
         />
-      </Wrap>
-    </ProfileSection>
+      </Container>
+    </>
   );
 }
 

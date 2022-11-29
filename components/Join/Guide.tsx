@@ -12,7 +12,6 @@ export default function Guide({ text }: Props) {
 const GuideText = styled.h1`
   font-size: 2.8rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.textColor};
-  line-height: 2.0625rem;
-  padding: 48px 0;
+  line-height: 3.3rem;
+  padding: 5rem 0 4.5rem;
 `;
