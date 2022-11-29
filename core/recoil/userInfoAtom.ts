@@ -4,11 +4,10 @@ import { RegisterProps } from '../../types/user';
 export const userInfoState = atom<RegisterProps>({
   key: 'userInfoState',
   default: {
-    id: '',
+    userId: '',
     password: '',
-    nickName: '',
     birthYear: '',
+    gender: '',
     university: '',
-    sex: '',
   },
 });

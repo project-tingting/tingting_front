@@ -1,8 +1,8 @@
 import { rest } from 'msw';
-import { RegisterProps } from '../types/user';
+import { RegisterProps } from '../../types/user';
 
-export const handlers = [
-  rest.post<RegisterProps>('/join/sex', (req, res, ctx) => {
+export const registerHandlers = [
+  rest.post<RegisterProps>('/account/register', (req, res, ctx) => {
     localStorage.setItem('is-authenticated', 'true');
     return res(
       ctx.status(200),

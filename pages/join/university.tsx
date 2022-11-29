@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
 import Router from 'next/router';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import { userInfoState } from '../../core/recoil/userInfoAtom';
 
@@ -11,27 +12,25 @@ import InputContainer from '../../components/AnimationContainer';
 import Guide from '../../components/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
-import useInput from '../../util/hooks/useInput';
+import { ValidateButton } from '../../components/Join/FormElement';
 
-export default function year() {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [birthYear, handleBirthYear] = useInput('2003');
-
-  useEffect(() => {
-    setUserInfo({ ...userInfo, birthYear: birthYear });
-  }, [birthYear]);
-
+export default function school() {
+  const userInfo = useRecoilValue(userInfoState);
+  console.log(userInfo);
   const handleClickContinueButton = useCallback(() => {
-    Router.push('/join/gender');
+    Router.push('/');
   }, []);
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={2} total={4} />
+      <ProgressBar stage={4} total={4} />
       <Container>
         <InputContainer>
-          <Guide text="출생연도를 입력해주세요" />
-          <StyledInput type="number" size="large" placeholder="2003" onChange={handleBirthYear} />
+          <Guide text="다니는 학교를 알려주세요" />
+          <FormContainer>
+            <StyledInput type="email" size="large" placeholder="학교 웹메일" />
+            <ValidateButton>인증</ValidateButton>
+          </FormContainer>
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}
@@ -43,3 +42,9 @@ export default function year() {
     </>
   );
 }
+
+const FormContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+`;
