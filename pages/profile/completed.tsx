@@ -6,7 +6,7 @@ import Notice from '../../components/Notice';
 export default function completed() {
   useEffect(() => {
     setTimeout(() => {
-      Router.push('/');
+      Router.push('/'); // HOME으로 바꾸기
     }, 2000);
   }, []);
   return (
