@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 import Notice from '../../components/Notice';
 
 export default function index() {
-  const handleNoButton = () => console.log('아니요!');
+  const handleNoButton = () => console.log('아니요!'); // home으로 변경
   const handleYesButton = () => {
     Router.push('/profile/mbti');
   };

@@ -3,18 +3,24 @@ import styled from 'styled-components';
 
 interface KeywordButtonProps {
   text: string;
-  isClicked: (clicked: boolean) => void;
+  isClicked?: (clicked: boolean) => void;
+  disabled?: boolean;
 }
 
-export default function Keyword({ text, isClicked }: KeywordButtonProps) {
+export default function Keyword({ text, isClicked, disabled }: KeywordButtonProps) {
   const [onclick, setOnclick] = useState(false);
 
   const onClickKeyword = () => {
     setOnclick(!onclick);
-    isClicked(onclick);
+    isClicked ? isClicked(onclick) : null;
   };
   return (
-    <StyledKeywordButton onClick={onClickKeyword} clicked={onclick} isClicked={isClicked}>
+    <StyledKeywordButton
+      onClick={onClickKeyword}
+      clicked={onclick}
+      isClicked={isClicked}
+      disabled={disabled}
+    >
       {text}
     </StyledKeywordButton>
   );
