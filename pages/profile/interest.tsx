@@ -1,6 +1,9 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
+
+import { userProfileState } from '../../core/recoil/userProfileAtom';
+
 import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
@@ -9,7 +12,6 @@ import Keyword from '../../components/Keyword';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import { ErrorText } from '../../components/UserInput';
-import { userProfileState } from '../../core/recoil/userProfileAtom';
 
 export default function interest() {
   const setUserProfile = useSetRecoilState(userProfileState);
@@ -33,7 +35,6 @@ export default function interest() {
       setIsDisabled(false);
       setIsError(false);
       setMsg('');
-      setUserProfile({ topic: 'interestKeyword', value: keywords });
     }
   });
 
@@ -48,6 +49,7 @@ export default function interest() {
   };
 
   const handleContinueButton = () => {
+    setUserProfile({ topic: 'interestKeyword', value: keywords });
     Router.push('/profile/alcohol');
   };
   return (

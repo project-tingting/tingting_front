@@ -13,5 +13,5 @@ export interface RegisterProps {
 
 export interface UserProfileProps {
   topic: string;
-  value: string | object;
+  value: string | string[];
 }

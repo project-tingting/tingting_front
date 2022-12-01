@@ -31,14 +31,15 @@ export default function mbti() {
       setIsDisabled(false);
       setMsg('');
       setIsError(false);
-      setUserProfile({ topic: 'mbti', value: userMbti });
     }
   }, [userMbti]);
 
   const handleMbtiInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserMbti(e.target.value);
+    console.log(userMbti);
   };
   const handleContinueButton = () => {
+    setUserProfile({ topic: 'mbti', value: userMbti });
     Router.push('/profile/interest');
   };
   return (
