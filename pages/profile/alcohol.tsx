@@ -2,7 +2,7 @@ import Router from 'next/router';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { userProfileState } from '../../core/recoil/userProfileAtom';
 

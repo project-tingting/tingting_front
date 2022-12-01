@@ -21,7 +21,22 @@ export default function interest() {
   const [isError, setIsError] = useState(false);
   const [keywords, setKeywords] = useState<string[]>([]);
 
-  const interest = ['게임', '자기계발', '스포츠', '뷰티'];
+  const interest = [
+    '게임',
+    '자기계발',
+    '스포츠',
+    '뷰티',
+    '패션',
+    '테크',
+    '영화',
+    '음악',
+    '디자인',
+    '음식',
+    '예능',
+    '음료',
+    '여행',
+    '시사',
+  ];
 
   useEffect(() => {
     if (count === 0) {
