@@ -10,3 +10,8 @@ export interface RegisterProps {
   gender: string;
   university: string;
 }
+
+export interface UserProfileProps {
+  topic: string;
+  value: string | object;
+}

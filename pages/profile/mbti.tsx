@@ -1,5 +1,9 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+
+import { userProfileState } from '../../core/recoil/userProfileAtom';
+
 import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
@@ -9,6 +13,7 @@ import Top from '../../components/Top';
 import UserInput, { ErrorText } from '../../components/UserInput';
 
 export default function mbti() {
+  const setUserProfile = useSetRecoilState(userProfileState);
   const [userMbti, setUserMbti] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [msg, setMsg] = useState('');
@@ -26,6 +31,7 @@ export default function mbti() {
       setIsDisabled(false);
       setMsg('');
       setIsError(false);
+      setUserProfile({ topic: 'mbti', value: userMbti });
     }
   }, [userMbti]);
 
