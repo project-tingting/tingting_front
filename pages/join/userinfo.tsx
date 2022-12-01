@@ -1,9 +1,8 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '../../core/recoil/userInfoAtom';
-import { checkIdValid } from '../../util/checkIdValid';
+import useInput from '../../util/hooks/useInput';
+import useCheckUserInfo from '../../util/hooks/useCheckUserInfo';
 
 import Top from '../../components/Top';
 import ProgressBar from '../../components/ProgressBar';
@@ -13,20 +12,12 @@ import Guide from '../../components/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
 import Button from '../../components/Button';
-import useInput from '../../util/hooks/useInput';
 
 export default function nickname() {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [userId, handleUserId] = useInput('');
   const [password, handlePassword] = useInput('');
-  const [isIdValid, setIsIdValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
 
-  useEffect(() => {
-    checkIdValid(userId) ? setIsIdValid(true) : setIsIdValid(false);
-    password.length >= 8 ? setIsPasswordValid(true) : setIsPasswordValid(false);
-    setUserInfo({ ...userInfo, userId: userId, password: password });
-  }, [userId, password]);
+  const { isIdValid, isPasswordValid } = useCheckUserInfo(userId, password);
 
   const handleClickContinueButton = useCallback(() => {
     Router.push('/join/year');

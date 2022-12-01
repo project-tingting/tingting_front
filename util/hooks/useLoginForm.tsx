@@ -7,6 +7,7 @@ export default function useLoginForm(userId: string, password: string) {
     localStorage.setItem('access-token', accessToken);
     Router.push('/main');
   };
+
   const submitLoginForm = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -19,5 +20,6 @@ export default function useLoginForm(userId: string, password: string) {
       console.error(error);
     }
   };
+
   return { submitLoginForm };
 }
