@@ -20,7 +20,6 @@ import { userprofileAPI } from '../../core/api/userprofileAPI';
 
 export default function alcohol() {
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
-  // const setUserProfile = useSetRecoilState(userProfileState);
   const [alcohol, setAlcohol] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
