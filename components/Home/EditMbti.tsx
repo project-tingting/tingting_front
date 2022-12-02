@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import MbtiKeyword from './MbtiKeyword';
+import SaveButton from './SaveButton';
 
 export default function EditMbti() {
   const [text, setText] = useState('');
   const [selected, setSelected] = useState(Boolean);
 
-  const MBTI = ['ENFP', 'ENTP', 'INTP'];
+  const MBTI = [
+    'ENFP',
+    'ENTP',
+    'INTP',
+    'ESTJ',
+    'ESFP',
+    'INFJ',
+    'ISTJ',
+    'ESTP',
+    'ENTJ',
+    'INFP',
+    'ISFJ',
+    'INTJ',
+  ];
 
   const isSelected = (mbti) => {
     setText(mbti);
@@ -16,17 +30,24 @@ export default function EditMbti() {
 
   return (
     <Container>
-      {selected && <SelectedKeyword>{text}</SelectedKeyword>}
-      <Hr />
-      {MBTI.map((mbti) => (
-        <MbtiKeyword key={mbti} text={mbti} onclick={() => isSelected(mbti)} />
-      ))}
+      <div>
+        {selected && <SelectedKeyword>{text}</SelectedKeyword>}
+        <Hr />
+        {MBTI.map((mbti) => (
+          <MbtiKeyword key={mbti} text={mbti} onclick={() => isSelected(mbti)} />
+        ))}
+      </div>
+      <SaveButton />
     </Container>
   );
 }
 
 const Container = styled.div`
   margin: 0 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 84%;
 `;
 
 const Hr = styled.hr`
