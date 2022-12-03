@@ -1,14 +1,19 @@
 import Image from 'next/image';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import refresh from '../../public/assets/icons/refresh.svg';
+import disabledRefresh from '../../public/assets/icons/disabledRefresh.svg';
 
-export default function SaveButton() {
+interface SaveButtonProps {
+  disabled?: boolean;
+}
+
+export default function SaveButton({ disabled }: SaveButtonProps) {
   return (
     <Container>
-      <StyledSaveButton>
+      <StyledSaveButton disabled={disabled}>
         현재상태 저장
-        <Image src={refresh} />
+        {disabled ? <Image src={disabledRefresh} /> : <Image src={refresh} />}
       </StyledSaveButton>
     </Container>
   );
@@ -31,4 +36,10 @@ const StyledSaveButton = styled.button`
   border-radius: 10rem;
   background-color: ${({ theme }) => theme.colors.whiteColor};
   padding: 0.8rem 1.6rem;
+  ${(props) =>
+    props.disabled &&
+    css`
+      color: #827397;
+      border: 0.1rem solid #827397;
+    `};
 `;

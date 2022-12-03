@@ -28,7 +28,7 @@ const StyledLabel = styled.label`
   border: 0.1rem solid ${({ theme }) => theme.colors.mainColor};
   border-radius: 3rem;
   padding: 1.2rem 1.6rem;
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   margin-right: 0.8rem;
   background-color: ${({ theme }) => theme.colors.bgColor};
   cursor: pointer;

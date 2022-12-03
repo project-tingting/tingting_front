@@ -14,15 +14,13 @@ export default function EditProfile() {
 
   return (
     <Wrapper>
-      <NavBar>
-        <NavUl>
-          {editList.map((list) => (
-            <NavLi key={list} onClick={() => handleTab({ list })}>
-              {list}
-            </NavLi>
-          ))}
-        </NavUl>
-      </NavBar>
+      <NavUl>
+        {editList.map((list) => (
+          <NavLi key={list} onClick={() => handleTab({ list })}>
+            {list}
+          </NavLi>
+        ))}
+      </NavUl>
       {tab === 'MBTI' && <EditMbti />}
       {tab === '술선호' && <EditAlcohol />}
       {tab === '관심사' && <EditInterest />}
@@ -31,19 +29,15 @@ export default function EditProfile() {
 }
 
 const Wrapper = styled.article`
-  height: 50vh;
   background-color: ${({ theme }) => theme.colors.whiteColor};
   border-radius: 2rem 2rem 0 0;
-`;
-
-const NavBar = styled.nav`
-  display: flex;
-  justify-content: center;
+  padding: 4.2rem 1.9rem;
 `;
 
 const NavUl = styled.ul`
   display: flex;
-  margin-top: 4.2rem;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const NavLi = styled.li`
@@ -53,6 +47,8 @@ const NavLi = styled.li`
   padding: 0.8rem 3.9rem;
   border-bottom: 0.2rem solid #dee2f3;
   cursor: pointer;
+  width: calc(100% / 3);
+  text-align: center;
   &.selected {
     color: #161b27;
     border-bottom: 0.2rem solid ${({ theme }) => theme.colors.mainColor};

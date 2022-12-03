@@ -31,8 +31,12 @@ export default function EditMbti() {
   return (
     <Container>
       <div>
-        {selected && <SelectedKeyword>{text}</SelectedKeyword>}
-        <Hr />
+        {selected && (
+          <>
+            <SelectedKeyword>{text}</SelectedKeyword>
+            <Hr />
+          </>
+        )}
         {MBTI.map((mbti) => (
           <MbtiKeyword key={mbti} text={mbti} onclick={() => isSelected(mbti)} />
         ))}
@@ -42,25 +46,26 @@ export default function EditMbti() {
   );
 }
 
-const Container = styled.div`
-  margin: 0 1.6rem;
+export const Container = styled.div`
+  /* margin: 0 1.6rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 84%;
+  gap: 8rem;
 `;
 
-const Hr = styled.hr`
+export const Hr = styled.hr`
   border: 0.1rem solid rgba(130, 115, 151, 0.5);
+  margin-top: 2rem;
 `;
 
-const SelectedKeyword = styled.button`
-  display: block;
+export const SelectedKeyword = styled.button`
+  display: inline-block;
   color: ${({ theme }) => theme.colors.whiteColor};
   background-color: ${({ theme }) => theme.colors.mainColor};
   font-size: 2rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.mainColor};
   border-radius: 3rem;
   padding: 1.2rem 1.6rem;
-  margin: 2rem 0;
+  margin-top: 2rem;
 `;
