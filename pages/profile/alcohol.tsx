@@ -2,6 +2,10 @@ import Router from 'next/router';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+
+import { userProfileState } from '../../core/recoil/userProfileAtom';
+
 import Button from '../../components/Button';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
@@ -12,15 +16,23 @@ import whiteX from '../../public/assets/icons/whiteX.svg';
 import InputContainer from '../../components/AnimationContainer';
 import Container from '../../components/Container';
 import Guide from '../../components/Guide';
+import { userprofileAPI } from '../../core/api/userprofileAPI';
 
 export default function alcohol() {
+  const [userProfile, setUserProfile] = useRecoilState(userProfileState);
   const [alcohol, setAlcohol] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+
   useEffect(() => {
     if (alcohol === '') setIsDisabled(true);
-    else setIsDisabled(false);
-  });
+    else {
+      setIsDisabled(false);
+      setUserProfile([...userProfile, { topic: 'alcohol', value: alcohol }]);
+    }
+  }, [alcohol]);
   const handleContinueButton = () => {
+    console.log(userProfile);
+    userprofileAPI;
     Router.push('/profile/completed');
   };
   const handleOButton = () => {
