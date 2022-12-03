@@ -15,6 +15,7 @@ import { ErrorText } from '../../components/UserInput';
 
 export default function interest() {
   const setUserProfile = useSetRecoilState(userProfileState);
+
   const [count, setCount] = useState(0);
   const [isDisabled, setIsDisabled] = useState(true);
   const [msg, setMsg] = useState('');
@@ -64,7 +65,13 @@ export default function interest() {
   };
 
   const handleContinueButton = () => {
-    setUserProfile({ topic: 'interestKeyword', value: keywords });
+    setUserProfile((prev: object[]) => [
+      ...prev,
+      {
+        topic: 'interest',
+        value: keywords,
+      },
+    ]);
     Router.push('/profile/alcohol');
   };
   return (

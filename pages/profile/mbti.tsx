@@ -36,10 +36,15 @@ export default function mbti() {
 
   const handleMbtiInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserMbti(e.target.value);
-    console.log(userMbti);
   };
   const handleContinueButton = () => {
-    setUserProfile({ topic: 'mbti', value: userMbti });
+    setUserProfile((prev: object[]) => [
+      ...prev,
+      {
+        topic: 'mbti',
+        value: userMbti,
+      },
+    ]);
     Router.push('/profile/interest');
   };
   return (

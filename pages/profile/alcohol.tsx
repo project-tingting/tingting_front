@@ -27,11 +27,12 @@ export default function alcohol() {
     if (alcohol === '') setIsDisabled(true);
     else {
       setIsDisabled(false);
+      setUserProfile([...userProfile, { topic: 'alcohol', value: alcohol }]);
     }
-  });
+  }, [alcohol]);
   const handleContinueButton = () => {
-    setUserProfile({ topic: 'isDrink', value: alcohol });
-    userprofileAPI(userProfile);
+    console.log(userProfile);
+    userprofileAPI;
     Router.push('/profile/completed');
   };
   const handleOButton = () => {

@@ -1,10 +1,6 @@
 import { atom } from 'recoil';
-import { UserProfileProps } from '../../types/user';
 
-export const userProfileState = atom<UserProfileProps>({
+export const userProfileState = atom<object[]>({
   key: 'userProfileState',
-  default: {
-    topic: '',
-    value: '',
-  },
+  default: [],
 });
