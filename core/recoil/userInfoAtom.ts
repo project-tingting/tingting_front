@@ -6,8 +6,9 @@ export const userInfoState = atom<RegisterProps>({
   default: {
     userId: '',
     password: '',
-    birthYear: '',
+    birthDay: '',
     gender: '',
+    userEmail: '',
     university: '',
   },
 });

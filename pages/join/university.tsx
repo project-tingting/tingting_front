@@ -1,7 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import Router from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import useInput from '../../util/hooks/useInput';
+import useValidateUniversity from '../../util/hooks/useValidateUniversity';
+import useCheckValidation from '../../util/hooks/useCheckValidation';
 
 import { userInfoState } from '../../core/recoil/userInfoAtom';
 
@@ -15,8 +18,15 @@ import Button from '../../components/Button';
 import { ValidateButton } from '../../components/Join/FormElement';
 
 export default function school() {
-  const userInfo = useRecoilValue(userInfoState);
-  console.log(userInfo);
+  const [schoolEmail, handleSchoolEmail] = useInput('');
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const { handleClickValidateButton } = useValidateUniversity(userInfo);
+  const { checkValidation } = useCheckValidation(schoolEmail);
+  checkValidation();
+  useEffect(() => {
+    setUserInfo({ ...userInfo, userEmail: schoolEmail, university: '' });
+  }, [schoolEmail]);
+
   const handleClickContinueButton = useCallback(() => {
     Router.push('/');
   }, []);
@@ -28,8 +38,13 @@ export default function school() {
         <InputContainer>
           <Guide text="다니는 학교를 알려주세요" />
           <FormContainer>
-            <StyledInput type="email" size="large" placeholder="학교 웹메일" />
-            <ValidateButton>인증</ValidateButton>
+            <StyledInput
+              type="email"
+              size="large"
+              placeholder="학교 웹메일"
+              onChange={handleSchoolEmail}
+            />
+            <ValidateButton onClick={handleClickValidateButton}>인증</ValidateButton>
           </FormContainer>
         </InputContainer>
         <Button

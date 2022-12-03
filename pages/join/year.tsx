@@ -15,11 +15,11 @@ import useInput from '../../util/hooks/useInput';
 
 export default function year() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [birthYear, handleBirthYear] = useInput('2003');
+  const [birthDay, handleBirthDay] = useInput('2003');
 
   useEffect(() => {
-    setUserInfo({ ...userInfo, birthYear: birthYear });
-  }, [birthYear]);
+    setUserInfo({ ...userInfo, birthDay: birthDay });
+  }, [birthDay]);
 
   const handleClickContinueButton = useCallback(() => {
     Router.push('/join/gender');
@@ -31,7 +31,7 @@ export default function year() {
       <Container>
         <InputContainer>
           <Guide text="출생연도를 입력해주세요" />
-          <StyledInput type="number" size="large" placeholder="2003" onChange={handleBirthYear} />
+          <StyledInput type="number" size="large" placeholder="2003" onChange={handleBirthDay} />
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}
