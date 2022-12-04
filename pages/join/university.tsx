@@ -21,8 +21,8 @@ export default function school() {
   const [schoolEmail, handleSchoolEmail] = useInput('');
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const { handleClickValidateButton } = useValidateUniversity(userInfo);
-  const { checkValidation } = useCheckValidation(schoolEmail);
-  checkValidation();
+  const { data } = useCheckValidation(schoolEmail);
+  console.log(data);
   useEffect(() => {
     setUserInfo({ ...userInfo, userEmail: schoolEmail, university: '' });
   }, [schoolEmail]);
