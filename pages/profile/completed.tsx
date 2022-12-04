@@ -6,7 +6,7 @@ import Notice from '../../components/Notice';
 export default function completed() {
   useEffect(() => {
     setTimeout(() => {
-      Router.push('/'); // HOME으로 바꾸기
+      Router.push('/home/8294985024f44343bdbfe80bb6aea716'); // HOME으로 바꾸기
     }, 2000);
   }, []);
   return (

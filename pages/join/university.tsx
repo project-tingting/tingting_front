@@ -28,7 +28,7 @@ export default function school() {
   }, [schoolEmail]);
 
   const handleClickContinueButton = useCallback(() => {
-    Router.push('/');
+    Router.push('/join/completed');
   }, []);
   return (
     <>

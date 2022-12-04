@@ -5,7 +5,11 @@ import EditInterest from './EditInterest';
 import EditMbti from './EditMbti';
 import CloseButton from './CloseButton';
 
-export default function EditProfile() {
+type Props = {
+  onClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function EditProfile({ onClick }: Props) {
   const [tab, setTab] = useState(0);
   const editList = ['MBTI', '술선호', '관심사'];
 
@@ -14,35 +18,43 @@ export default function EditProfile() {
   };
 
   return (
-    <BackGround>
-      <Wrapper>
-        <NavUl>
-          {editList.map((list, index) => (
-            <NavLi
-              key={list}
-              onClick={() => handleTab(index)}
-              className={tab === index ? 'selected' : ''}
-            >
-              {list}
-            </NavLi>
-          ))}
-        </NavUl>
-        {tab === 0 && <EditMbti />}
-        {tab === 1 && <EditAlcohol />}
-        {tab === 2 && <EditInterest />}
-        <ButtonContainer>
-          <CloseButton />
-        </ButtonContainer>
-      </Wrapper>
-    </BackGround>
+    <StyledBackground>
+      <BackGround>
+        <Wrapper>
+          <NavUl>
+            {editList.map((list, index) => (
+              <NavLi
+                key={list}
+                onClick={() => handleTab(index)}
+                className={tab === index ? 'selected' : ''}
+              >
+                {list}
+              </NavLi>
+            ))}
+          </NavUl>
+          {tab === 0 && <EditMbti />}
+          {tab === 1 && <EditAlcohol />}
+          {tab === 2 && <EditInterest />}
+          <ButtonContainer>
+            <CloseButton onClick={onClick} />
+          </ButtonContainer>
+        </Wrapper>
+      </BackGround>
+    </StyledBackground>
   );
 }
+
+const StyledBackground = styled.section`
+  width: 100%;
+  position: absolute;
+  top: 0;
+`;
 
 const BackGround = styled.div`
   height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, #ffffff 50%, rgba(255, 255, 255, 0.5) 100%);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
 `;
 
 const Wrapper = styled.article`
