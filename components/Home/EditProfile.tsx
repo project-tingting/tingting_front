@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import EditAlcohol from './EditAlcohol';
 import EditInterest from './EditInterest';
@@ -8,7 +8,7 @@ export default function EditProfile() {
   const [tab, setTab] = useState(0);
   const editList = ['MBTI', '술선호', '관심사'];
 
-  const handleTab = (index) => {
+  const handleTab = (index: number) => {
     setTab(index);
   };
 
@@ -28,9 +28,6 @@ export default function EditProfile() {
       {tab === 0 && <EditMbti />}
       {tab === 1 && <EditAlcohol />}
       {tab === 2 && <EditInterest />}
-      {/* {tab === 'MBTI' && <EditMbti />}
-      {tab === '술선호' && <EditAlcohol />}
-      {tab === '관심사' && <EditInterest />} */}
     </Wrapper>
   );
 }

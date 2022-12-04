@@ -49,7 +49,6 @@ export default function EditMbti() {
 }
 
 export const Container = styled.div`
-  /* margin: 0 1.6rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
