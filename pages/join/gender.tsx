@@ -1,8 +1,7 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '../../core/recoil/userInfoAtom';
+import useHandleGender from '../../util/hooks/useHandleGender';
 
 import Top from '../../components/Top';
 import ProgressBar from '../../components/ProgressBar';
@@ -13,24 +12,12 @@ import Button from '../../components/Button';
 import GenderButton from '../../components/Join/GenderButton';
 
 export default function sex() {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [gender, setGender] = useState('');
-
-  useEffect(() => {
-    setUserInfo({ ...userInfo, gender: gender });
-  }, [gender]);
-
-  const handleClickMaleButton = () => {
-    setGender('male');
-  };
-
-  const handleClickFemaleButton = () => {
-    setGender('female');
-  };
+  const { gender, handleClickMaleButton, handleClickFemaleButton } = useHandleGender();
 
   const handleClickContinueButton = useCallback(() => {
     Router.push('/join/university');
   }, []);
+
   return (
     <>
       <Top text="회원가입" />
