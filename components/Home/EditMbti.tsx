@@ -37,9 +37,11 @@ export default function EditMbti() {
             <Hr />
           </>
         )}
-        {MBTI.map((mbti) => (
-          <MbtiKeyword key={mbti} text={mbti} onclick={() => isSelected(mbti)} />
-        ))}
+        <MbtiKeywords>
+          {MBTI.map((mbti) => (
+            <MbtiKeyword key={mbti} text={mbti} onclick={() => isSelected(mbti)} />
+          ))}
+        </MbtiKeywords>
       </div>
       <SaveButton />
     </Container>
@@ -67,5 +69,9 @@ export const SelectedKeyword = styled.button`
   border: 0.1rem solid ${({ theme }) => theme.colors.mainColor};
   border-radius: 3rem;
   padding: 1.2rem 1.6rem;
+  margin-top: 2rem;
+`;
+
+const MbtiKeywords = styled.div`
   margin-top: 2rem;
 `;

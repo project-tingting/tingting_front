@@ -1,29 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EditAlcohol from './EditAlcohol';
 import EditInterest from './EditInterest';
 import EditMbti from './EditMbti';
 
 export default function EditProfile() {
-  const [tab, setTab] = useState('MBTI');
+  const [tab, setTab] = useState(0);
   const editList = ['MBTI', '술선호', '관심사'];
 
-  const handleTab = (list) => {
-    setTab(list.list);
+  const handleTab = (index) => {
+    setTab(index);
   };
 
   return (
     <Wrapper>
       <NavUl>
-        {editList.map((list) => (
-          <NavLi key={list} onClick={() => handleTab({ list })}>
+        {editList.map((list, index) => (
+          <NavLi
+            key={list}
+            onClick={() => handleTab(index)}
+            className={tab === index ? 'selected' : ''}
+          >
             {list}
           </NavLi>
         ))}
       </NavUl>
-      {tab === 'MBTI' && <EditMbti />}
+      {tab === 0 && <EditMbti />}
+      {tab === 1 && <EditAlcohol />}
+      {tab === 2 && <EditInterest />}
+      {/* {tab === 'MBTI' && <EditMbti />}
       {tab === '술선호' && <EditAlcohol />}
-      {tab === '관심사' && <EditInterest />}
+      {tab === '관심사' && <EditInterest />} */}
     </Wrapper>
   );
 }
