@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: inherit;
     }
     input{
+        color: ${({ theme }) => theme.colors.inputTextUserColor}
         background-color: ${({ theme }) => theme.colors.inputColor};
         outline: 0;
         &::placeholder {
