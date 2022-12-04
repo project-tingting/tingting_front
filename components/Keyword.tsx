@@ -4,9 +4,27 @@ import styled from 'styled-components';
 interface KeywordButtonProps {
   text: string;
   onClicked: (clicked: boolean, text: string) => void;
+  disabled?: boolean;
 }
 
-export default function Keyword({ text, onClicked }: KeywordButtonProps) {
+export const interestData = [
+  '게임',
+  '자기계발',
+  '스포츠',
+  '뷰티',
+  '패션',
+  '테크',
+  '영화',
+  '음악',
+  '디자인',
+  '음식',
+  '예능',
+  '음료',
+  '여행',
+  '시사',
+];
+
+export default function Keyword({ text, onClicked, disabled }: KeywordButtonProps) {
   const [onclick, setOnclick] = useState(false);
 
   const onClickKeyword = () => {
@@ -14,7 +32,12 @@ export default function Keyword({ text, onClicked }: KeywordButtonProps) {
     onClicked(onclick, text);
   };
   return (
-    <StyledKeywordButton onClick={onClickKeyword} clicked={onclick} onclicked={onClicked}>
+    <StyledKeywordButton
+      onClick={onClickKeyword}
+      clicked={onclick}
+      onclicked={onClicked}
+      disabled={disabled}
+    >
       {text}
     </StyledKeywordButton>
   );

@@ -68,12 +68,12 @@ export default function alcohol() {
   );
 }
 
-const OXButtonGroup = styled.div`
+export const OXButtonGroup = styled.div`
   display: flex;
   justify-content: space-evenly;
   gap: 1.6rem;
 `;
-const OXButton = styled.button`
+export const OXButton = styled.button`
   padding: 6.6rem;
   border-radius: 2.4rem;
   background-color: ${({ theme }) => theme.colors.whiteColor};

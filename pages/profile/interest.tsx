@@ -8,7 +8,7 @@ import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import Guide from '../../components/Guide';
-import Keyword from '../../components/Keyword';
+import Keyword, { interestData } from '../../components/Keyword';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import { ErrorText } from '../../components/UserInput';
@@ -21,23 +21,6 @@ export default function interest() {
   const [msg, setMsg] = useState('');
   const [isError, setIsError] = useState(false);
   const [keywords, setKeywords] = useState<string[]>([]);
-
-  const interest = [
-    '게임',
-    '자기계발',
-    '스포츠',
-    '뷰티',
-    '패션',
-    '테크',
-    '영화',
-    '음악',
-    '디자인',
-    '음식',
-    '예능',
-    '음료',
-    '여행',
-    '시사',
-  ];
 
   useEffect(() => {
     if (count === 0) {
@@ -74,6 +57,7 @@ export default function interest() {
     ]);
     Router.push('/profile/alcohol');
   };
+
   return (
     <>
       <Top text="프로필" />
@@ -81,7 +65,7 @@ export default function interest() {
       <Container>
         <InputContainer>
           <Guide text="관심사 키워드를 선택해주세요" />
-          {interest.map((text) => (
+          {interestData.map((text) => (
             <Keyword key={text} text={text} onClicked={handleOnClicked} />
           ))}
           {isError && (
