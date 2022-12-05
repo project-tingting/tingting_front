@@ -15,7 +15,7 @@ export default function index() {
   const { submitLoginForm } = useLoginForm(userId, password);
   return (
     <StyledContainer>
-      <Image src={TingTingLogo} alt="팅팅 로고"></Image>
+      <Image src={TingTingLogo} alt="팅팅 로고" />
       <FormContainer onSubmit={submitLoginForm}>
         <StyledInput size="small" placeholder="아이디" type="text" onChange={handleUserId} />
         <StyledInput
