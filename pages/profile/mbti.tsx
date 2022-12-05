@@ -14,7 +14,7 @@ import UserInput, { ErrorText } from '../../components/UserInput';
 
 export default function mbti() {
   const setUserProfile = useSetRecoilState(userProfileState);
-  const [userMbti, setUserMbti] = useState('');
+  const [userMbti, setUserMbti] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const [msg, setMsg] = useState('');
   const [isError, setIsError] = useState(false);
@@ -22,9 +22,9 @@ export default function mbti() {
   const MBTIRegex = /(e|i)(n|s)(f|t)(p|j)/gi;
 
   useEffect(() => {
-    if (userMbti === '' || userMbti.length !== 4) {
+    if (!userMbti.length || userMbti[0].length !== 4) {
       setIsDisabled(true);
-    } else if (!MBTIRegex.test(userMbti)) {
+    } else if (!MBTIRegex.test(userMbti[0])) {
       setMsg('MBTI가 올바르지 않습니다');
       setIsError(true);
     } else {
@@ -35,7 +35,7 @@ export default function mbti() {
   }, [userMbti]);
 
   const handleMbtiInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserMbti(e.target.value);
+    setUserMbti([e.target.value]);
   };
   const handleContinueButton = () => {
     setUserProfile((prev: object[]) => [

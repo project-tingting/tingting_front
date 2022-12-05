@@ -16,30 +16,27 @@ import whiteX from '../../public/assets/icons/whiteX.svg';
 import InputContainer from '../../components/AnimationContainer';
 import Container from '../../components/Container';
 import Guide from '../../components/Guide';
-import { userprofileAPI } from '../../core/api/userprofileAPI';
 
 export default function alcohol() {
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
-  const [alcohol, setAlcohol] = useState('');
+  const [alcohol, setAlcohol] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    if (alcohol === '') setIsDisabled(true);
+    if (!alcohol.length) setIsDisabled(true);
     else {
       setIsDisabled(false);
-      setUserProfile([...userProfile, { topic: 'alcohol', value: alcohol }]);
     }
   }, [alcohol]);
   const handleContinueButton = () => {
-    console.log(userProfile);
-    userprofileAPI;
+    setUserProfile([...userProfile, { topic: 'alcohol', value: alcohol }]);
     Router.push('/profile/completed');
   };
   const handleOButton = () => {
-    setAlcohol('O');
+    setAlcohol(['1']);
   };
   const handleXButton = () => {
-    setAlcohol('X');
+    setAlcohol(['0']);
   };
   return (
     <>
@@ -49,11 +46,11 @@ export default function alcohol() {
         <InputContainer>
           <Guide text="술을 선호하시나요?"></Guide>
           <OXButtonGroup>
-            <OXButton onClick={handleOButton} className={alcohol === 'O' ? 'clicked' : ''}>
-              <Image src={alcohol === 'O' ? whiteO : purpleO} />
+            <OXButton onClick={handleOButton} className={alcohol[0] === '1' ? 'clicked' : ''}>
+              <Image src={alcohol[0] === '1' ? whiteO : purpleO} />
             </OXButton>
-            <OXButton onClick={handleXButton} className={alcohol === 'X' ? 'clicked' : ''}>
-              <Image src={alcohol === 'X' ? whiteX : purpleX} />
+            <OXButton onClick={handleXButton} className={alcohol[0] === '0' ? 'clicked' : ''}>
+              <Image src={alcohol[0] === '0' ? whiteX : purpleX} />
             </OXButton>
           </OXButtonGroup>
         </InputContainer>

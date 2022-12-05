@@ -12,7 +12,8 @@ export interface RegisterProps {
   university: string;
 }
 
-export interface UserProfileProps {
-  topic: string;
-  value: string | string[];
-}
+// export interface UserProfileProps {
+// topic: string;
+// value: string | string[];
+
+// }
