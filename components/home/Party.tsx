@@ -23,28 +23,29 @@ export default function Party() {
 
   const handleClickPlusButton = () => {
     setIsOpenModal(true);
-  }
+  };
+
   return (
-    <Container>
-      <StyledContainer isClicked={isClicked}>
-        <GuideContainer>
-          <Image src={PartyIcon} alt="파티 아이콘" />
-          <PartyText>함께 할 파티원을 초대해보세요!</PartyText>
-        </GuideContainer>
-        <Image src={DownArrowIcon} alt="펼치기 버튼" onClick={handleClickArrowButton} />
-      </StyledContainer>
-      {isClicked && (
-        <PartyContainer>
-          <Image src={HostIcon} alt="방장 로고" />
-          <AddButton onClick={handleClickPlusButton}>
-            <Image src={AddLogo} alt="추가 로고" />
-          </AddButton>
-        </PartyContainer>
-      )}
-      {
-        isOpenModal && <PartyModal />
-      }
-    </Container>
+    <>
+      <Container>
+        <StyledContainer isClicked={isClicked}>
+          <GuideContainer>
+            <Image src={PartyIcon} alt="파티 아이콘" />
+            <PartyText>함께 할 파티원을 초대해보세요!</PartyText>
+          </GuideContainer>
+          <Image src={DownArrowIcon} alt="펼치기 버튼" onClick={handleClickArrowButton} />
+        </StyledContainer>
+        {isClicked && (
+          <PartyContainer>
+            <Image src={HostIcon} alt="방장 로고" />
+            <AddButton onClick={handleClickPlusButton}>
+              <Image src={AddLogo} alt="추가 로고" />
+            </AddButton>
+          </PartyContainer>
+        )}
+      </Container>
+      {isOpenModal && <PartyModal setIsOpenModal={setIsOpenModal} />}
+    </>
   );
 }
 
@@ -82,9 +83,9 @@ const PartyContainer = styled.article`
 `;
 
 const AddButton = styled.button`
-  background: #D1C4F6;
+  background: #d1c4f6;
   border-radius: 50%;
   padding: 12px;
   width: 80px;
   height: 80px;
-`
+`;
