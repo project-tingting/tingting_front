@@ -26,7 +26,7 @@ export default function BottomNavigation() {
 const StyledContainer = styled.article`
   background-color: ${({ theme }) => theme.colors.whiteColor};
   height: 68px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;

@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
+import PartyModal from './PartyModal/PartyModal';
+
 import PartyIcon from '../../public/assets/icons/party.svg';
 import DownArrowIcon from '../../public/assets/icons/arrow_down.svg';
 import HostIcon from '../../public/assets/icons/host.svg';
+import AddLogo from '../../public/assets/icons/add.svg';
 
 type IInnerScreen = {
   isClicked: boolean;
@@ -12,9 +15,15 @@ type IInnerScreen = {
 
 export default function Party() {
   const [isClicked, setIsClicked] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const handleClickArrowButton = () => {
     setIsClicked((prev) => !prev);
   };
+
+  const handleClickPlusButton = () => {
+    setIsOpenModal(true);
+  }
   return (
     <Container>
       <StyledContainer isClicked={isClicked}>
@@ -27,8 +36,14 @@ export default function Party() {
       {isClicked && (
         <PartyContainer>
           <Image src={HostIcon} alt="방장 로고" />
+          <AddButton onClick={handleClickPlusButton}>
+            <Image src={AddLogo} alt="추가 로고" />
+          </AddButton>
         </PartyContainer>
       )}
+      {
+        isOpenModal && <PartyModal />
+      }
     </Container>
   );
 }
@@ -61,4 +76,15 @@ const PartyContainer = styled.article`
   padding: 12px 24px;
   position: absolute;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `;
+
+const AddButton = styled.button`
+  background: #D1C4F6;
+  border-radius: 50%;
+  padding: 12px;
+  width: 80px;
+  height: 80px;
+`

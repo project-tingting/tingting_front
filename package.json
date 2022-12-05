@@ -30,7 +30,7 @@
     "build": "next build",
     "test": "next test",
     "eject": "next eject",
-    "dev": "next dev"
+    "dev": "BROWSER='google chrome' next dev"
   },
   "eslintConfig": {
     "extends": [
