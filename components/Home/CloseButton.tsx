@@ -4,10 +4,17 @@ import styled from 'styled-components';
 
 import close from '../../public/assets/icons/Close.svg';
 
-export default function CloseButton() {
+type Props = {
+  onClick: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function CloseButton({ onClick }: Props) {
+  const handleClickCloseButton = () => {
+    onClick((prev) => !prev);
+  };
   return (
     <StyledCloseButton>
-      <Image src={close} />
+      <Image src={close} onClick={handleClickCloseButton} />
     </StyledCloseButton>
   );
 }

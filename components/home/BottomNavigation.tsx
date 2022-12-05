@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import ProfileIcon from '../../public/assets/icons/profile.svg';
+import EditProfile from './EditProfile';
 
 export default function BottomNavigation() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClickLogoButton = () => {
+    setIsOpen((prev) => !prev);
+    console.log(isOpen);
+  };
   return (
-    <StyledContainer>
-      <LogoContainer>
-        <Image src={ProfileIcon} alt="프로필 로고" />
-      </LogoContainer>
-    </StyledContainer>
+    <>
+      <StyledContainer>
+        <LogoContainer>
+          <Image src={ProfileIcon} alt="프로필 로고" onClick={handleClickLogoButton} />
+        </LogoContainer>
+      </StyledContainer>
+      {isOpen && <EditProfile onClick={setIsOpen}></EditProfile>}
+    </>
   );
 }
 
