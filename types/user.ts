@@ -11,9 +11,3 @@ export interface RegisterProps {
   userEmail: string;
   university: string;
 }
-
-// export interface UserProfileProps {
-// topic: string;
-// value: string | string[];
-
-// }

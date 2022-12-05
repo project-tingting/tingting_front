@@ -42,7 +42,7 @@ export default function mbti() {
       ...prev,
       {
         topic: 'mbti',
-        value: userMbti,
+        valueList: userMbti,
       },
     ]);
     Router.push('/profile/interest');

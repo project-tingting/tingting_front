@@ -52,7 +52,7 @@ export default function interest() {
       ...prev,
       {
         topic: 'interest',
-        value: keywords,
+        valueList: keywords,
       },
     ]);
     Router.push('/profile/alcohol');

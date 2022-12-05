@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { UserProfileProps } from '../../types/user';
 
 export const userprofileAPI = async (userprofile: object[]) => {
   try {
