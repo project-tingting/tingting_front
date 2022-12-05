@@ -8,7 +8,7 @@ interface BtnPatternProps {
 
 interface BtnProps extends BtnPatternProps {
   text: string;
-  onClick?: () => void;
+  onClick?: (e: React.ChangeEvent<HTMLButtonElement>) => void;
 }
 
 export default function Button({ text, isRound, disabled, onClick }: BtnProps) {
