@@ -5,11 +5,25 @@ import styled from 'styled-components';
 import Symbol from '../../public/assets/icons/symbol.svg';
 import Bell from '../../public/assets/icons/bell.svg';
 import No_Chat from '../../public/assets/icons/no_chat.svg';
+import back from '../../public/assets/icons/back.svg';
+import { useRouter } from 'next/router';
 
-export default function TopNavigation() {
+interface TopNavProps {
+  isChat?: boolean;
+}
+
+export default function TopNavigation({ isChat }: TopNavProps) {
+  const router = useRouter();
+  const onClickBack = () => {
+    router.back();
+  };
   return (
     <StyledContainer>
-      <Image src={Symbol} alt="로고 버튼" />
+      {isChat ? (
+        <Image src={back} alt="go back" onClick={onClickBack} />
+      ) : (
+        <Image src={Symbol} alt="로고 버튼" />
+      )}
       <Func>
         <Image src={Bell} alt="알림 버튼" />
         <Image src={No_Chat} alt="채팅 알림 버튼" />
