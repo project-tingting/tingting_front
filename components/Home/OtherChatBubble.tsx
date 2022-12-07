@@ -21,7 +21,6 @@ export default function OtherChatBubble({ text }: chatProps) {
 
 const OtherChatContainer = styled.div`
   display: flex;
-  /* align-items: flex-start; */
   gap: 0.8rem;
   margin-bottom: 0.8rem;
 `;
@@ -32,6 +31,7 @@ const OtherProfile = styled.div`
   border-radius: 50%;
   background-color: rgba(213, 213, 213, 0.8);
   border: 1px solid ${({ theme }) => theme.colors.whiteColor};
+  flex-shrink: 0;
 `;
 
 const StyledDiv = styled.div`
