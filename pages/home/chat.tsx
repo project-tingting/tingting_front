@@ -10,7 +10,14 @@ export default function chat() {
       <TopNavigation isChat={true} />
       <Chatting>
         <OtherChatBubble text={'안녕'} />
+        <OtherChatBubble text={'안녕'} />
         <MyChatBubble text={'치킨머금'} />
+        <MyChatBubble
+          text={'치킨머금안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
+        />
+        <OtherChatBubble
+          text={'안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
+        />
       </Chatting>
     </Container>
   );
