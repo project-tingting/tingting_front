@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
+import LoadingModal from './LoadingModal/LoadingModal';
 import { StartButton } from './HomeComponents';
 import TokenIcon from '../../public/assets/icons/token.svg';
 
 export default function Func() {
   const [tokenNum, setTokenNum] = useState(5);
+  const [isLoadingModalOpen, setIsLoadingModalOpen] = useState(false);
   const handleClickStartButton = () => {
     setTokenNum((prev) => prev - 1);
+    setIsLoadingModalOpen(true);
   };
 
   const renderTokenComponent = () => {
@@ -19,10 +22,13 @@ export default function Func() {
     return result;
   };
   return (
-    <StyledContainer>
-      <StartButton onClick={handleClickStartButton}>START</StartButton>
-      <TokenContainer>{renderTokenComponent()}</TokenContainer>
-    </StyledContainer>
+    <>
+      {isLoadingModalOpen && <LoadingModal />}
+      <StyledContainer>
+        <StartButton onClick={handleClickStartButton}>START</StartButton>
+        <TokenContainer>{renderTokenComponent()}</TokenContainer>
+      </StyledContainer>
+    </>
   );
 }
 

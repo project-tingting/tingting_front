@@ -1,17 +1,16 @@
 import { userAPI } from '../../core/api/baseInstance';
 import { useQuery } from '@tanstack/react-query';
 
-const checkValidation = async (userEmail: string) => {
-  try {
-    const res = await userAPI(`/confirmcheck/${userEmail}`);
-    console.log(res);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export default function useCheckValidation(userEmail: string) {
-  const { data } = useQuery(['confirmcheck'], () => checkValidation(userEmail), {
+  const checkValidation = async () => {
+    try {
+      const res = await userAPI(`/confirmcheck/${userEmail}`);
+      return res;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const { data } = useQuery(['confirmcheck'], () => checkValidation(), {
     refetchOnWindowFocus: 'always',
   });
   return { data };
