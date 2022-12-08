@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -6,29 +6,35 @@ import Symbol from '../../public/assets/icons/symbol.svg';
 import Bell from '../../public/assets/icons/bell.svg';
 import No_Chat from '../../public/assets/icons/no_chat.svg';
 import back from '../../public/assets/icons/back.svg';
-import { useRouter } from 'next/router';
+import ChatModal from './Chat/ChatModal';
 
 interface TopNavProps {
   isChat?: boolean;
 }
 
 export default function TopNavigation({ isChat }: TopNavProps) {
-  const router = useRouter();
+  const [modal, setModal] = useState(false);
   const onClickBack = () => {
-    router.back();
+    setModal(true);
+  };
+  const handleContinue = () => {
+    setModal(false);
   };
   return (
-    <StyledContainer>
-      {isChat ? (
-        <Image src={back} alt="go back" onClick={onClickBack} />
-      ) : (
-        <Image src={Symbol} alt="로고 버튼" />
-      )}
-      <Func>
-        <Image src={Bell} alt="알림 버튼" />
-        <Image src={No_Chat} alt="채팅 알림 버튼" />
-      </Func>
-    </StyledContainer>
+    <>
+      {modal && <ChatModal handleContinue={handleContinue} />}
+      <StyledContainer>
+        {isChat ? (
+          <Image src={back} alt="go back" onClick={onClickBack} />
+        ) : (
+          <Image src={Symbol} alt="로고 버튼" />
+        )}
+        <Func>
+          <Image src={Bell} alt="알림 버튼" />
+          <Image src={No_Chat} alt="채팅 알림 버튼" />
+        </Func>
+      </StyledContainer>
+    </>
   );
 }
 

@@ -1,9 +1,18 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import warning from '../../../public/assets/icons/WarningCircle.svg';
 
-export default function ChatModal() {
+interface modalProps {
+  handleContinue: () => void;
+}
+
+export default function ChatModal({ handleContinue }: modalProps) {
+  const router = useRouter();
+  const handleExit = () => {
+    router.back();
+  };
   return (
     <Background>
       <Modal>
@@ -13,8 +22,8 @@ export default function ChatModal() {
           <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
         </NoticeContainer>
         <ButtonGroup>
-          <ExitButton>나가기</ExitButton>
-          <ContinueButton>계속</ContinueButton>
+          <ExitButton onClick={handleExit}>나가기</ExitButton>
+          <ContinueButton onClick={handleContinue}>계속</ContinueButton>
         </ButtonGroup>
       </Modal>
     </Background>
@@ -23,6 +32,7 @@ export default function ChatModal() {
 
 const Background = styled.div`
   height: 100vh;
+  width: 100vw;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(2px);
   padding: 1.6rem;
@@ -30,6 +40,8 @@ const Background = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  z-index: 1;
 `;
 const Modal = styled.article`
   border-radius: 20px;
