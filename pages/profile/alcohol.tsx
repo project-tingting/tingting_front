@@ -29,7 +29,7 @@ export default function alcohol() {
     }
   }, [alcohol]);
   const handleContinueButton = () => {
-    setUserProfile([...userProfile, { topic: 'alcohol', valueList: alcohol }]);
+    setUserProfile([...userProfile, { topic: 'isDrink', valueList: alcohol }]);
     Router.push('/profile/completed');
   };
   const handleOButton = () => {

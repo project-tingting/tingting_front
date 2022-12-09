@@ -51,7 +51,7 @@ export default function interest() {
     setUserProfile((prev: object[]) => [
       ...prev,
       {
-        topic: 'interest',
+        topic: 'interestKeyword',
         valueList: keywords,
       },
     ]);

@@ -9,6 +9,7 @@ import { userProfileState } from '../../core/recoil/userProfileAtom';
 export default function completed() {
   const userProfile = useRecoilValue(userProfileState);
   useEffect(() => {
+    console.log([...userProfile]);
     userprofileAPI([...userProfile]);
     setTimeout(() => {
       Router.push('/home/8294985024f44343bdbfe80bb6aea716'); // HOME으로 바꾸기
