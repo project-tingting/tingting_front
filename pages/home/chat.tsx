@@ -1,31 +1,64 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import MyChatBubble from '../../components/Home/MyChatBubble';
-import OtherChatBubble from '../../components/Home/OtherChatBubble';
+import MyChatBubble from '../../components/Home/Chat/MyChatBubble';
+import OtherChatBubble from '../../components/Home/Chat/OtherChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendChat.svg';
+import notice from '../../public/assets/icons/notice.svg';
 
 export default function chat() {
+  const [chatMessage, setChatMessage] = useState('');
+  const [sendMessage, setSendMessage] = useState(['']);
+  const [sendClicked, setSendClicked] = useState(false);
+
+  const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChatMessage(e.target.value);
+  };
+
+  const handleSend = (chatMessage: string) => {
+    setSendMessage([chatMessage, ...sendMessage]);
+    console.log(sendMessage);
+    setSendClicked(true);
+    console.log(sendClicked);
+    setChatMessage('');
+  };
+
   return (
-    <Container>
-      <TopNavigation isChat={true} />
-      <Chatting>
-        <OtherChatBubble text={'안녕'} />
-        <OtherChatBubble text={'안녕'} />
-        <MyChatBubble text={'치킨머금'} />
-        <MyChatBubble
-          text={'치킨머금안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
-        />
-        <OtherChatBubble
-          text={'안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
-        />
-      </Chatting>
-      <SendChat>
-        <ChatInput type="text" placeholder="채팅을 팅팅!" />
-        <Image src={sendchat} />
-      </SendChat>
-    </Container>
+    <>
+      <Container>
+        <TopNavigation isChat={true} />
+        <ChatNotice>
+          <Image src={notice} />
+          <NoticeContents>
+            <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
+            <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
+          </NoticeContents>
+        </ChatNotice>
+        <Chatting>
+          <OtherChatBubble text={'안녕'} />
+          <OtherChatBubble text={'안녕'} />
+          <MyChatBubble text={'치킨머금'} />
+          <MyChatBubble
+            text={
+              '치킨머금안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'
+            }
+          />
+          <OtherChatBubble
+            text={'안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
+          />
+        </Chatting>
+        <SendChat>
+          <ChatInput
+            type="text"
+            placeholder="채팅을 팅팅!"
+            onChange={handleChat}
+            value={chatMessage}
+          />
+          <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
+        </SendChat>
+      </Container>
+    </>
   );
 }
 
@@ -56,4 +89,23 @@ const ChatInput = styled.input`
   border-radius: 20px;
   flex-grow: 1;
   font-size: 1.8rem;
+`;
+
+const ChatNotice = styled.div`
+  background-color: #ebe8ef;
+  padding: 2rem;
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NoticeContents = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const NoticeText = styled.p`
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #353535;
 `;
