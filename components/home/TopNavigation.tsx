@@ -31,7 +31,11 @@ export default function TopNavigation({ isChat }: TopNavProps) {
         )}
         <Func>
           <Image src={Bell} alt="알림 버튼" />
-          <Image src={No_Chat} alt="채팅 알림 버튼" />
+          {isChat ? (
+            <Image src={Symbol} alt="로고 버튼" />
+          ) : (
+            <Image src={No_Chat} alt="채팅 알림 버튼" />
+          )}
         </Func>
       </StyledContainer>
     </>
