@@ -51,8 +51,8 @@ export default function interest() {
     setUserProfile((prev: object[]) => [
       ...prev,
       {
-        topic: 'interest',
-        value: keywords,
+        topic: 'interestKeyword',
+        valueList: keywords,
       },
     ]);
     Router.push('/profile/alcohol');
