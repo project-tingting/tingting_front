@@ -38,9 +38,12 @@ export default function school() {
             />
             <ValidateButton onClick={handleClickValidateButton}>인증</ValidateButton>
           </FormContainer>
-          {isClickValidateButton && (
+          {(isClickValidateButton && !data) && (
             <InputMessage text="인증메일을 보냈습니다. 메일을 확인해주세요." />
           )}
+          {
+            data && <InputMessage text="인증이 완료되었습니다." />
+          }
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { userInfoState } from '../../core/recoil/userInfoAtom';
 import { useQuery } from '@tanstack/react-query';
@@ -17,9 +17,13 @@ const checkValidation = async (schoolEmail: string) => {
 export default function useValidateUniversity(schoolEmail: string) {
   const [isClickValidateButton, setIsClickValidateButton] = useState(false);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  useEffect(() => {
+    setUserInfo({ ...userInfo, userEmail: schoolEmail, university: '' });
+  }, [schoolEmail]);
+
   const handleClickValidateButton = async () => {
     setIsClickValidateButton(true);
-    setUserInfo({ ...userInfo, userEmail: schoolEmail, university: '' });
     try {
       const res = await userAPI.post('/signup', {
         ...userInfo,
@@ -33,6 +37,7 @@ export default function useValidateUniversity(schoolEmail: string) {
 
   const { data } = useQuery(['confirmcheck', schoolEmail], () => checkValidation(schoolEmail), {
     enabled: !!isClickValidateButton,
+    refetchOnWindowFocus: 'always',
   });
   return { handleClickValidateButton, data, isClickValidateButton };
 }

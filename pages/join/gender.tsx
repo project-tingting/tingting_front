@@ -25,19 +25,19 @@ export default function sex() {
       <Container>
         <InputContainer>
           <Guide text="성별을 알려주세요" />
+          <GenderButtonContainer>
+            <GenderButton
+              gender="male"
+              onClick={handleClickMaleButton}
+              className={gender === 'male' ? 'maleClicked' : ''}
+            />
+            <GenderButton
+              gender="female"
+              onClick={handleClickFemaleButton}
+              className={gender === 'female' ? 'femaleClicked' : ''}
+            />
+          </GenderButtonContainer>
         </InputContainer>
-        <GenderButtonContainer>
-          <GenderButton
-            gender="male"
-            onClick={handleClickMaleButton}
-            className={gender === 'male' ? 'maleClicked' : ''}
-          />
-          <GenderButton
-            gender="female"
-            onClick={handleClickFemaleButton}
-            className={gender === 'female' ? 'femaleClicked' : ''}
-          />
-        </GenderButtonContainer>
         <Button
           onClick={handleClickContinueButton}
           isRound={true}
@@ -53,5 +53,4 @@ const GenderButtonContainer = styled.section`
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: -554px;
 `;
