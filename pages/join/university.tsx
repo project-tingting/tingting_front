@@ -1,12 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Router from 'next/router';
-import { useRecoilState } from 'recoil';
 import useInput from '../../util/hooks/useInput';
 import useValidateUniversity from '../../util/hooks/useValidateUniversity';
-import useCheckValidation from '../../util/hooks/useCheckValidation';
-
-import { userInfoState } from '../../core/recoil/userInfoAtom';
 
 import Top from '../../components/Top';
 import ProgressBar from '../../components/ProgressBar';
@@ -16,16 +12,12 @@ import Guide from '../../components/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
 import { ValidateButton } from '../../components/Join/FormElement';
+import InputMessage from '../../components/Join/InputMessage';
 
 export default function school() {
   const [schoolEmail, handleSchoolEmail] = useInput('');
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const { handleClickValidateButton } = useValidateUniversity(userInfo);
-  const { data } = useCheckValidation(schoolEmail);
-  console.log(data);
-  useEffect(() => {
-    setUserInfo({ ...userInfo, userEmail: schoolEmail, university: '' });
-  }, [schoolEmail]);
+  const { handleClickValidateButton, data, isClickValidateButton } =
+    useValidateUniversity(schoolEmail);
 
   const handleClickContinueButton = useCallback(() => {
     Router.push('/join/completed');
@@ -46,11 +38,17 @@ export default function school() {
             />
             <ValidateButton onClick={handleClickValidateButton}>인증</ValidateButton>
           </FormContainer>
+          {(isClickValidateButton && !data) && (
+            <InputMessage text="인증메일을 보냈습니다. 메일을 확인해주세요." />
+          )}
+          {
+            data && <InputMessage text="인증이 완료되었습니다." />
+          }
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}
           isRound={true}
-          disabled={false}
+          disabled={!data}
           text="계속하기"
         />
       </Container>

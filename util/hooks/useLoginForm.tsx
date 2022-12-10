@@ -15,7 +15,7 @@ export default function useLoginForm(userId: string, password: string) {
         userId: userId,
         password: password,
       });
-      console.log(res);
+      console.log(res.data.data.accessTokenExpirationTime);
       loginNGoMain(res.data.data.accessToken, res.data.data.uuid);
     } catch (error) {
       console.error(error);
