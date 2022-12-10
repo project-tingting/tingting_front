@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { chatProps } from '../../../types/chat';
+import { chatProps } from '../../types/chat';
 
 export default function MyChatBubble({ text }: chatProps) {
   return (

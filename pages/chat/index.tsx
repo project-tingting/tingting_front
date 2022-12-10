@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MyChatBubble from '../../components/Home/Chat/MyChatBubble';
-import OtherChatBubble from '../../components/Home/Chat/OtherChatBubble';
+import MyChatBubble from '../../components/Chat/MyChatBubble';
+import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendChat.svg';
 import notice from '../../public/assets/icons/notice.svg';

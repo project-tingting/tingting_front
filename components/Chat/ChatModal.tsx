@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import warning from '../../../public/assets/icons/WarningCircle.svg';
+import warning from '../../public/assets/icons/WarningCircle.svg';
 
 interface modalProps {
   handleContinue: () => void;

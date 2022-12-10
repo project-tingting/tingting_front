@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-import { chatProps } from '../../../types/chat';
-import profile from '../../../public/assets/icons/profile.svg';
+import { chatProps } from '../../types/chat';
+import profile from '../../public/assets/icons/profile.svg';
 
 export default function OtherChatBubble({ text }: chatProps) {
   return (
