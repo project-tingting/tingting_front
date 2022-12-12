@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Container } from './EditMbti';
-import Keyword, { interestData } from '../Keyword';
-import { SelectedKeyword, Hr } from './EditMbti';
+import Keyword, { interestData } from '../../Keyword';
 import SaveButton from './SaveButton';
+import { Container } from './EditMbti';
+import { SelectedKeyword, Hr } from './EditMbti';
 
 export default function EditInterest() {
   const [count, setCount] = useState(0);

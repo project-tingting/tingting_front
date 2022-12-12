@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import CloseButton from '../CloseButton';
 import EditAlcohol from './EditAlcohol';
 import EditInterest from './EditInterest';
 import EditMbti from './EditMbti';
-import CloseButton from './CloseButton';
 
 type Props = {
   onClick: React.Dispatch<React.SetStateAction<boolean>>;

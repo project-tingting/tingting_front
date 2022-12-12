@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import ProfileIcon from '../../public/assets/icons/profile.svg';
-import EditProfile from './EditProfile';
+import EditProfile from './EditModal/EditProfile';
 
 export default function BottomNavigation() {
   const [isOpen, setIsOpen] = useState(false);

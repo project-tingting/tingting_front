@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import refresh from '../../public/assets/icons/refresh.svg';
-import disabledRefresh from '../../public/assets/icons/disabledRefresh.svg';
+import refresh from '../../../public/assets/icons/refresh.svg';
+import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
 
 interface SaveButtonProps {
   disabled?: boolean;

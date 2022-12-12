@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MbtiKeyword from './MbtiKeyword';
+import MbtiKeyword from '../MbtiKeyword';
 import SaveButton from './SaveButton';
 
 export default function EditMbti() {
@@ -22,7 +22,7 @@ export default function EditMbti() {
     'INTJ',
   ];
 
-  const isSelected = (mbti) => {
+  const isSelected = (mbti: string) => {
     setText(mbti);
     setSelected(true);
     console.log(mbti);

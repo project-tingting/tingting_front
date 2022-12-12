@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { OXButton, OXButtonGroup } from '../../pages/profile/alcohol';
+import { OXButton, OXButtonGroup } from '../../../pages/profile/alcohol';
 import { Hr } from './EditMbti';
 
-import purpleO from '../../public/assets/icons/purpleO.svg';
-import purpleX from '../../public/assets/icons/purpleX.svg';
-import whiteO from '../../public/assets/icons/whiteO.svg';
-import whiteX from '../../public/assets/icons/whiteX.svg';
+import purpleO from '../../../public/assets/icons/purpleO.svg';
+import purpleX from '../../../public/assets/icons/purpleX.svg';
+import whiteO from '../../../public/assets/icons/whiteO.svg';
+import whiteX from '../../../public/assets/icons/whiteX.svg';
 import { Container } from './EditMbti';
 import SaveButton from './SaveButton';
 import styled from 'styled-components';

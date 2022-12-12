@@ -24,4 +24,6 @@ const StyledCloseButton = styled.button`
   border-radius: 50%;
   padding: 1.2rem;
   margin-top: 3.4rem;
+  width: 5.6rem;
+  height: 5.6rem;
 `;
