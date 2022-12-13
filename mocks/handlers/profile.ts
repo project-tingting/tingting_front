@@ -1,8 +1,7 @@
-import { UserProfileProps } from './../../types/user';
 import { rest } from 'msw';
 
 export const profileHandlers = [
-  rest.post<UserProfileProps>('/userprofile', (req, res, ctx) => {
+  rest.post<object[]>('/userprofile', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 import MbtiKeyword from '../MbtiKeyword';
 import SaveButton from './SaveButton';
 
 export default function EditMbti() {
-  const [text, setText] = useState('');
+  const { data } = useGetUserProfile();
+  const mbtiData = data.data.userProfileList[1].valueList;
+  const [text, setText] = useState(mbtiData);
   const [selected, setSelected] = useState(Boolean);
 
   const MBTI = [
@@ -21,6 +24,15 @@ export default function EditMbti() {
     'ISFJ',
     'INTJ',
   ];
+
+  useEffect(() => {
+    if (mbtiData === '') {
+      setSelected(false);
+    } else {
+      setSelected(true);
+    }
+  }, [data]);
+  console.log(data.data.userProfileList[1].valueList);
 
   const isSelected = (mbti: string) => {
     setText(mbti);
