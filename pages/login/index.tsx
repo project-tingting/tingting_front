@@ -7,16 +7,18 @@ import useLoginForm from '../../util/hooks/useLoginForm';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
 import useInput from '../../util/hooks/useInput';
+import ErrorMessage from '../../components/Join/ErrorMessage';
 
 export default function index() {
   const [userId, handleUserId] = useInput('');
   const [password, handlePassword] = useInput('');
 
-  const { submitLoginForm } = useLoginForm(userId, password);
+  const { mutate: submitLogin, data: status_code } = useLoginForm(userId, password);
+
   return (
     <StyledContainer>
       <Image src={TingTingLogo} alt="팅팅 로고" />
-      <FormContainer onSubmit={submitLoginForm}>
+      <FormContainer onSubmit={submitLogin}>
         <StyledInput size="small" placeholder="아이디" type="text" onChange={handleUserId} />
         <StyledInput
           size="small"
@@ -24,6 +26,9 @@ export default function index() {
           type="password"
           onChange={handlePassword}
         />
+        {
+          status_code === 400 && <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />
+        }
         <Button text="로그인" isRound={true} disabled={!userId || !password} />
       </FormContainer>
     </StyledContainer>
