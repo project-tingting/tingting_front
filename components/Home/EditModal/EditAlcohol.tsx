@@ -10,21 +10,27 @@ import whiteX from '../../../public/assets/icons/whiteX.svg';
 import { Container } from './EditMbti';
 import SaveButton from './SaveButton';
 import styled from 'styled-components';
+import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 
 export default function EditAlcohol() {
-  const [alcohol, setAlcohol] = useState('');
+  const { data } = useGetUserProfile();
+  const userAlcoholData = data.data.userProfileList[0].valueList[0];
+  const [alcohol, setAlcohol] = useState(userAlcoholData);
   const [selected, setSelected] = useState(Boolean);
 
   useEffect(() => {
+    if (data?.success) {
+      setSelected(true);
+    }
     alcohol;
   }, [alcohol]);
 
   const handleOButton = () => {
-    setAlcohol('O');
+    setAlcohol('1');
     setSelected(true);
   };
   const handleXButton = () => {
-    setAlcohol('X');
+    setAlcohol('0');
     setSelected(true);
   };
   return (
@@ -33,18 +39,18 @@ export default function EditAlcohol() {
         {selected && (
           <>
             <SelectedImg>
-              {alcohol === 'O' ? <Image src={purpleO} /> : <Image src={purpleX} />}
+              {alcohol === '1' ? <Image src={purpleO} /> : <Image src={purpleX} />}
             </SelectedImg>
             <Hr />
           </>
         )}
 
         <ButtonGroup>
-          <OXButton onClick={handleOButton} className={alcohol === 'O' ? 'clicked' : ''}>
-            <Image src={alcohol === 'O' ? whiteO : purpleO} />
+          <OXButton onClick={handleOButton} className={alcohol === '1' ? 'clicked' : ''}>
+            <Image src={alcohol === '1' ? whiteO : purpleO} />
           </OXButton>
-          <OXButton onClick={handleXButton} className={alcohol === 'X' ? 'clicked' : ''}>
-            <Image src={alcohol === 'X' ? whiteX : purpleX} />
+          <OXButton onClick={handleXButton} className={alcohol === '0' ? 'clicked' : ''}>
+            <Image src={alcohol === '0' ? whiteX : purpleX} />
           </OXButton>
         </ButtonGroup>
       </div>

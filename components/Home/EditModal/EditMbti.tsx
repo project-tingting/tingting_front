@@ -6,8 +6,9 @@ import SaveButton from './SaveButton';
 
 export default function EditMbti() {
   const { data } = useGetUserProfile();
-  const mbtiData = data.data.userProfileList[1].valueList;
-  const [text, setText] = useState(mbtiData);
+  // const mbtiData = data.data.userProfileList[1].valueList;
+
+  const [text, setText] = useState('');
   const [selected, setSelected] = useState(Boolean);
 
   const MBTI = [
@@ -25,14 +26,21 @@ export default function EditMbti() {
     'INTJ',
   ];
 
+  // useEffect(() => {
+  //   if (mbtiData === '') {
+  //     setSelected(false);
+  //   } else {
+  //     setSelected(true);
+  //   }
+  // }, [mbtiData]);
+  // console.log(data.data.userProfileList[1].valueList);
+  // console.log(userMbtiData);
   useEffect(() => {
-    if (mbtiData === '') {
-      setSelected(false);
-    } else {
+    if (data?.success) {
       setSelected(true);
+      setText(data.data.userProfileList[1].valueList);
     }
   }, [data]);
-  console.log(data.data.userProfileList[1].valueList);
 
   const isSelected = (mbti: string) => {
     setText(mbti);

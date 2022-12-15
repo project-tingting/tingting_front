@@ -4,10 +4,13 @@ import Keyword, { interestData } from '../../Keyword';
 import SaveButton from './SaveButton';
 import { Container } from './EditMbti';
 import { SelectedKeyword, Hr } from './EditMbti';
+import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 
 export default function EditInterest() {
+  const { data } = useGetUserProfile();
+  const userInterestData = data.data.userProfileList[2].valueList;
   const [count, setCount] = useState(0);
-  const [keywords, setKeywords] = useState<string[]>([]);
+  const [keywords, setKeywords] = useState<string[]>(userInterestData);
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
