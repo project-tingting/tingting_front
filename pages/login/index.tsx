@@ -2,9 +2,9 @@ import React from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
 import Image from 'next/image';
-import TingTingLogo from '../../public/assets/icons/SmallLogo.svg';
 import useLoginForm from '../../util/hooks/useLoginForm';
 
+import TingTingLogo from '../../public/assets/icons/SmallLogo.svg';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
 import useInput from '../../util/hooks/useInput';
