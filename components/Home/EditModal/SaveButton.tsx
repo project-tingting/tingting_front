@@ -3,15 +3,21 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import refresh from '../../../public/assets/icons/refresh.svg';
 import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
+import { usePutUserProfile } from '../../../util/hooks/usePutUserProfile';
 
 interface SaveButtonProps {
   disabled?: boolean;
 }
 
 export default function SaveButton({ disabled }: SaveButtonProps) {
+  const { data, mutate } = usePutUserProfile();
+  const handleSaveProfile = () => {
+    mutate();
+    console.log(data);
+  };
   return (
     <Container>
-      <StyledSaveButton disabled={disabled}>
+      <StyledSaveButton disabled={disabled} onClick={handleSaveProfile}>
         현재상태 저장
         {disabled ? <Image src={disabledRefresh} /> : <Image src={refresh} />}
       </StyledSaveButton>

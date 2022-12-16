@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { userProfileState } from '../../../core/recoil/userProfileAtom';
 import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 import MbtiKeyword from '../MbtiKeyword';
 import SaveButton from './SaveButton';
@@ -7,6 +9,8 @@ import SaveButton from './SaveButton';
 export default function EditMbti() {
   const { data } = useGetUserProfile();
   // const mbtiData = data.data.userProfileList[1].valueList;
+  const value = useRecoilValue(userProfileState);
+  const setUserProfile = useResetRecoilState(userProfileState);
 
   const [text, setText] = useState('');
   const [selected, setSelected] = useState(Boolean);
@@ -40,6 +44,22 @@ export default function EditMbti() {
       setSelected(true);
       setText(data.data.userProfileList[1].valueList);
     }
+    // setUserProfile((prev: object[]) => [
+    //   ...prev,
+    //   {
+    //     topic: 'mbti',
+    //     valueList: text,
+    //   },
+    //   {
+    //     topic: 'mbti',
+    //     valueList: text,
+    //   },
+    //   {
+    //     topic: 'mbti',
+    //     valueList: text,
+    //   },
+    // ]);
+    console.log(value);
   }, [data]);
 
   const isSelected = (mbti: string) => {
