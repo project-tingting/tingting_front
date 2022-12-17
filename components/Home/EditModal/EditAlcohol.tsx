@@ -11,10 +11,13 @@ import { Container } from './EditMbti';
 import SaveButton from './SaveButton';
 import styled from 'styled-components';
 import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
+import { useSetRecoilState } from 'recoil';
+import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
 
 export default function EditAlcohol() {
   const { data } = useGetUserProfile();
   const userAlcoholData = data.data.userProfileList[0].valueList[0];
+  const setUserProfile = useSetRecoilState(userProfileState);
   const [alcohol, setAlcohol] = useState(userAlcoholData);
   const [selected, setSelected] = useState(Boolean);
 
@@ -23,6 +26,15 @@ export default function EditAlcohol() {
       setSelected(true);
     }
     alcohol;
+    setUserProfile((prev: ProfileType[]) => {
+      const obj = prev;
+      obj.map((item) => {
+        item.topic === 'isDrink' ? [...item.valueList].splice(0, 1, alcohol) : null;
+        return item;
+      });
+      console.log(obj);
+      return obj;
+    });
   }, [alcohol]);
 
   const handleOButton = () => {

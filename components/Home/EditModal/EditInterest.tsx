@@ -5,10 +5,13 @@ import SaveButton from './SaveButton';
 import { Container } from './EditMbti';
 import { SelectedKeyword, Hr } from './EditMbti';
 import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
+import { useSetRecoilState } from 'recoil';
+import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
 
 export default function EditInterest() {
   const { data } = useGetUserProfile();
   const userInterestData = data.data.userProfileList[2].valueList;
+  const setUserProfile = useSetRecoilState(userProfileState);
   const [count, setCount] = useState(0);
   const [keywords, setKeywords] = useState<string[]>(userInterestData);
   const [disabled, setDisabled] = useState(false);
@@ -19,6 +22,15 @@ export default function EditInterest() {
     } else {
       setDisabled(false);
     }
+    setUserProfile((prev: ProfileType[]) => {
+      const obj = prev;
+      obj.map((item) => {
+        item.topic === 'interestKeyword' ? (item.valueList = keywords) : null;
+        return item;
+      });
+      console.log(obj);
+      return obj;
+    });
   });
 
   const handleOnClicked = (onclick: boolean, text: string) => {

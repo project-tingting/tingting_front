@@ -1,11 +1,24 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 
-export const userProfileState = atom<object[]>({
+export interface ProfileType {
+  topic: string;
+  valueList: string[];
+}
+
+export const userProfileState = atom<ProfileType[]>({
   key: 'userProfileState',
-  default: [],
+  default: [
+    {
+      topic: 'mbti',
+      valueList: ['aaaa'],
+    },
+    {
+      topic: 'interestKeyword',
+      valueList: ['game', 'sport', 'design'],
+    },
+    {
+      topic: 'isDrink',
+      valueList: ['1'],
+    },
+  ],
 });
-
-// export const filterMbtiState = selector({
-//   key: 'mbtiState',
-//   get:({get}) => get(userProfileState).filter(obj => obj.topic),
-// })

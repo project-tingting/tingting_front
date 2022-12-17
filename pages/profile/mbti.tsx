@@ -2,7 +2,7 @@ import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { userProfileState } from '../../core/recoil/userProfileAtom';
+import { ProfileType, userProfileState } from '../../core/recoil/userProfileAtom';
 
 import InputContainer from '../../components/AnimationContainer';
 import Button from '../../components/Button';
@@ -38,7 +38,7 @@ export default function mbti() {
     setUserMbti([e.target.value]);
   };
   const handleContinueButton = () => {
-    setUserProfile((prev: object[]) => [
+    setUserProfile((prev: ProfileType[]) => [
       ...prev,
       {
         topic: 'mbti',
