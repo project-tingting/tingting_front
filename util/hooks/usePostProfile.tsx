@@ -1,16 +1,16 @@
 import { useMutation } from '@tanstack/react-query';
-import { AxiosPromise, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { UseMutationOptions } from 'react-query';
 import { useRecoilValue } from 'recoil';
 import { baseAPI } from '../../core/api/baseInstance';
-import { ProfileType, userProfileState } from '../../core/recoil/userProfileAtom';
+import { userProfileState } from '../../core/recoil/userProfileAtom';
 
 type Props = UseMutationOptions<AxiosResponse<any>, Error, any>;
 
 export const usePostProfile = ({ onError, onSuccess }: Props) => {
   const userProfile = useRecoilValue(userProfileState);
-  const postUserProfile = async (userprofile: ProfileType[]) => {
-    const { data } = await baseAPI.post('/userprofile', userprofile, {
+  const postUserProfile = async () => {
+    const { data } = await baseAPI.post('/userprofile', userProfile, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('access-token'),
       },
@@ -19,7 +19,7 @@ export const usePostProfile = ({ onError, onSuccess }: Props) => {
   };
 
   return useMutation({
-    mutationFn: () => postUserProfile(userProfile),
+    mutationFn: () => postUserProfile(),
     onError,
     onSuccess,
   });

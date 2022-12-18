@@ -15,7 +15,10 @@ export default function completed() {
   });
 
   useEffect(() => {
-    mutate();
+    mutate({});
+    setTimeout(() => {
+      Router.push('/login');
+    }, 2000);
   }, []);
 
   return (
