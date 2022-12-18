@@ -9,16 +9,17 @@ type Props = UseMutationOptions<AxiosResponse<any>, Error, any>;
 
 export const usePostProfile = ({ onError, onSuccess }: Props) => {
   const userProfile = useRecoilValue(userProfileState);
-  const postUserProfile = async (userprofile: ProfileType[]): AxiosPromise<any> => {
-    const res = await baseAPI.post('/userprofile', userprofile, {
+  const postUserProfile = async (userprofile: ProfileType[]) => {
+    const { data } = await baseAPI.post('/userprofile', userprofile, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('access-token'),
       },
     });
-    return res.data;
+    return data;
   };
 
-  return useMutation(postUserProfile([...userProfile]), {
+  return useMutation({
+    mutationFn: () => postUserProfile(userProfile),
     onError,
     onSuccess,
   });
