@@ -22,15 +22,15 @@ export default function EditInterest() {
     } else {
       setDisabled(false);
     }
-    setUserProfile((prev: ProfileType[]) => {
-      const obj = prev;
-      obj.map((item) => {
-        item.topic === 'interestKeyword' ? (item.valueList = keywords) : null;
-        return item;
-      });
-      console.log(obj);
-      return obj;
-    });
+    // setUserProfile((prev: ProfileType[]) => {
+    //   const obj = prev;
+    //   obj.map((item) => {
+    //     item.topic === 'interestKeyword' ? (item.valueList = keywords) : null;
+    //     return item;
+    //   });
+    //   console.log(obj);
+    //   return obj;
+    // });
   });
 
   const handleOnClicked = (onclick: boolean, text: string) => {

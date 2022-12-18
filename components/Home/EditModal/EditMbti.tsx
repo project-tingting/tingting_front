@@ -11,7 +11,6 @@ export default function EditMbti() {
   // const mbtiData = data.data.userProfileList[1].valueList;
   const value = useRecoilValue(userProfileState);
   const setUserProfile = useSetRecoilState(userProfileState);
-
   const [text, setText] = useState('');
   const [selected, setSelected] = useState(Boolean);
 
@@ -43,19 +42,25 @@ export default function EditMbti() {
     if (data?.success) {
       setSelected(true);
       setText(data.data.userProfileList[1].valueList);
+      // isSelected(text);
     }
-    setUserProfile((prev: ProfileType[]) => {
-      const obj = prev;
-      obj.map((item) => {
-        item.topic === 'mbti' ? [...item.valueList].splice(0, 1, text) : null;
-        console.log(text);
-        return item;
-      });
-      console.log(obj);
-      return obj;
-    });
-  }, [data]);
-  console.log(value);
+    // console.log('data', data.data);
+    console.log(userProfileState);
+    // setUserProfile((prev: ProfileType[]) => {
+    //   const obj1 = JSON.stringify(prev);
+    //   const obj = JSON.parse(obj1);
+    //   const obj2 = prev;
+
+    //   console.log(obj2);
+    //   // console.log(obj[0], 'obj');
+    //   // console.log(obj[0].valueList[0], 'valueList');
+    //   // obj[0].valueList[0] = text;
+    //   // obj[0].topic === 'mbti' ? (obj[0].valueList[0] = value) : null;
+    //   console.log('obj', obj);
+    //   return obj;
+    // });
+  }, [data, selected]);
+  console.log('value', value);
 
   const isSelected = (mbti: string) => {
     setText(mbti);
@@ -78,7 +83,7 @@ export default function EditMbti() {
           ))}
         </MbtiKeywords>
       </div>
-      <SaveButton />
+      <SaveButton value={text} />
     </Container>
   );
 }

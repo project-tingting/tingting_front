@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { ProfileType, userProfileState } from '../../core/recoil/userProfileAtom';
 
@@ -14,6 +14,7 @@ import Top from '../../components/Top';
 import { ErrorText } from '../../components/UserInput';
 
 export default function interest() {
+  const profile = useRecoilValue(userProfileState);
   const setUserProfile = useSetRecoilState(userProfileState);
 
   const [count, setCount] = useState(0);
@@ -55,6 +56,8 @@ export default function interest() {
         valueList: keywords,
       },
     ]);
+    console.log('interest', profile);
+    console.log('interest', keywords);
     Router.push('/profile/alcohol');
   };
 

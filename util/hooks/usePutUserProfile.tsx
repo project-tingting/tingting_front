@@ -12,15 +12,16 @@ export const usePutUserProfile = () => {
           Authorization: 'Bearer ' + localStorage.getItem('access-token'),
         },
       });
+      console.log('data', res.data);
       return res.data;
     } catch (error) {
       console.error(error);
     }
   };
-  const { data, mutate } = useMutation({
+  const { data: putUserData, mutate } = useMutation({
     mutationFn: () => {
       return putUserProfile([...userProfile]);
     },
   });
-  return { data, mutate };
+  return { putUserData, mutate };
 };

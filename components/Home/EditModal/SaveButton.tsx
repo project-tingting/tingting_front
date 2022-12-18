@@ -1,16 +1,27 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import refresh from '../../../public/assets/icons/refresh.svg';
 import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
 import { usePutUserProfile } from '../../../util/hooks/usePutUserProfile';
+import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
 
 interface SaveButtonProps {
   disabled?: boolean;
+  value?: string;
 }
 
-export default function SaveButton({ disabled }: SaveButtonProps) {
-  const { data, mutate } = usePutUserProfile();
+export default function SaveButton({ disabled, value }: SaveButtonProps) {
+  const { putUserData, mutate } = usePutUserProfile();
+  const uservalue = useRecoilValue(userProfileState);
+
+  const { data } = useGetUserProfile();
+  // useEffect(() => {
+  //   // mutate();
+
+  // }, [uservalue]);
   const handleSaveProfile = () => {
     mutate();
     console.log(data);

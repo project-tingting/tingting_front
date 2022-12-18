@@ -7,9 +7,7 @@ import { usePostProfile } from '../../util/hooks/usePostProfile';
 export default function completed() {
   const { data, mutate } = usePostProfile();
   useEffect(() => {
-    mutate();
-
-    data?.success &&
+    data?.success && mutate(),
       setTimeout(() => {
         Router.push('/login');
       }, 2000);

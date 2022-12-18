@@ -7,18 +7,5 @@ export interface ProfileType {
 
 export const userProfileState = atom<ProfileType[]>({
   key: 'userProfileState',
-  default: [
-    {
-      topic: 'mbti',
-      valueList: ['aaaa'],
-    },
-    {
-      topic: 'interestKeyword',
-      valueList: ['game', 'sport', 'design'],
-    },
-    {
-      topic: 'isDrink',
-      valueList: ['1'],
-    },
-  ],
+  default: [],
 });

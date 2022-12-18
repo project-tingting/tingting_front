@@ -45,6 +45,7 @@ export default function mbti() {
         valueList: userMbti,
       },
     ]);
+    console.log('mbti', userMbti);
     Router.push('/profile/interest');
   };
   return (
