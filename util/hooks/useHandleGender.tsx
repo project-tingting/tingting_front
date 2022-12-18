@@ -11,11 +11,11 @@ export default function useHandleGender() {
   }, [gender]);
 
   const handleClickMaleButton = () => {
-    setGender('male');
+    setGender('m');
   };
 
   const handleClickFemaleButton = () => {
-    setGender('female');
+    setGender('w');
   };
 
   return { gender, handleClickMaleButton, handleClickFemaleButton };

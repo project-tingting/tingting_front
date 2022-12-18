@@ -28,5 +28,5 @@ export default function useLoginForm(userId: string, password: string) {
 
   const { mutate, data } = useMutation(submitLoginForm);
 
-  return { mutate, data};
+  return { mutate, data };
 }

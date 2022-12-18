@@ -9,10 +9,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '../public/assets/fonts/style.css';
 
 export default function _app({ Component, pageProps }: AppProps) {
-  if (process.env.NODE_ENV === 'development') {
-    const MockServer = () => import('../mocks');
-    MockServer();
-  }
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
