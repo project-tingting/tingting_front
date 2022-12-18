@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useGetMatchingInfo } from '../../../core/apiHooks/matching';
 
 export default function LoadingModal() {
+  const { data } = useGetMatchingInfo(localStorage.getItem('room-key'));
+  console.log(data);
   return <LoadingModalContainer>LoadingModal</LoadingModalContainer>;
 }
 

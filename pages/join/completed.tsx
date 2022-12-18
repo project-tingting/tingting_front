@@ -1,9 +1,12 @@
 import Router from 'next/router';
+import useGetAccessToken from '../../util/hooks/useGetAccessToken';
 import React, { useEffect } from 'react';
 import Notice from '../../components/Notice';
 
 export default function completed() {
+  const { mutate: getAccessToken } = useGetAccessToken();
   useEffect(() => {
+    getAccessToken();
     setTimeout(() => {
       Router.push('/profile');
     }, 2000);

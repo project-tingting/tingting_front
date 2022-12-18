@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useStartMatch } from '../../core/apiHooks/matching';
+import { matchingInfoState } from '../../core/recoil/matchingInfoAtom';
 
 import LoadingModal from './LoadingModal/LoadingModal';
 import { StartButton } from './HomeComponents';
 import TokenIcon from '../../public/assets/icons/token.svg';
 
 export default function Func() {
+  const matchInfo = useRecoilValue(matchingInfoState);
+  console.log(matchInfo);
+  const { mutate: startMatch } = useStartMatch();
   const [tokenNum, setTokenNum] = useState(5);
   const [isLoadingModalOpen, setIsLoadingModalOpen] = useState(false);
   const handleClickStartButton = () => {
     setTokenNum((prev) => prev - 1);
     setIsLoadingModalOpen(true);
+    startMatch(matchInfo.partyNum / 2);
   };
 
   const renderTokenComponent = () => {

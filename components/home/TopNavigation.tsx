@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
+import { useUserLogout } from '../../core/apiHooks/user';
 
+import UserProfile from '../../public/assets/icons/UserProfile.svg';
 import Symbol from '../../public/assets/icons/symbol.svg';
 import Bell from '../../public/assets/icons/bell.svg';
 import No_Chat from '../../public/assets/icons/no_chat.svg';
@@ -14,7 +16,9 @@ interface TopNavProps {
 }
 
 export default function TopNavigation({ isChat }: TopNavProps) {
+  const { mutate: handleLogout } = useUserLogout();
   const [modal, setModal] = useState(false);
+  const [isLogoClicked, setIsLogoClicked] = useState(false);
   const router = useRouter();
   const onClickBack = () => {
     setModal(true);
@@ -28,6 +32,9 @@ export default function TopNavigation({ isChat }: TopNavProps) {
   const handleGoChat = () => {
     Router.push('/chat');
   };
+  const handleClickLogo = () => {
+    setIsLogoClicked((prev) => !prev);
+  }
   return (
     <>
       {modal && <ChatModal handleContinue={handleContinue} />}
@@ -35,7 +42,7 @@ export default function TopNavigation({ isChat }: TopNavProps) {
         {isChat ? (
           <Image src={outChat} alt="go back" onClick={onClickBack} />
         ) : (
-          <Image src={Symbol} alt="로고 버튼" />
+          <Image src={UserProfile} alt="로고 버튼" onClick={handleClickLogo} />
         )}
         <Func>
           <Image src={Bell} alt="알림 버튼" />
@@ -46,19 +53,31 @@ export default function TopNavigation({ isChat }: TopNavProps) {
           )}
         </Func>
       </StyledContainer>
+      {isLogoClicked && <LogoutButton onClick={() => handleLogout(localStorage.getItem('access-token'))}>로그아웃</LogoutButton>}
     </>
   );
 }
 
 const StyledContainer = styled.article`
   background: linear-gradient(180deg, #ffffff 50%, rgba(255, 255, 255, 0.5) 100%);
-  height: 44px;
-  padding: 0 1rem;
+  height: 4.4rem;
+  padding: 0 1.6rem;
   display: flex;
   justify-content: space-between;
 `;
 
 const Func = styled.section`
   display: flex;
-  gap: 16px;
+  gap: 1.6rem;
 `;
+
+const LogoutButton = styled.button`
+  position: absolute;
+  left: 1.6rem;
+  z-index: 100;
+  background-color: #F2F2F2;
+  border-radius: 1rem;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  padding: 0.8rem 2rem;
+`
