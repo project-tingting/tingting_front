@@ -1,6 +1,8 @@
 import React from 'react';
 import Router from 'next/router';
+import { useMutation } from '@tanstack/react-query';
 import { userAPI } from '../../core/api/baseInstance';
+import axios from 'axios';
 
 export default function useLoginForm(userId: string, password: string) {
   const loginNGoMain = (accessToken: string, uuid: string) => {
@@ -18,9 +20,13 @@ export default function useLoginForm(userId: string, password: string) {
       console.log(res.data.data.accessTokenExpirationTime);
       loginNGoMain(res.data.data.accessToken, res.data.data.uuid);
     } catch (error) {
-      console.error(error);
+      if (axios.isAxiosError(error)) {
+        return error.response?.status;
+      }
     }
   };
 
-  return { submitLoginForm };
+  const { mutate, data } = useMutation(submitLoginForm);
+
+  return { mutate, data };
 }

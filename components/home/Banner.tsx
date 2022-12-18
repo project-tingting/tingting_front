@@ -7,7 +7,7 @@ import HomePic from '../../public/assets/images/homePic.png';
 export default function Banner() {
   return (
     <BannerContainer>
-      <Image src={HomePic} alt="배너 사진" layout="fill" objectFit="cover" />
+      <Image src={HomePic} alt="배너 사진" layout="fill" objectFit="cover" priority={true} />
       <BannerText>매칭을 시작해보세요!</BannerText>
     </BannerContainer>
   );

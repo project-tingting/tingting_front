@@ -29,12 +29,12 @@ export default function sex() {
             <GenderButton
               gender="male"
               onClick={handleClickMaleButton}
-              className={gender === 'male' ? 'maleClicked' : ''}
+              className={gender === 'm' ? 'maleClicked' : ''}
             />
             <GenderButton
               gender="female"
               onClick={handleClickFemaleButton}
-              className={gender === 'female' ? 'femaleClicked' : ''}
+              className={gender === 'w' ? 'femaleClicked' : ''}
             />
           </GenderButtonContainer>
         </InputContainer>
