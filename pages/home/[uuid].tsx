@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import Router from 'next/router';
 
-import TopNavigation from '../../components/home/TopNavigation';
-import Banner from '../../components/home/Banner';
-import Party from '../../components/home/Party';
-import Func from '../../components/home/Func';
-import BottomNavigation from '../../components/home/BottomNavigation';
+import TopNavigation from '../../components/Home/TopNavigation';
+import Banner from '../../components/Home/Banner';
+import Func from '../../components/Home/Func';
+import BottomNavigation from '../../components/Home/BottomNavigation';
+import Party from '../../components/Home/Party';
+import PartyNum from '../../components/Home/PartyNum';
 
 export default function Home() {
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function Home() {
     <>
       <TopNavigation />
       <Banner />
-      {/* <Party /> */}
+      <Party />
+      <PartyNum />
       <Func />
       <BottomNavigation />
     </>

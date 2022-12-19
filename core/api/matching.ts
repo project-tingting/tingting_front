@@ -20,9 +20,9 @@ export const matchStart = async (matchingNum: number) => {
 }
 
 export const getMatchInfo = async (roomKey: string | null) => {
-  try {
-    return await baseAPI.get(`/meetingroom/${roomKey}`)
-  } catch (error) {
-    console.error(error);
-  }
+  return await baseAPI.get(`/meetingroom/${roomKey}`)
+}
+
+export const setMatchAccept = async (roomKey: string | null, acceptNum: number) => {
+  return await baseAPI.put(`/meetingroomuser/${roomKey}/${acceptNum}`);
 }
