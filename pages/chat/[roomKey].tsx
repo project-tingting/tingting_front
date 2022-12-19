@@ -1,26 +1,48 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
-import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendChat.svg';
 import notice from '../../public/assets/icons/notice.svg';
+import { usePostChat } from '../../util/hooks/usePostChat';
+import { useGetChat } from '../../util/hooks/useGetChat';
+import { useRouter } from 'next/router';
+import { useGetUserInfo } from '../../core/apiHooks/user';
+import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
-  const [sendMessage, setSendMessage] = useState(['']);
-  const [sendClicked, setSendClicked] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
+  const { roomKey } = router.query;
+
+  const { data: userData } = useGetUserInfo();
+  console.log('userData', userData?.data);
+
+  const { data: messages, refetch } = useGetChat(roomKey);
+  console.log(messages);
+
+  const { mutate } = usePostChat({
+    onError: (error) => {
+      console.error(error);
+    },
+    onSuccess: async () => {
+      await refetch();
+      ref.current?.scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest',
+      });
+    },
+  });
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
   };
 
   const handleSend = (chatMessage: string) => {
-    setSendMessage([chatMessage, ...sendMessage]);
-    console.log(sendMessage);
-    setSendClicked(true);
-    console.log(sendClicked);
+    mutate(chatMessage);
     setChatMessage('');
   };
 
@@ -28,26 +50,27 @@ export default function chat() {
     <>
       <Container>
         <TopNavigation isChat={true} />
-        <ChatNotice>
-          <Image src={notice} />
-          <NoticeContents>
-            <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
-            <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
-          </NoticeContents>
-        </ChatNotice>
-        <Chatting>
-          <OtherChatBubble text={'안녕'} />
-          <OtherChatBubble text={'안녕'} />
-          <MyChatBubble text={'치킨머금'} />
-          <MyChatBubble
-            text={
-              '치킨머금안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'
-            }
-          />
-          <OtherChatBubble
-            text={'안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
-          />
-        </Chatting>
+        <ChatContainer>
+          <ChatNotice>
+            <Image src={notice} />
+            <NoticeContents>
+              <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
+              <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
+            </NoticeContents>
+          </ChatNotice>
+          <Chatting>
+            <>
+              {messages?.data?.messageList.map((item: any) => {
+                console.log(item.uuid);
+                return item?.uuid === userData?.data?.data?.user?.uuid ? (
+                  <MyChatBubble text={item.message} key={item.id} />
+                ) : (
+                  <OtherChatBubble text={item.message} key={item.id} />
+                );
+              })}
+            </>
+          </Chatting>
+        </ChatContainer>
         <SendChat>
           <ChatInput
             type="text"
@@ -57,6 +80,7 @@ export default function chat() {
           />
           <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
         </SendChat>
+        <div ref={ref}></div>
       </Container>
     </>
   );
@@ -80,6 +104,10 @@ const SendChat = styled.div`
   padding: 0.6rem 1.2rem;
   display: flex;
   gap: 1.4rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const ChatInput = styled.input`
@@ -108,4 +136,9 @@ const NoticeText = styled.p`
   font-weight: 400;
   font-size: 1.6rem;
   color: #353535;
+`;
+
+const ChatContainer = styled.div`
+  padding-top: 4.4rem;
+  padding-bottom: 5.4rem;
 `;
