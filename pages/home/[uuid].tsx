@@ -14,7 +14,7 @@ export default function Home() {
       alert('로그인이 필요합니다!');
       Router.push('/');
     }
-  }, [])
+  }, []);
   return (
     <>
       <TopNavigation />
