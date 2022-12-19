@@ -8,6 +8,8 @@ import notice from '../../public/assets/icons/notice.svg';
 import { usePostChat } from '../../util/hooks/usePostChat';
 import { useGetChat } from '../../util/hooks/useGetChat';
 import { useRouter } from 'next/router';
+import { useGetUserInfo } from '../../core/apiHooks/user';
+import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
@@ -16,7 +18,11 @@ export default function chat() {
   const router = useRouter();
   const { roomKey } = router.query;
 
+  const { data: userData } = useGetUserInfo();
+  console.log('userData', userData?.data);
+
   const { data: messages, refetch } = useGetChat(roomKey);
+  console.log(messages);
 
   const { mutate } = usePostChat({
     onError: (error) => {
@@ -54,7 +60,12 @@ export default function chat() {
         <Chatting>
           <>
             {messages?.data?.messageList.map((item: any) => {
-              return <MyChatBubble text={item.message} key={item.id} />;
+              console.log(item.uuid);
+              return item?.uuid === userData?.data?.data?.user?.uuid ? (
+                <MyChatBubble text={item.message} key={item.id} />
+              ) : (
+                <OtherChatBubble text={item.message} key={item.id} />
+              );
             })}
           </>
         </Chatting>
