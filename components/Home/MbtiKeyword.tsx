@@ -4,12 +4,14 @@ import styled from 'styled-components';
 interface keywordProps {
   text: string;
   onclick: () => void;
+  mbti: string | undefined;
 }
 
-export default function MbtiKeyword({ text, onclick }: keywordProps) {
+export default function MbtiKeyword({ text, onclick, mbti }: keywordProps) {
+  console.log(mbti);
   return (
     <>
-      <StyledInput type="radio" value={text} id={text} name="userMbti" />
+      <StyledInput type="radio" value={text} id={text} name="userMbti" checked={text === mbti} />
       <StyledLabel htmlFor={text} onClick={onclick}>
         {text}
       </StyledLabel>

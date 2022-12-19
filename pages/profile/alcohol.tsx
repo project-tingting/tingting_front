@@ -30,6 +30,8 @@ export default function alcohol() {
   }, [alcohol]);
   const handleContinueButton = () => {
     setUserProfile([...userProfile, { topic: 'isDrink', valueList: alcohol }]);
+    console.log('userprofile', userProfile);
+    console.log('alcohol', alcohol);
     Router.push('/profile/completed');
   };
   const handleOButton = () => {

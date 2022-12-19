@@ -5,15 +5,19 @@ import Notice from '../../components/Notice';
 import { usePostProfile } from '../../util/hooks/usePostProfile';
 
 export default function completed() {
-  const { data, mutate } = usePostProfile();
-  useEffect(() => {
-    mutate();
+  const { mutate } = usePostProfile({
+    onError: () => {
+      console.log('error');
+    },
+    onSuccess: (data) => {
+      Router.push('/login');
+    },
+  });
 
-    data?.success &&
-      setTimeout(() => {
-        Router.push('/login');
-      }, 2000);
-  }, [data]);
+  useEffect(() => {
+    mutate({});
+  }, []);
+
   return (
     <InputContainer>
       <Notice message="프로필 설정이 완료되었습니다!"></Notice>
