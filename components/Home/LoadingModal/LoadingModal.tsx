@@ -6,7 +6,6 @@ import { useGetMatchingInfo } from '../../../core/apiHooks/matching';
 import { useSetMatchAccept } from '../../../core/apiHooks/matching';
 import { useGetRoomKeyInfo } from '../../../core/apiHooks/matching';
 
-import Timer from './Timer';
 import X from '../../../public/assets/icons/X.svg';
 import LoadingComponent from '../../../public/assets/icons/Loading.svg';
 
@@ -56,7 +55,6 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
             ) : (
               <>
                 <GuideText>매칭상대를 찾았습니다!</GuideText>
-                <Timer />
                 <ButtonContainer>
                   <DecisionButton accept={false} onClick={handleClickRejectButton}>
                     거절
