@@ -16,7 +16,7 @@ import { ProfileType, userProfileState } from '../../../core/recoil/userProfileA
 
 export default function EditAlcohol() {
   const { data } = useGetUserProfile();
-  const userAlcoholData = data?.data?.userProfileList.find((item) => item.topic === 'isDrink')
+  const userAlcoholData = data?.data?.userProfileList.find((item: any) => item.topic === 'isDrink')
     ?.valueList[0];
   const setUserProfile = useSetRecoilState(userProfileState);
   const [alcohol, setAlcohol] = useState(userAlcoholData);
