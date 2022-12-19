@@ -1,36 +1,35 @@
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
-import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendChat.svg';
 import notice from '../../public/assets/icons/notice.svg';
 import { usePostChat } from '../../util/hooks/usePostChat';
 import { useGetChat } from '../../util/hooks/useGetChat';
+import { useRouter } from 'next/router';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
-  const [sendMessage, setSendMessage] = useState(['']);
-  const [sendClicked, setSendClicked] = useState(false);
-  const { data: messages, refetch } = useGetChat();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
+  const { roomKey } = router.query;
+
+  const { data: messages, refetch } = useGetChat(roomKey);
 
   const { mutate } = usePostChat({
     onError: (error) => {
       console.error(error);
     },
-    onSuccess: () => {
-      console.log('success');
-
-      refetch();
+    onSuccess: async () => {
+      await refetch();
+      ref.current?.scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest',
+      });
     },
   });
-
-  useEffect(() => {
-    console.log('messages');
-    console.log(messages?.data?.messageList);
-  }, [messages]);
-  // useEffect(() => {}, [chatMessage]);
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
@@ -38,7 +37,6 @@ export default function chat() {
 
   const handleSend = (chatMessage: string) => {
     mutate(chatMessage);
-    console.log(sendClicked);
     setChatMessage('');
   };
 
@@ -54,10 +52,11 @@ export default function chat() {
           </NoticeContents>
         </ChatNotice>
         <Chatting>
-          {messages &&
-            messages?.data?.messageList.map((item: any) => {
-              <MyChatBubble text={'23'} key={item.id} />;
+          <>
+            {messages?.data?.messageList.map((item: any) => {
+              return <MyChatBubble text={item.message} key={item.id} />;
             })}
+          </>
         </Chatting>
         <SendChat>
           <ChatInput
@@ -68,6 +67,7 @@ export default function chat() {
           />
           <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
         </SendChat>
+        <div ref={ref}></div>
       </Container>
     </>
   );
