@@ -10,7 +10,7 @@ import { ProfileType, userProfileState } from '../../../core/recoil/userProfileA
 
 export default function EditInterest() {
   const { data } = useGetUserProfile();
-  const userInterestData = data.data.userProfileList[2].valueList;
+  const userInterestData = data?.data?.userProfileList[2]?.valueList || [];
   const setUserProfile = useSetRecoilState(userProfileState);
   const [count, setCount] = useState(0);
   const [keywords, setKeywords] = useState<string[]>(userInterestData);
@@ -24,15 +24,19 @@ export default function EditInterest() {
     }
     setUserProfile((prev: ProfileType[]) => {
       console.log(count);
-      const topicObject: ProfileType = data.data.userProfileList.find(
+      const setProfile: ProfileType = { topic: 'interestKeyword', valueList: keywords };
+      const topicObject = data?.data?.userProfileList.find(
         (item: ProfileType) => item.topic === 'interestKeyword',
       );
+
       const filteredProfiles = prev.filter((item) => item.topic !== 'interestKeyword');
 
       const topic = { ...topicObject, valueList: [...keywords] };
-
-      filteredProfiles.push(topic as ProfileType);
-      console.log('filter', filteredProfiles);
+      userInterestData.length === 0
+        ? filteredProfiles.push(setProfile)
+        : filteredProfiles.push(topic as ProfileType);
+      console.log(topic.valueList);
+      console.log(filteredProfiles);
 
       return filteredProfiles;
     });
@@ -50,10 +54,10 @@ export default function EditInterest() {
   return (
     <Container>
       <div>
-        {keywords.length !== 0 && (
+        {keywords?.length !== 0 && (
           <>
             <SelectedKeywords>
-              {keywords.map((keyword) => (
+              {keywords?.map((keyword) => (
                 <SelectedKeyword key={keyword}>{keyword}</SelectedKeyword>
               ))}
             </SelectedKeywords>

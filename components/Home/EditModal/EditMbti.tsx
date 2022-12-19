@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
 import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
@@ -8,12 +8,15 @@ import SaveButton from './SaveButton';
 
 export default function EditMbti() {
   const { data } = useGetUserProfile();
-  // const mbtiData = data.data.userProfileList[1].valueList;
   const setUserProfile = useSetRecoilState(userProfileState);
   const [text, setText] = useState<string | undefined>(undefined);
+  console.log(text);
 
-  const mbtiDisplayText = data?.data?.userProfileList[1].valueList;
+  const mbtiDisplayText = data?.data?.userProfileList?.find((item: any) => item.topic === 'mbti')
+    .valueList[0];
   const selected = text || mbtiDisplayText;
+
+  console.log('mbtiDisaply', mbtiDisplayText);
 
   const MBTI = [
     'ENFP',
@@ -34,7 +37,8 @@ export default function EditMbti() {
     setText(mbti);
 
     setUserProfile((prev: ProfileType[]) => {
-      const topicObject = data.data.userProfileList.find(
+      const setProfile: ProfileType = { topic: 'mbti', valueList: [text || ''] };
+      const topicObject = data?.data?.userProfileList.find(
         (item: ProfileType) => item.topic === 'mbti',
       );
       const filteredProfiles = prev.filter((item) => item.topic !== 'mbti');
@@ -44,8 +48,10 @@ export default function EditMbti() {
         return item;
       });
       const topic = { ...topicObject, valueList };
-
-      filteredProfiles.push(topic as ProfileType);
+      console.log(topic.valueList);
+      topic.valueList === undefined
+        ? filteredProfiles.push(setProfile)
+        : filteredProfiles.push(topic as ProfileType);
 
       return filteredProfiles;
     });
@@ -66,7 +72,7 @@ export default function EditMbti() {
               key={mbti}
               text={mbti}
               onclick={() => isSelected(mbti)}
-              mbti={text || mbtiDisplayText?.[0]}
+              mbti={text || mbtiDisplayText}
             />
           ))}
         </MbtiKeywords>

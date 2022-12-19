@@ -16,18 +16,20 @@ import { ProfileType, userProfileState } from '../../../core/recoil/userProfileA
 
 export default function EditAlcohol() {
   const { data } = useGetUserProfile();
-  const userAlcoholData = data.data.userProfileList[0].valueList[0];
+  const userAlcoholData = data?.data?.userProfileList.find((item) => item.topic === 'isDrink')
+    ?.valueList[0];
   const setUserProfile = useSetRecoilState(userProfileState);
   const [alcohol, setAlcohol] = useState(userAlcoholData);
   const [selected, setSelected] = useState(Boolean);
 
   useEffect(() => {
-    if (data?.success) {
-      setSelected(true);
-    }
-    alcohol;
+    console.log(alcohol);
+  }, [alcohol]);
+
+  useEffect(() => {
     setUserProfile((prev: ProfileType[]) => {
-      const topicObject = data.data.userProfileList.find(
+      const setProfile: ProfileType = { topic: 'isDrink', valueList: [alcohol] };
+      const topicObject = data?.data?.userProfileList.find(
         (item: ProfileType) => item.topic === 'isDrink',
       );
       const filteredProfiles = prev.filter((item) => item.topic !== 'isDrink');
@@ -37,8 +39,9 @@ export default function EditAlcohol() {
         return item;
       });
       const topic = { ...topicObject, valueList };
-
-      filteredProfiles.push(topic as ProfileType);
+      topic.valueList === undefined
+        ? filteredProfiles.push(setProfile)
+        : filteredProfiles.push(topic as ProfileType);
 
       return filteredProfiles;
     });
@@ -58,7 +61,8 @@ export default function EditAlcohol() {
         {selected && (
           <>
             <SelectedImg>
-              {alcohol === '1' ? <Image src={purpleO} /> : <Image src={purpleX} />}
+              {alcohol === '1' ? <Image src={purpleO} /> : null}
+              {alcohol === '0' ? <Image src={purpleX} /> : null}
             </SelectedImg>
             <Hr />
           </>
