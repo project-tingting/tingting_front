@@ -11,12 +11,14 @@ import TokenIcon from '../../public/assets/icons/token.svg';
 
 export default function Func() {
   const matchInfo = useRecoilValue(matchingInfoState);
-  console.log(matchInfo);
   const { mutate: startMatch } = useStartMatch();
   const [tokenNum, setTokenNum] = useState(5);
   const [isLoadingModalOpen, setIsLoadingModalOpen] = useState(false);
+
   const handleClickStartButton = () => {
-    setTokenNum((prev) => prev - 1);
+    if (!localStorage.getItem('room-key')) {
+      setTokenNum((prev) => prev - 1);
+    }
     setIsLoadingModalOpen(true);
     startMatch(matchInfo.partyNum / 2);
   };
@@ -30,9 +32,9 @@ export default function Func() {
   };
   return (
     <>
-      {isLoadingModalOpen && <LoadingModal />}
+      {isLoadingModalOpen && <LoadingModal setIsLoadingModal={setIsLoadingModalOpen} />}
       <StyledContainer>
-        <StartButton onClick={handleClickStartButton}>START</StartButton>
+        <StartButton onClick={handleClickStartButton}>{!localStorage.getItem('room-key') ? 'START' : '매칭중'}</StartButton>
         <TokenContainer>{renderTokenComponent()}</TokenContainer>
       </StyledContainer>
     </>
@@ -41,7 +43,7 @@ export default function Func() {
 
 const StyledContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.bgColor};
-  padding: 202px 0 44px;
+  padding: 10rem 0 4.4rem;
   text-align: center;
 `;
 
