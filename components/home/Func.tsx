@@ -37,7 +37,7 @@ export default function Func() {
       {isLoadingModalOpen && <LoadingModal setIsLoadingModal={setIsLoadingModalOpen} />}
       <StyledContainer>
         <StartButton onClick={handleClickStartButton}>
-          {!data?.data.data.meetingRoomUser.roomKey ? 'START' : '매칭중'}
+          {!data?.data.data.meetingRoomUser?.roomKey ? 'START' : '매칭중'}
         </StartButton>
         {/* <TokenContainer>{renderTokenComponent()}</TokenContainer> */}
       </StyledContainer>
