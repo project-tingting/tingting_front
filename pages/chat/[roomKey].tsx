@@ -1,25 +1,43 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendChat.svg';
 import notice from '../../public/assets/icons/notice.svg';
+import { usePostChat } from '../../util/hooks/usePostChat';
+import { useGetChat } from '../../util/hooks/useGetChat';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
   const [sendMessage, setSendMessage] = useState(['']);
   const [sendClicked, setSendClicked] = useState(false);
+  const { data: messages, refetch } = useGetChat();
+
+  const { mutate } = usePostChat({
+    onError: (error) => {
+      console.error(error);
+    },
+    onSuccess: () => {
+      console.log('success');
+
+      refetch();
+    },
+  });
+
+  useEffect(() => {
+    console.log('messages');
+    console.log(messages?.data?.messageList);
+  }, [messages]);
+  // useEffect(() => {}, [chatMessage]);
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
   };
 
   const handleSend = (chatMessage: string) => {
-    setSendMessage([chatMessage, ...sendMessage]);
-    console.log(sendMessage);
-    setSendClicked(true);
+    mutate(chatMessage);
     console.log(sendClicked);
     setChatMessage('');
   };
@@ -36,17 +54,10 @@ export default function chat() {
           </NoticeContents>
         </ChatNotice>
         <Chatting>
-          <OtherChatBubble text={'안녕'} />
-          <OtherChatBubble text={'안녕'} />
-          <MyChatBubble text={'치킨머금'} />
-          <MyChatBubble
-            text={
-              '치킨머금안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'
-            }
-          />
-          <OtherChatBubble
-            text={'안녕sssssssssssssddddddddㅇㅇㅇㅇㅇㅇㅇㄱㄱㄱㄱㄱㄱㄱㄱㄱㄹㄹㄹㄹㄹㄹㄹㄹ'}
-          />
+          {messages &&
+            messages?.data?.messageList.map((item: any) => {
+              <MyChatBubble text={'23'} key={item.id} />;
+            })}
         </Chatting>
         <SendChat>
           <ChatInput
