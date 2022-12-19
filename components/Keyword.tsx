@@ -6,7 +6,12 @@ interface KeywordButtonProps {
   text: string;
   onClicked: (clicked: boolean, text: string) => void;
   disabled?: boolean;
+  clicked: boolean;
 }
+
+type ButtonProps = {
+  clicked: boolean;
+};
 
 export const interestData = [
   '게임',
@@ -52,7 +57,7 @@ export default function Keyword({ text, onClicked, disabled }: KeywordButtonProp
   );
 }
 
-const StyledKeywordButton = styled.button`
+const StyledKeywordButton = styled.button<ButtonProps>`
   font-size: 2rem;
   color: ${(props) =>
     props.clicked ? ({ theme }) => theme.colors.whiteColor : ({ theme }) => theme.colors.mainColor};

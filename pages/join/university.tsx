@@ -32,18 +32,16 @@ export default function school() {
           <FormContainer>
             <StyledInput
               type="email"
-              size="large"
+              sizing="large"
               placeholder="학교 웹메일"
               onChange={handleSchoolEmail}
             />
             <ValidateButton onClick={handleClickValidateButton}>인증</ValidateButton>
           </FormContainer>
-          {(isClickValidateButton && !data) && (
+          {isClickValidateButton && !data && (
             <InputMessage text="인증메일을 보냈습니다. 메일을 확인해주세요." />
           )}
-          {
-            data && <InputMessage text="인증이 완료되었습니다." />
-          }
+          {data && <InputMessage text="인증이 완료되었습니다." />}
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}

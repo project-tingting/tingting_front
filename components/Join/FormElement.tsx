@@ -1,15 +1,15 @@
 import styled, { css } from 'styled-components';
 
 type InputProps = {
-  size: string;
+  sizing: string;
   isIdValid?: boolean;
   isPasswordValid?: boolean;
   classname?: string;
 };
 
 export const StyledInput = styled.input<InputProps>`
-  ${({ size }) =>
-    size === 'large'
+  ${(props) =>
+    props.sizing === 'large'
       ? css`
           height: 5.6rem;
           border-radius: 2rem;

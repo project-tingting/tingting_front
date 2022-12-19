@@ -31,7 +31,7 @@ export default function nickname() {
           <Guide text={isIdValid ? '비밀번호를 설정해주세요' : '아이디를 설정해주세요'} />
           <StyledInput
             type="text"
-            size="large"
+            sizing="large"
             placeholder="아이디"
             onChange={handleUserId}
             isIdValid={isIdValid}
@@ -49,7 +49,7 @@ export default function nickname() {
               <Blank />
               <StyledInput
                 type="password"
-                size="large"
+                sizing="large"
                 placeholder="비밀번호"
                 isPasswordValid={isPasswordValid}
                 onChange={handlePassword}
