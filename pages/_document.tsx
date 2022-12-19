@@ -1,13 +1,39 @@
 import React from 'react';
-import { Html } from 'next/document';
-import Head from 'next/head';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from 'next/document';
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    const originalRenderPage = ctx.renderPage;
+    // Run the React rendering logic synchronously
+    ctx.renderPage = () =>
+      originalRenderPage({
+        // Useful for wrapping the whole react tree
+        enhanceApp: (App) => App,
+        // Useful for wrapping in a per-page basis
+        enhanceComponent: (Component) => Component,
+      });
 
-export default function _document() {
-  return (
-    <Html>
-      <Head>
-        <title>Next App!</title>
-      </Head>
-    </Html>
-  );
+    // Run the parent `getInitialProps`, it now includes the custom `renderPage`
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return initialProps;
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head></Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
