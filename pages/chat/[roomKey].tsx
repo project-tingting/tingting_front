@@ -50,25 +50,27 @@ export default function chat() {
     <>
       <Container>
         <TopNavigation isChat={true} />
-        <ChatNotice>
-          <Image src={notice} />
-          <NoticeContents>
-            <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
-            <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
-          </NoticeContents>
-        </ChatNotice>
-        <Chatting>
-          <>
-            {messages?.data?.messageList.map((item: any) => {
-              console.log(item.uuid);
-              return item?.uuid === userData?.data?.data?.user?.uuid ? (
-                <MyChatBubble text={item.message} key={item.id} />
-              ) : (
-                <OtherChatBubble text={item.message} key={item.id} />
-              );
-            })}
-          </>
-        </Chatting>
+        <ChatContainer>
+          <ChatNotice>
+            <Image src={notice} />
+            <NoticeContents>
+              <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
+              <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
+            </NoticeContents>
+          </ChatNotice>
+          <Chatting>
+            <>
+              {messages?.data?.messageList.map((item: any) => {
+                console.log(item.uuid);
+                return item?.uuid === userData?.data?.data?.user?.uuid ? (
+                  <MyChatBubble text={item.message} key={item.id} />
+                ) : (
+                  <OtherChatBubble text={item.message} key={item.id} />
+                );
+              })}
+            </>
+          </Chatting>
+        </ChatContainer>
         <SendChat>
           <ChatInput
             type="text"
@@ -102,6 +104,10 @@ const SendChat = styled.div`
   padding: 0.6rem 1.2rem;
   display: flex;
   gap: 1.4rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const ChatInput = styled.input`
@@ -130,4 +136,9 @@ const NoticeText = styled.p`
   font-weight: 400;
   font-size: 1.6rem;
   color: #353535;
+`;
+
+const ChatContainer = styled.div`
+  padding-top: 4.4rem;
+  padding-bottom: 5.4rem;
 `;
