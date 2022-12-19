@@ -10,7 +10,9 @@ export default function completed() {
       console.log('error');
     },
     onSuccess: (data) => {
-      Router.push('/login');
+      setTimeout(() => {
+        Router.push('/login');
+      }, 2000);
     },
   });
 
