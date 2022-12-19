@@ -28,7 +28,7 @@ export const interestData = [
 export default function Keyword({ text, onClicked, disabled }: KeywordButtonProps) {
   const [onclick, setOnclick] = useState(false);
   const { data } = useGetUserProfile();
-  const userInterestData = data.data.userProfileList[2].valueList;
+  const userInterestData = data?.data?.userProfileList[2]?.valueList;
 
   useEffect(() => {
     userInterestData?.map((v: string) => {

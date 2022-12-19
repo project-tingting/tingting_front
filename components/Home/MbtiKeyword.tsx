@@ -8,7 +8,7 @@ interface keywordProps {
 }
 
 export default function MbtiKeyword({ text, onclick, mbti }: keywordProps) {
-  console.log(mbti);
+  console.log('mbti', mbti);
   return (
     <>
       <StyledInput type="radio" value={text} id={text} name="userMbti" checked={text === mbti} />
