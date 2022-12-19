@@ -1,27 +1,25 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 import { useRecoilValue } from 'recoil';
 import { baseAPI } from '../../core/api/baseInstance';
 import { userProfileState } from '../../core/recoil/userProfileAtom';
 
-export const usePutUserProfile = () => {
+type Props = UseMutationOptions<AxiosResponse<any>, Error, any>;
+
+export const usePutUserProfile = ({ onError, onSuccess }: Props) => {
   const userProfile = useRecoilValue(userProfileState);
-  const putUserProfile = async (userprofile: object[]) => {
-    try {
-      const res = await baseAPI.put('/userprofile', userprofile, {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-        },
-      });
-      console.log('data', res.data);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-    }
+  const putUserProfile = async () => {
+    const { data } = await baseAPI.put('/userprofile', userProfile, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('access-token'),
+      },
+    });
+    return data;
   };
-  const { data: putUserData, mutate } = useMutation({
-    mutationFn: () => {
-      return putUserProfile([...userProfile]);
-    },
+
+  return useMutation({
+    mutationFn: () => putUserProfile(),
+    onError,
+    onSuccess,
   });
-  return { putUserData, mutate };
 };

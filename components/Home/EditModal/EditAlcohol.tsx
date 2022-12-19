@@ -26,15 +26,15 @@ export default function EditAlcohol() {
       setSelected(true);
     }
     alcohol;
-    // setUserProfile((prev: ProfileType[]) => {
-    //   const obj = prev;
-    //   obj.map((item) => {
-    //     item.topic === 'isDrink' ? [...item.valueList].splice(0, 1, alcohol) : null;
-    //     return item;
-    //   });
-    //   console.log(obj);
-    //   return obj;
-    // });
+    setUserProfile((prev: ProfileType[]) => {
+      const obj = prev;
+      obj.map((item) => {
+        item.topic === 'isDrink' ? [...item.valueList].splice(0, 1, alcohol) : null;
+        return item;
+      });
+      console.log(obj);
+      return obj;
+    });
   }, [alcohol]);
 
   const handleOButton = () => {

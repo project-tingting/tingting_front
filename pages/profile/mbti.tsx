@@ -35,7 +35,7 @@ export default function mbti() {
   }, [userMbti]);
 
   const handleMbtiInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserMbti([e.target.value]);
+    setUserMbti([e.target.value.toUpperCase()]);
   };
   const handleContinueButton = () => {
     setUserProfile((prev: ProfileType[]) => [

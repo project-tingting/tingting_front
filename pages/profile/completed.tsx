@@ -10,15 +10,12 @@ export default function completed() {
       console.log('error');
     },
     onSuccess: (data) => {
-      console.log(data);
+      Router.push('/login');
     },
   });
 
   useEffect(() => {
     mutate({});
-    setTimeout(() => {
-      Router.push('/login');
-    }, 2000);
   }, []);
 
   return (

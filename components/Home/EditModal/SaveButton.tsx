@@ -10,12 +10,21 @@ import { ProfileType, userProfileState } from '../../../core/recoil/userProfileA
 
 interface SaveButtonProps {
   disabled?: boolean;
-  value?: string;
+  // value?: string;
 }
 
-export default function SaveButton({ disabled, value }: SaveButtonProps) {
-  const { putUserData, mutate } = usePutUserProfile();
-  const uservalue = useRecoilValue(userProfileState);
+export default function SaveButton({ disabled }: SaveButtonProps) {
+  const { refetch } = useGetUserProfile();
+  const { mutate } = usePutUserProfile({
+    onError: () => {
+      console.log('error');
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      refetch();
+    },
+  });
+  // const uservalue = useRecoilValue(userProfileState);
 
   const { data } = useGetUserProfile();
   // useEffect(() => {
@@ -23,8 +32,7 @@ export default function SaveButton({ disabled, value }: SaveButtonProps) {
 
   // }, [uservalue]);
   const handleSaveProfile = () => {
-    mutate();
-    console.log(data);
+    mutate({});
   };
   return (
     <Container>

@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 
 export interface ProfileType {
-  topic: string;
+  topic?: string;
   valueList: string[];
 }
 
