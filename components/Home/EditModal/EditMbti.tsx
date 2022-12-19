@@ -62,7 +62,12 @@ export default function EditMbti() {
         )}
         <MbtiKeywords>
           {MBTI.map((mbti) => (
-            <MbtiKeyword key={mbti} text={mbti} onclick={() => isSelected(mbti)} />
+            <MbtiKeyword
+              key={mbti}
+              text={mbti}
+              onclick={() => isSelected(mbti)}
+              mbti={text || mbtiDisplayText?.[0]}
+            />
           ))}
         </MbtiKeywords>
       </div>

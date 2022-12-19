@@ -22,16 +22,21 @@ export default function EditInterest() {
     } else {
       setDisabled(false);
     }
-    // setUserProfile((prev: ProfileType[]) => {
-    //   const obj = prev;
-    //   obj.map((item) => {
-    //     item.topic === 'interestKeyword' ? (item.valueList = keywords) : null;
-    //     return item;
-    //   });
-    //   console.log(obj);
-    //   return obj;
-    // });
-  });
+    setUserProfile((prev: ProfileType[]) => {
+      console.log(count);
+      const topicObject: ProfileType = data.data.userProfileList.find(
+        (item: ProfileType) => item.topic === 'interestKeyword',
+      );
+      const filteredProfiles = prev.filter((item) => item.topic !== 'interestKeyword');
+
+      const topic = { ...topicObject, valueList: [...keywords] };
+
+      filteredProfiles.push(topic as ProfileType);
+      console.log('filter', filteredProfiles);
+
+      return filteredProfiles;
+    });
+  }, [keywords]);
 
   const handleOnClicked = (onclick: boolean, text: string) => {
     if (onclick) {

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useGetUserProfile } from '../util/hooks/useGetUserProfile';
 
 interface KeywordButtonProps {
   text: string;
@@ -26,6 +27,14 @@ export const interestData = [
 
 export default function Keyword({ text, onClicked, disabled }: KeywordButtonProps) {
   const [onclick, setOnclick] = useState(false);
+  const { data } = useGetUserProfile();
+  const userInterestData = data.data.userProfileList[2].valueList;
+
+  useEffect(() => {
+    userInterestData?.map((v: string) => {
+      if (v === text) setOnclick(true);
+    });
+  }, []);
 
   const onClickKeyword = () => {
     setOnclick(!onclick);

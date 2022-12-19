@@ -24,13 +24,7 @@ export default function SaveButton({ disabled }: SaveButtonProps) {
       refetch();
     },
   });
-  // const uservalue = useRecoilValue(userProfileState);
 
-  const { data } = useGetUserProfile();
-  // useEffect(() => {
-  //   // mutate();
-
-  // }, [uservalue]);
   const handleSaveProfile = () => {
     mutate({});
   };

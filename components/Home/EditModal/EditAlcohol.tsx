@@ -27,13 +27,20 @@ export default function EditAlcohol() {
     }
     alcohol;
     setUserProfile((prev: ProfileType[]) => {
-      const obj = prev;
-      obj.map((item) => {
-        item.topic === 'isDrink' ? [...item.valueList].splice(0, 1, alcohol) : null;
+      const topicObject = data.data.userProfileList.find(
+        (item: ProfileType) => item.topic === 'isDrink',
+      );
+      const filteredProfiles = prev.filter((item) => item.topic !== 'isDrink');
+
+      const valueList = topicObject?.valueList.map((item: ProfileType, index: number) => {
+        if (index === 0) return alcohol;
         return item;
       });
-      console.log(obj);
-      return obj;
+      const topic = { ...topicObject, valueList };
+
+      filteredProfiles.push(topic as ProfileType);
+
+      return filteredProfiles;
     });
   }, [alcohol]);
 
