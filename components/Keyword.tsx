@@ -6,7 +6,7 @@ interface KeywordButtonProps {
   text: string;
   onClicked: (clicked: boolean, text: string) => void;
   disabled?: boolean;
-  clicked: boolean;
+  clicked?: boolean;
 }
 
 type ButtonProps = {
@@ -46,12 +46,7 @@ export default function Keyword({ text, onClicked, disabled }: KeywordButtonProp
     onClicked(onclick, text);
   };
   return (
-    <StyledKeywordButton
-      onClick={onClickKeyword}
-      clicked={onclick}
-      onclicked={onClicked}
-      disabled={disabled}
-    >
+    <StyledKeywordButton onClick={onClickKeyword} clicked={onclick} disabled={disabled}>
       {text}
     </StyledKeywordButton>
   );
