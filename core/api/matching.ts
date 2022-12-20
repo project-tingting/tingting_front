@@ -1,24 +1,17 @@
 import { baseAPI } from './baseInstance';
 
 export const matchStart = async (matchingNum: number) => {
-  try {
-    if (!localStorage.getItem('room-key')) {
-      const res = await baseAPI.post(
-        '/meetingroom',
-        {
-          type: `${matchingNum}:${matchingNum}`,
-        },
-        {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-          },
-        },
-      );
-      return res.data;
-    }
-  } catch (error) {
-    console.error(error);
-  }
+  return await baseAPI.post(
+    '/meetingroom',
+    {
+      type: `${matchingNum}:${matchingNum}`,
+    },
+    {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('access-token'),
+      },
+    },
+  );
 };
 
 export const getMatchInfo = async (roomKey: string | null) => {

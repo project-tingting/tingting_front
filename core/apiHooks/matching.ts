@@ -7,12 +7,15 @@ type matchInfo = {
 };
 
 export const useStartMatch = () => {
-  return useMutation((matchingNum: number) => matchStart(matchingNum));
+  return useMutation((matchingNum: number) => matchStart(matchingNum), {
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 };
 
 export const useGetMatchingInfo = (roomKey: string | null) => {
-  return useQuery(['meetingroom'], () => getMatchInfo(roomKey), {
-    staleTime: 18000,
+  return useQuery(['meetingroom', roomKey], () => getMatchInfo(roomKey), {
     onError: (error) => {
       console.error(error);
     },

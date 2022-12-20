@@ -22,7 +22,7 @@ export default function index() {
 
   return (
     <StyledContainer>
-      <Image src={TingTingLogo} alt="팅팅 로고" />
+      <Image src={TingTingLogo} alt="팅팅 로고" priority={true} />
       <FormContainer onSubmit={submitLogin}>
         <InputContainer>
           <StyledInput sizing="small" placeholder="아이디" type="text" onChange={handleUserId} />
@@ -56,9 +56,9 @@ const StyledContainer = styled.section`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 3.2rem 2.4rem;
-  height: 33rem;
+  height: 39rem;
 `;
 
 const InputContainer = styled.section`
@@ -91,7 +91,7 @@ const OptionContainer = styled.ul`
 `;
 
 const Option = styled.li`
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 2.8rem;
   color: ${({ theme }) => theme.colors.subTitleColor};
   width: calc(100% / 3);
