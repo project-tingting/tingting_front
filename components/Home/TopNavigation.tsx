@@ -11,7 +11,6 @@ import No_Chat from '../../public/assets/icons/no_chat.svg';
 import outChat from '../../public/assets/icons/outChat.svg';
 import ChatModal from '../Chat/ChatModal';
 import TokenIcon from '../../public/assets/icons/token.svg';
-import Router from 'next/router';
 import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
 
 interface TopNavProps {
