@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface BtnPatternProps {
@@ -8,7 +8,7 @@ interface BtnPatternProps {
 
 interface BtnProps extends BtnPatternProps {
   text: string;
-  onClick?: MouseEventHandler;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function Button({ text, isRound, disabled, onClick }: BtnProps) {

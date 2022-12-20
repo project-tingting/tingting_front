@@ -7,12 +7,12 @@ import TingTingLogo from '../public/assets/icons/tingting_logo.svg';
 import Button from '../components/Button';
 
 export default function index() {
-  const handleClickLoginButton = (e: React.ChangeEvent<HTMLButtonElement>) => {
+  const handleClickLoginButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     Router.push('/login');
   };
 
-  const handleClickJoinButton = (e: React.ChangeEvent<HTMLButtonElement>) => {
+  const handleClickJoinButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     Router.push('/join/userinfo');
   };
