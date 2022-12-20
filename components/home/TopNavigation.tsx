@@ -10,6 +10,7 @@ import No_Chat from '../../public/assets/icons/no_chat.svg';
 import outChat from '../../public/assets/icons/outChat.svg';
 import ChatModal from '../Chat/ChatModal';
 import Router, { useRouter } from 'next/router';
+import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
 
 interface TopNavProps {
   isChat?: boolean;
@@ -19,7 +20,11 @@ export default function TopNavigation({ isChat }: TopNavProps) {
   const { mutate: handleLogout } = useUserLogout();
   const [modal, setModal] = useState(false);
   const [isLogoClicked, setIsLogoClicked] = useState(false);
+
   const router = useRouter();
+  const { data } = useGetRoomKeyInfo();
+  console.log('roomdata', data?.data.data.meetingRoomUser.roomKey);
+
   const onClickBack = () => {
     setModal(true);
   };
@@ -30,7 +35,7 @@ export default function TopNavigation({ isChat }: TopNavProps) {
     router.back();
   };
   const handleGoChat = () => {
-    Router.push('/chat');
+    Router.push(`/chat/${data?.data.data.meetingRoomUser.roomKey}`);
   };
   const handleClickLogo = () => {
     setIsLogoClicked((prev) => !prev);

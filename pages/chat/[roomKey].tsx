@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
@@ -36,6 +36,10 @@ export default function chat() {
       });
     },
   });
+
+  useEffect(() => {
+    ref.current!.scrollTop = ref.current!.scrollHeight;
+  }, [chatMessage]);
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
