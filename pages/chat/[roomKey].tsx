@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
-import TopNavigation from '../../components/Home/TopNavigation';
+import TopNavigation from '../../components/Home/TopNavaigation';
 import sendchat from '../../public/assets/icons/sendChat.svg';
 import notice from '../../public/assets/icons/notice.svg';
 import { usePostChat } from '../../util/hooks/usePostChat';
