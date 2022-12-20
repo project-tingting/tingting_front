@@ -21,7 +21,6 @@ export default function _app({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>TingTing</title>
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
       </Head>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
