@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { useUserLogout } from '../../core/apiHooks/user';
@@ -9,33 +10,52 @@ import Bell from '../../public/assets/icons/bell.svg';
 import No_Chat from '../../public/assets/icons/no_chat.svg';
 import outChat from '../../public/assets/icons/outChat.svg';
 import ChatModal from '../Chat/ChatModal';
-import Router, { useRouter } from 'next/router';
+import TokenIcon from '../../public/assets/icons/token.svg';
+import Router from 'next/router';
 import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
 
 interface TopNavProps {
   isChat?: boolean;
+  tokenNum: number | null;
 }
 
-export default function TopNavigation({ isChat }: TopNavProps) {
+export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
+  console.log(tokenNum);
   const { mutate: handleLogout } = useUserLogout();
   const [modal, setModal] = useState(false);
   const [isLogoClicked, setIsLogoClicked] = useState(false);
-  const router = useRouter();
   const { data } = useGetRoomKeyInfo();
+
   const onClickBack = () => {
     setModal(true);
   };
+
   const handleContinue = () => {
     setModal(false);
   };
+
   const handleGoHome = () => {
-    router.back();
+    Router.back();
   };
+
   const handleGoChat = () => {
     Router.push(`/chat/${data?.data?.data?.meetingRoomUser?.roomKey}`);
   };
+
   const handleClickLogo = () => {
     setIsLogoClicked((prev) => !prev);
+  };
+
+  const renderTokenComponent = () => {
+    const result = [];
+    if (!tokenNum) {
+      return null;
+    } else {
+      for (let i = 0; i < tokenNum; i++) {
+        result.push(<Image src={TokenIcon} alt="토큰" />);
+      }
+      return result;
+    }
   };
   return (
     <>
@@ -44,7 +64,10 @@ export default function TopNavigation({ isChat }: TopNavProps) {
         {isChat ? (
           <Image src={outChat} alt="go back" onClick={onClickBack} />
         ) : (
-          <Image src={UserProfile} alt="로고 버튼" onClick={handleClickLogo} />
+          <Container>
+            <Image src={UserProfile} alt="로고 버튼" onClick={handleClickLogo} />
+            <TokenContainer>{renderTokenComponent()}</TokenContainer>
+          </Container>
         )}
         <Func>
           <Image src={Bell} alt="알림 버튼" />
@@ -76,6 +99,11 @@ const StyledContainer = styled.article`
   left: 0;
 `;
 
+const Container = styled.section`
+  display: flex;
+  gap: 1.7rem;
+`;
+
 const Func = styled.section`
   display: flex;
   gap: 1.6rem;
@@ -90,4 +118,9 @@ const LogoutButton = styled.button`
   font-size: 2rem;
   line-height: 2.4rem;
   padding: 0.8rem 2rem;
+`;
+
+const TokenContainer = styled.section`
+  display: flex;
+  gap: 0.4rem;
 `;

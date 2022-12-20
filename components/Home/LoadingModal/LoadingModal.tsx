@@ -28,11 +28,12 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
 
   const handleClickRejectButton = () => {
     setMatchAccept({ roomKey: roomKey?.data.data.meetingRoomUser?.roomKey, acceptNum: '-1' });
+    setIsLoadingModal(false);
   };
 
   const handleClickAcceptButton = () => {
     setMatchAccept({ roomKey: roomKey?.data.data.meetingRoomUser?.roomKey, acceptNum: '20' });
-    Router.push(`/chat/${roomKey?.data.data.meetingRoomUser.roomKey}`);
+    Router.push(`/chat/${roomKey?.data.data.meetingRoomUser?.roomKey}`);
   };
 
   return (
