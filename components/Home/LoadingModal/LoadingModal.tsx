@@ -19,7 +19,7 @@ type ButtonProps = {
 
 export default function LoadingModal({ setIsLoadingModal }: Props) {
   const { data: roomKey } = useGetRoomKeyInfo();
-  const { data } = useGetMatchingInfo(roomKey?.data.data.meetingRoomUser.roomKey);
+  const { data } = useGetMatchingInfo(roomKey?.data.data.meetingRoomUser?.roomKey);
   const { mutate: setMatchAccept } = useSetMatchAccept();
 
   const handleClickCloseButton = () => {
@@ -27,17 +27,17 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
   };
 
   const handleClickRejectButton = () => {
-    setMatchAccept({ roomKey: roomKey?.data.data.meetingRoomUser.roomKey, acceptNum: '-1' });
+    setMatchAccept({ roomKey: roomKey?.data.data.meetingRoomUser?.roomKey, acceptNum: '-1' });
   };
 
   const handleClickAcceptButton = () => {
-    setMatchAccept({ roomKey: roomKey?.data.data.meetingRoomUser.roomKey, acceptNum: '20' });
+    setMatchAccept({ roomKey: roomKey?.data.data.meetingRoomUser?.roomKey, acceptNum: '20' });
     Router.push(`/chat/${roomKey?.data.data.meetingRoomUser.roomKey}`);
   };
 
   return (
     <>
-      {!!roomKey?.data.data.meetingRoomUser.roomKey && (
+      {!!roomKey?.data.data.meetingRoomUser?.roomKey && (
         <LoadingModalContainer>
           <CloseButton>
             <Image src={X} onClick={handleClickCloseButton} />
