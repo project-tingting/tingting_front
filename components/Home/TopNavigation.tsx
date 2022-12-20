@@ -11,6 +11,8 @@ import No_Chat from '../../public/assets/icons/no_chat.svg';
 import outChat from '../../public/assets/icons/outChat.svg';
 import ChatModal from '../Chat/ChatModal';
 import TokenIcon from '../../public/assets/icons/token.svg';
+import Router from 'next/router';
+import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
 
 interface TopNavProps {
   isChat?: boolean;
@@ -22,6 +24,8 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
   const { mutate: handleLogout } = useUserLogout();
   const [modal, setModal] = useState(false);
   const [isLogoClicked, setIsLogoClicked] = useState(false);
+  const { data } = useGetRoomKeyInfo();
+
   const onClickBack = () => {
     setModal(true);
   };
@@ -35,7 +39,7 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
   };
 
   const handleGoChat = () => {
-    Router.push('/chat');
+    Router.push(`/chat/${data?.data?.data?.meetingRoomUser?.roomKey}`);
   };
 
   const handleClickLogo = () => {
@@ -89,6 +93,10 @@ const StyledContainer = styled.article`
   padding: 0 1.6rem;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 `;
 
 const Container = styled.section`

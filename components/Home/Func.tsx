@@ -16,10 +16,11 @@ export default function Func() {
   const [isLoadingModalOpen, setIsLoadingModalOpen] = useState(false);
 
   const handleClickStartButton = () => {
-    if (!data?.data.data?.meetingRoomUser) {
+    setIsLoadingModalOpen(true);
+    if (!data?.data.data.meetingRoomUser?.roomKey) {
+      setTokenNum((prev) => prev - 1);
       startMatch(matchInfo.partyNum / 2);
     }
-    setIsLoadingModalOpen((prev) => !prev);
   };
 
   return (
