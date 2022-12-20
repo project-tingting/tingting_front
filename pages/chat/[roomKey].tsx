@@ -14,6 +14,7 @@ import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
   const ref = useRef<HTMLDivElement>(null);
+  console.log(ref)
 
   const router = useRouter();
   const { roomKey } = router.query;
