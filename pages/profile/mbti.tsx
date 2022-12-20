@@ -57,7 +57,7 @@ export default function mbti() {
           <Guide text="MBTI를 알려주세요" />
           <UserInput
             type="text"
-            size="small"
+            sizing="small"
             text="ENFP"
             onChange={handleMbtiInput}
             classname={`${isError ? 'error' : ''}`}
