@@ -19,7 +19,7 @@ export default function Func() {
 
   const handleClickStartButton = () => {
     setIsLoadingModalOpen(true);
-    if (!data?.data.data.meetingRoomUser.roomKey) {
+    if (!data?.data.data.meetingRoomUser?.roomKey) {
       setTokenNum((prev) => prev - 1);
       startMatch(matchInfo.partyNum / 2);
     }
@@ -37,7 +37,7 @@ export default function Func() {
       {isLoadingModalOpen && <LoadingModal setIsLoadingModal={setIsLoadingModalOpen} />}
       <StyledContainer>
         <StartButton onClick={handleClickStartButton}>
-          {!data?.data.data.meetingRoomUser?.roomKey ? 'START' : '매칭중'}
+          {!data?.data?.data?.meetingRoomUser?.roomKey ? 'START' : '매칭중'}
         </StartButton>
         {/* <TokenContainer>{renderTokenComponent()}</TokenContainer> */}
       </StyledContainer>

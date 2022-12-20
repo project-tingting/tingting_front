@@ -12,7 +12,6 @@ export default function OtherChatBubble({ text, userId }: chatProps) {
         <Image src={profile} />
       </OtherProfile>
       <StyledDiv>
-        <OtherUserId>팅팅입니다</OtherUserId>
         <OtherUserId>{userId}</OtherUserId>
         <ChatContainer>{text}</ChatContainer>
       </StyledDiv>
