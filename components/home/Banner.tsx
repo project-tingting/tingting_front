@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-import mainPic from '../../public/assets/images/mainPic.jpg';
+import mainPic from '../../public/assets/images/mainPic.svg';
 
 export default function Banner() {
   return (
