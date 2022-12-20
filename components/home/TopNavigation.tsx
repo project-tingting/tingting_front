@@ -23,7 +23,6 @@ export default function TopNavigation({ isChat }: TopNavProps) {
 
   const router = useRouter();
   const { data } = useGetRoomKeyInfo();
-  console.log('roomdata', data?.data.data.meetingRoomUser.roomKey);
 
   const onClickBack = () => {
     setModal(true);
@@ -35,7 +34,7 @@ export default function TopNavigation({ isChat }: TopNavProps) {
     router.back();
   };
   const handleGoChat = () => {
-    Router.push(`/chat/${data?.data.data.meetingRoomUser.roomKey}`);
+    Router.push(`/chat/${data?.data?.data?.meetingRoomUser?.roomKey}`);
   };
   const handleClickLogo = () => {
     setIsLogoClicked((prev) => !prev);
