@@ -53,7 +53,7 @@ export default function chat() {
   return (
     <>
       <Container>
-        <TopNavigation isChat={true} />
+        <TopNavigation isChat={true} tokenNum={null} />
         <ChatContainer>
           <ChatNotice>
             <Image src={notice} />
