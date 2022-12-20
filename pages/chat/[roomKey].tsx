@@ -69,7 +69,7 @@ export default function chat() {
                 return item?.uuid === userData?.data?.data?.user?.uuid ? (
                   <MyChatBubble text={item.message} key={item.id} />
                 ) : (
-                  <OtherChatBubble text={item.message} key={item.id} />
+                  <OtherChatBubble userId = {item.uuid} text={item.message} key={item.id} />
                 );
               })}
             </>
