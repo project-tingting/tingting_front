@@ -37,9 +37,10 @@ export default function chat() {
     },
   });
 
-  useEffect(() => {
-    ref.current!.scrollTop = ref.current!.scrollHeight;
-  }, [chatMessage]);
+  // useEffect(() => {
+  //   // ref.current!.scrollTop = ref.current!.scrollHeight;
+  //   ref.current && (ref.current.scrollTop = ref.current.scrollHeight);
+  // }, [chatMessage]);
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
@@ -75,6 +76,7 @@ export default function chat() {
             </>
           </Chatting>
         </ChatContainer>
+        <div ref={ref}></div>
         <SendChat>
           <ChatInput
             type="text"
@@ -84,7 +86,6 @@ export default function chat() {
           />
           <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
         </SendChat>
-        <div ref={ref}></div>
       </Container>
     </>
   );
@@ -94,13 +95,11 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.whiteColor};
+  background-color: ${({ theme }) => theme.colors.bgColor};
 `;
 
 const Chatting = styled.section`
-  flex-grow: 1;
   padding: 2.7rem 2rem;
-  background-color: ${({ theme }) => theme.colors.bgColor};
 `;
 
 const SendChat = styled.div`
