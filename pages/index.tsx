@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import TingTingLogo from '../public/assets/icons/tingting_logo.svg';
 
-import Button from '../components/Button';
+import Button from '../components/common/Button';
 
 export default function index() {
   const handleClickLoginButton = (e: React.MouseEvent<HTMLButtonElement>) => {

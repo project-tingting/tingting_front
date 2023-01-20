@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import useInput from '../../util/hooks/useInput';
 import useCheckUserInfo from '../../util/hooks/useCheckUserInfo';
 
-import Top from '../../components/Top';
-import ProgressBar from '../../components/ProgressBar';
-import Container from '../../components/Container';
-import InputContainer from '../../components/AnimationContainer';
-import Guide from '../../components/Guide';
+import Top from '../../components/common/Top';
+import ProgressBar from '../../components/common/ProgressBar';
+import Container from '../../components/common/Container';
+import InputContainer from '../../components/common/AnimationContainer';
+import Guide from '../../components/common/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
-import Button from '../../components/Button';
+import Button from '../../components/common/Button';
 
 export default function nickname() {
   const [userId, handleUserId] = useInput('');

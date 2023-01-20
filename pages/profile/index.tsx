@@ -1,8 +1,8 @@
 import Router from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../components/Button';
-import Notice from '../../components/Notice';
+import Button from '../../components/common/Button';
+import Notice from '../../components/common/Notice';
 
 export default function index() {
   const handleNoButton = () => {

@@ -3,12 +3,12 @@ import Router from 'next/router';
 import styled from 'styled-components';
 import useHandleGender from '../../util/hooks/useHandleGender';
 
-import Top from '../../components/Top';
-import ProgressBar from '../../components/ProgressBar';
-import Container from '../../components/Container';
-import InputContainer from '../../components/AnimationContainer';
-import Guide from '../../components/Guide';
-import Button from '../../components/Button';
+import Top from '../../components/common/Top';
+import ProgressBar from '../../components/common/ProgressBar';
+import Container from '../../components/common/Container';
+import InputContainer from '../../components/common/AnimationContainer';
+import Guide from '../../components/common/Guide';
+import Button from '../../components/common/Button';
 import GenderButton from '../../components/Join/GenderButton';
 
 export default function sex() {

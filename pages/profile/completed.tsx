@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import React, { useEffect } from 'react';
-import InputContainer from '../../components/AnimationContainer';
-import Notice from '../../components/Notice';
+import InputContainer from '../../components/common/AnimationContainer';
+import Notice from '../../components/common/Notice';
 import { usePostProfile } from '../../util/hooks/usePostProfile';
 
 export default function completed() {
