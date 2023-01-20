@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 
-import close from '../../public/assets/icons/Close.svg';
+import close from '../../public/assets/icons/close.svg';
 
 type Props = {
   onClick: React.Dispatch<React.SetStateAction<boolean>>;

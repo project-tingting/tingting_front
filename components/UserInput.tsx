@@ -5,7 +5,7 @@ type SizeType = 'large' | 'small';
 type InputType = 'number' | 'email' | 'password' | 'text';
 
 type Props = {
-  size: SizeType;
+  sizing: SizeType;
   text: string;
   type: InputType;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,14 +13,14 @@ type Props = {
 };
 
 type IInnerScreen = {
-  size: string;
+  sizing: string;
 };
 
-export default function UserInput({ size, text, type, onChange, classname }: Props) {
+export default function UserInput({ sizing, text, type, onChange, classname }: Props) {
   return (
     <InputBox
       placeholder={text}
-      size={size}
+      sizing={sizing}
       type={type}
       min="1990"
       max="2003"
@@ -32,7 +32,7 @@ export default function UserInput({ size, text, type, onChange, classname }: Pro
 
 export const InputBox = styled.input<IInnerScreen>`
   ${(props) =>
-    props.size === 'large'
+    props.sizing === 'large'
       ? css`
           height: 5.6rem;
           border-radius: 2rem;

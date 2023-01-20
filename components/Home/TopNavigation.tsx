@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { useUserLogout } from '../../core/apiHooks/user';
@@ -9,32 +10,52 @@ import Bell from '../../public/assets/icons/bell.svg';
 import No_Chat from '../../public/assets/icons/no_chat.svg';
 import outChat from '../../public/assets/icons/outChat.svg';
 import ChatModal from '../Chat/ChatModal';
-import Router, { useRouter } from 'next/router';
+import TokenIcon from '../../public/assets/icons/token.svg';
+import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
 
 interface TopNavProps {
   isChat?: boolean;
+  tokenNum: number | null;
 }
 
-export default function TopNavigation({ isChat }: TopNavProps) {
+export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
+  console.log(tokenNum);
   const { mutate: handleLogout } = useUserLogout();
   const [modal, setModal] = useState(false);
   const [isLogoClicked, setIsLogoClicked] = useState(false);
-  const router = useRouter();
+  const { data } = useGetRoomKeyInfo();
+
   const onClickBack = () => {
     setModal(true);
   };
+
   const handleContinue = () => {
     setModal(false);
   };
+
   const handleGoHome = () => {
-    router.back();
+    Router.back();
   };
+
   const handleGoChat = () => {
-    Router.push('/chat');
+    Router.push(`/chat/${data?.data?.data?.meetingRoomUser?.roomKey}`);
   };
+
   const handleClickLogo = () => {
     setIsLogoClicked((prev) => !prev);
-  }
+  };
+
+  const renderTokenComponent = () => {
+    const result = [];
+    if (!tokenNum) {
+      return null;
+    } else {
+      for (let i = 0; i < tokenNum; i++) {
+        result.push(<Image src={TokenIcon} alt="토큰" />);
+      }
+      return result;
+    }
+  };
   return (
     <>
       {modal && <ChatModal handleContinue={handleContinue} />}
@@ -42,7 +63,10 @@ export default function TopNavigation({ isChat }: TopNavProps) {
         {isChat ? (
           <Image src={outChat} alt="go back" onClick={onClickBack} />
         ) : (
-          <Image src={UserProfile} alt="로고 버튼" onClick={handleClickLogo} />
+          <Container>
+            <Image src={UserProfile} alt="로고 버튼" onClick={handleClickLogo} />
+            <TokenContainer>{renderTokenComponent()}</TokenContainer>
+          </Container>
         )}
         <Func>
           <Image src={Bell} alt="알림 버튼" />
@@ -53,7 +77,11 @@ export default function TopNavigation({ isChat }: TopNavProps) {
           )}
         </Func>
       </StyledContainer>
-      {isLogoClicked && <LogoutButton onClick={() => handleLogout(localStorage.getItem('access-token'))}>로그아웃</LogoutButton>}
+      {isLogoClicked && (
+        <LogoutButton onClick={() => handleLogout(localStorage.getItem('access-token'))}>
+          로그아웃
+        </LogoutButton>
+      )}
     </>
   );
 }
@@ -64,6 +92,16 @@ const StyledContainer = styled.article`
   padding: 0 1.6rem;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+`;
+
+const Container = styled.section`
+  display: flex;
+  gap: 1.7rem;
 `;
 
 const Func = styled.section`
@@ -75,9 +113,14 @@ const LogoutButton = styled.button`
   position: absolute;
   left: 1.6rem;
   z-index: 100;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 1rem;
   font-size: 2rem;
   line-height: 2.4rem;
   padding: 0.8rem 2rem;
-`
+`;
+
+const TokenContainer = styled.section`
+  display: flex;
+  gap: 0.4rem;
+`;

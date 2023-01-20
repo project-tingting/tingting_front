@@ -6,7 +6,7 @@ export const registerAPI = async (user: RegisterProps) => {
     const res = await axios.post('/account/reigster', {
       userId: user.userId,
       password: user.password,
-      birthyear: user.birthYear,
+      birthyear: user.birthDay,
       gender: user.gender,
       university: user.university,
     });

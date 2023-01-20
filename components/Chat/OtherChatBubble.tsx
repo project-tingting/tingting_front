@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { chatProps } from '../../types/chat';
 import profile from '../../public/assets/icons/profile.svg';
 
-export default function OtherChatBubble({ text }: chatProps) {
+export default function OtherChatBubble({ text, userId }: chatProps) {
   return (
     <OtherChatContainer>
       <OtherProfile>
@@ -12,7 +12,7 @@ export default function OtherChatBubble({ text }: chatProps) {
         <Image src={profile} />
       </OtherProfile>
       <StyledDiv>
-        <OtherUserId>팅팅입니다</OtherUserId>
+        <OtherUserId>{userId}</OtherUserId>
         <ChatContainer>{text}</ChatContainer>
       </StyledDiv>
     </OtherChatContainer>

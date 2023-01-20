@@ -15,7 +15,7 @@ export default function BottomNavigation() {
     <>
       <StyledContainer>
         <LogoContainer>
-          <Image src={ProfileIcon} alt="프로필 로고" onClick={handleClickLogoButton} />
+          <Image src={ProfileIcon} alt="구름 로고" onClick={handleClickLogoButton} />
         </LogoContainer>
       </StyledContainer>
       {isOpen && <EditProfile onClick={setIsOpen}></EditProfile>}

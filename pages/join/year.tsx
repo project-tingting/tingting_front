@@ -31,7 +31,7 @@ export default function year() {
       <Container>
         <InputContainer>
           <Guide text="출생연도를 입력해주세요" />
-          <StyledInput type="number" size="large" placeholder="2003" onChange={handleBirthDay} />
+          <StyledInput type="number" sizing="large" placeholder="2003" onChange={handleBirthDay} />
         </InputContainer>
         <Button
           onClick={handleClickContinueButton}
