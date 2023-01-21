@@ -5,6 +5,7 @@ import Image from 'next/image';
 import TingTingLogo from '../public/assets/icons/tingting_logo.svg';
 
 import Button from '../components/Button';
+import { Wrap } from '../components/common/Wrap';
 
 export default function index() {
   const handleClickLoginButton = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -18,13 +19,15 @@ export default function index() {
   };
 
   return (
-    <StyledContainer>
-      <Image src={TingTingLogo} alt="팅팅 로고" />
-      <ButtonContainer>
-        <Button text="로그인" isRound={true} disabled={false} onClick={handleClickLoginButton} />
-        <Button text="회원가입" isRound={true} disabled={false} onClick={handleClickJoinButton} />
-      </ButtonContainer>
-    </StyledContainer>
+    <Wrap>
+      <StyledContainer>
+        <Image src={TingTingLogo} alt="팅팅 로고" />
+        <ButtonContainer>
+          <Button text="로그인" isRound={true} disabled={false} onClick={handleClickLoginButton} />
+          <Button text="회원가입" isRound={true} disabled={false} onClick={handleClickJoinButton} />
+        </ButtonContainer>
+      </StyledContainer>
+    </Wrap>
   );
 }
 

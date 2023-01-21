@@ -9,6 +9,7 @@ import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
 import useInput from '../../util/hooks/useInput';
 import ErrorMessage from '../../components/Join/ErrorMessage';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function index() {
   const [userId, handleUserId] = useInput('');
@@ -21,27 +22,31 @@ export default function index() {
   };
 
   return (
-    <StyledContainer>
-      <Image src={TingTingLogo} alt="팅팅 로고" priority={true} />
-      <FormContainer onSubmit={submitLogin}>
-        <InputContainer>
-          <StyledInput sizing="small" placeholder="아이디" type="text" onChange={handleUserId} />
-          <StyledInput
-            sizing="small"
-            placeholder="비밀번호"
-            type="password"
-            onChange={handlePassword}
-          />
-          {status_code === 400 && <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />}
-        </InputContainer>
-        <Button text="로그인" isRound={true} disabled={!userId || !password} />
-        <OptionContainer>
-          <Option>아이디 찾기</Option>
-          <Option>비밀번호 찾기</Option>
-          <Option onClick={handleClickJoinButton}>회원가입</Option>
-        </OptionContainer>
-      </FormContainer>
-    </StyledContainer>
+    <Wrap>
+      <StyledContainer>
+        <Image src={TingTingLogo} alt="팅팅 로고" priority={true} />
+        <FormContainer onSubmit={submitLogin}>
+          <InputContainer>
+            <StyledInput sizing="small" placeholder="아이디" type="text" onChange={handleUserId} />
+            <StyledInput
+              sizing="small"
+              placeholder="비밀번호"
+              type="password"
+              onChange={handlePassword}
+            />
+            {status_code === 400 && (
+              <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />
+            )}
+          </InputContainer>
+          <Button text="로그인" isRound={true} disabled={!userId || !password} />
+          <OptionContainer>
+            <Option>아이디 찾기</Option>
+            <Option>비밀번호 찾기</Option>
+            <Option onClick={handleClickJoinButton}>회원가입</Option>
+          </OptionContainer>
+        </FormContainer>
+      </StyledContainer>
+    </Wrap>
   );
 }
 

@@ -11,6 +11,7 @@ import Guide from '../../components/Guide';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import UserInput, { ErrorText } from '../../components/UserInput';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function mbti() {
   const setUserProfile = useSetRecoilState(userProfileState);
@@ -49,7 +50,7 @@ export default function mbti() {
     Router.push('/profile/interest');
   };
   return (
-    <>
+    <Wrap>
       <Top text="프로필" />
       <ProgressBar stage={1} total={3} />
       <Container>
@@ -75,6 +76,6 @@ export default function mbti() {
           isRound={true}
         />
       </Container>
-    </>
+    </Wrap>
   );
 }

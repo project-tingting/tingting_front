@@ -12,6 +12,7 @@ import Keyword, { interestData } from '../../components/Keyword';
 import ProgressBar from '../../components/ProgressBar';
 import Top from '../../components/Top';
 import { ErrorText } from '../../components/UserInput';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function interest() {
   const profile = useRecoilValue(userProfileState);
@@ -62,7 +63,7 @@ export default function interest() {
   };
 
   return (
-    <>
+    <Wrap>
       <Top text="프로필" />
       <ProgressBar stage={2} total={3} />
       <Container>
@@ -84,6 +85,6 @@ export default function interest() {
           isRound={true}
         />
       </Container>
-    </>
+    </Wrap>
   );
 }

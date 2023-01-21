@@ -16,4 +16,7 @@ const BannerContainer = styled.section`
   position: relative;
   height: 40rem;
   margin-top: 4.4rem;
+  & img {
+    z-index: -10;
+  }
 `;

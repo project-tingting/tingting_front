@@ -12,6 +12,7 @@ import Guide from '../../components/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
 import useInput from '../../util/hooks/useInput';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function year() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -25,7 +26,7 @@ export default function year() {
     Router.push('/join/gender');
   }, []);
   return (
-    <>
+    <Wrap>
       <Top text="회원가입" />
       <ProgressBar stage={2} total={4} />
       <Container>
@@ -40,6 +41,6 @@ export default function year() {
           text="계속하기"
         />
       </Container>
-    </>
+    </Wrap>
   );
 }

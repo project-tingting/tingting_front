@@ -13,6 +13,7 @@ import { StyledInput } from '../../components/Join/FormElement';
 import Button from '../../components/Button';
 import { ValidateButton } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function school() {
   const [schoolEmail, handleSchoolEmail] = useInput('');
@@ -23,7 +24,7 @@ export default function school() {
     Router.push('/join/completed');
   }, []);
   return (
-    <>
+    <Wrap>
       <Top text="회원가입" />
       <ProgressBar stage={4} total={4} />
       <Container>
@@ -50,7 +51,7 @@ export default function school() {
           text="계속하기"
         />
       </Container>
-    </>
+    </Wrap>
   );
 }
 

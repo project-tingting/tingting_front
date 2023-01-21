@@ -8,6 +8,7 @@ import Func from '../../components/Home/Func';
 import BottomNavigation from '../../components/Home/BottomNavigation';
 import Party from '../../components/Home/Party';
 import PartyNum from '../../components/Home/PartyNum';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function Home() {
   const { data: userInfo } = useGetUserInfo();
@@ -21,9 +22,11 @@ export default function Home() {
     <>
       <TopNavigation tokenNum={userInfo?.data.data.tingTingToken} />
       <Banner />
-      <Party />
-      <PartyNum />
-      <Func />
+      <Wrap>
+        <Party />
+        <PartyNum />
+        <Func />
+      </Wrap>
       <BottomNavigation />
     </>
   );

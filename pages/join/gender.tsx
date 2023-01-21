@@ -10,6 +10,7 @@ import InputContainer from '../../components/AnimationContainer';
 import Guide from '../../components/Guide';
 import Button from '../../components/Button';
 import GenderButton from '../../components/Join/GenderButton';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function sex() {
   const { gender, handleClickMaleButton, handleClickFemaleButton } = useHandleGender();
@@ -19,7 +20,7 @@ export default function sex() {
   }, []);
 
   return (
-    <>
+    <Wrap>
       <Top text="회원가입" />
       <ProgressBar stage={3} total={4} />
       <Container>
@@ -45,7 +46,7 @@ export default function sex() {
           text="계속하기"
         />
       </Container>
-    </>
+    </Wrap>
   );
 }
 

@@ -16,6 +16,7 @@ import whiteX from '../../public/assets/icons/whiteX.svg';
 import InputContainer from '../../components/AnimationContainer';
 import Container from '../../components/Container';
 import Guide from '../../components/Guide';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function alcohol() {
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
@@ -41,7 +42,7 @@ export default function alcohol() {
     setAlcohol(['0']);
   };
   return (
-    <>
+    <Wrap>
       <Top text="프로필" />
       <ProgressBar stage={3} total={3} />
       <Container>
@@ -63,7 +64,7 @@ export default function alcohol() {
           isRound={true}
         />
       </Container>
-    </>
+    </Wrap>
   );
 }
 

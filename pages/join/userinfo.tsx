@@ -12,6 +12,7 @@ import Guide from '../../components/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
 import Button from '../../components/Button';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function nickname() {
   const [userId, handleUserId] = useInput('');
@@ -23,7 +24,7 @@ export default function nickname() {
     Router.push('/join/year');
   }, []);
   return (
-    <>
+    <Wrap>
       <Top text="회원가입" />
       <ProgressBar stage={1} total={4} />
       <Container>
@@ -66,7 +67,7 @@ export default function nickname() {
           text="계속하기"
         />
       </Container>
-    </>
+    </Wrap>
   );
 }
 

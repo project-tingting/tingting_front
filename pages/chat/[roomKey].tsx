@@ -10,6 +10,7 @@ import { useGetChat } from '../../util/hooks/useGetChat';
 import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
+import { Wrap } from '../../components/common/Wrap';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
@@ -52,7 +53,7 @@ export default function chat() {
   };
 
   return (
-    <>
+    <Wrap>
       <Container>
         <TopNavigation isChat={true} tokenNum={null} />
         <ChatContainer>
@@ -78,16 +79,18 @@ export default function chat() {
         </ChatContainer>
         <div ref={ref}></div>
         <SendChat>
-          <ChatInput
-            type="text"
-            placeholder="채팅을 팅팅!"
-            onChange={handleChat}
-            value={chatMessage}
-          />
-          <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
+          <StyledWrap>
+            <ChatInput
+              type="text"
+              placeholder="채팅을 팅팅!"
+              onChange={handleChat}
+              value={chatMessage}
+            />
+            <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
+          </StyledWrap>
         </SendChat>
       </Container>
-    </>
+    </Wrap>
   );
 }
 
@@ -98,19 +101,30 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.bgColor};
 `;
 
+const ChatContainer = styled.div`
+  padding-top: 4.4rem;
+  padding-bottom: 5.4rem;
+  height: 100%;
+`;
+
 const Chatting = styled.section`
   padding: 2.7rem 2rem;
+  background-color: ${({ theme }) => theme.colors.bgColor};
+  height: 100%;
 `;
 
 const SendChat = styled.div`
   background-color: ${({ theme }) => theme.colors.whiteColor};
   padding: 0.6rem 1.2rem;
-  display: flex;
-  gap: 1.4rem;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+`;
+
+const StyledWrap = styled(Wrap)`
+  display: flex;
+  gap: 1.4rem;
 `;
 
 const ChatInput = styled.input`
@@ -139,9 +153,4 @@ const NoticeText = styled.p`
   font-weight: 400;
   font-size: 1.6rem;
   color: #353535;
-`;
-
-const ChatContainer = styled.div`
-  padding-top: 4.4rem;
-  padding-bottom: 5.4rem;
 `;
