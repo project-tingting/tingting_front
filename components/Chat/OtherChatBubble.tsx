@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { chatProps } from '../../types/chat';
 import profile from '../../public/assets/icons/profile.svg';
 
-export default function OtherChatBubble({ text, userId }: chatProps) {
+export default function OtherChatBubble({ chatMessage, userId }: chatProps) {
   return (
     <OtherChatContainer>
       <OtherProfile>
@@ -13,7 +13,7 @@ export default function OtherChatBubble({ text, userId }: chatProps) {
       </OtherProfile>
       <StyledDiv>
         <OtherUserId>{userId}</OtherUserId>
-        <ChatContainer>{text}</ChatContainer>
+        <ChatContainer>{chatMessage}</ChatContainer>
       </StyledDiv>
     </OtherChatContainer>
   );

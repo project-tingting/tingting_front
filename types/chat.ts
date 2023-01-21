@@ -1,4 +1,5 @@
 export interface chatProps {
-  text: string;
+  chatMessage?: string;
   userId?: string;
+  roomKey?: string | string[] | undefined;
 }

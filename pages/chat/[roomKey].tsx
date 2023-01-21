@@ -21,7 +21,7 @@ export default function chat() {
   const { data: userData } = useGetUserInfo();
   console.log('userData', userData?.data);
 
-  const { data: messages, refetch } = useGetChat(roomKey);
+  const { data: messages, refetch } = useGetChat({ roomKey });
   console.log(messages);
 
   const { mutate } = usePostChat({
@@ -68,9 +68,9 @@ export default function chat() {
               {messages?.data?.messageList.map((item: any) => {
                 console.log(item.uuid);
                 return item?.uuid === userData?.data?.data?.user?.uuid ? (
-                  <MyChatBubble text={item.message} key={item.id} />
+                  <MyChatBubble chatMessage={item.message} key={item.id} />
                 ) : (
-                  <OtherChatBubble userId={item.userId} text={item.message} key={item.id} />
+                  <OtherChatBubble userId={item.userId} chatMessage={item.message} key={item.id} />
                 );
               })}
             </>

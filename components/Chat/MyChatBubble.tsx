@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { chatProps } from '../../types/chat';
 
-export default function MyChatBubble({ text }: chatProps) {
+export default function MyChatBubble({ chatMessage }: chatProps) {
   return (
     <MyChatContainer>
-      <ChatContainer>{text}</ChatContainer>
+      <ChatContainer>{chatMessage}</ChatContainer>
     </MyChatContainer>
   );
 }
