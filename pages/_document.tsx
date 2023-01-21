@@ -28,9 +28,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

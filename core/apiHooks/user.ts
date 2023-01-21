@@ -31,14 +31,14 @@ export const useSetUserRegister = (userInfo: object) => {
   });
 };
 
-// 개발 중
+// 로그인
 export const useUserLogin = ({ userId, password }: userInfo) => {
   return useMutation(() => submitLogin(userId, password), {
     onMutate: (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
     },
     onSuccess: (data) => {
-      localStorage.setItem('access-token', data.data.accessToken);
+      localStorage.setItem('access-token', data.data.data.accessToken);
       Router.push(`/home/${data.data.uuid}`);
     },
     onError: (error) => {
@@ -47,6 +47,7 @@ export const useUserLogin = ({ userId, password }: userInfo) => {
   });
 };
 
+// 로그아웃
 export const useUserLogout = () => {
   return useMutation((accessToken: string | null) => submitLogout(accessToken), {
     onSuccess: () => {
