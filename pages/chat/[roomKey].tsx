@@ -125,6 +125,9 @@ const SendChat = styled.div`
 const StyledWrap = styled(Wrap)`
   display: flex;
   gap: 1.4rem;
+  & img {
+    cursor: pointer;
+  }
 `;
 
 const ChatInput = styled.input`

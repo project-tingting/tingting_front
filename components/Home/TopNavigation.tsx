@@ -90,12 +90,14 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
 const StyledContainer = styled.article`
   background: linear-gradient(180deg, #ffffff 50%, rgba(255, 255, 255, 0.5) 100%);
   height: 4.4rem;
-  padding: 0 1.6rem;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 10;
+  & img {
+    cursor: pointer;
+  }
 `;
 
 const StyledWrap = styled(Wrap)`
