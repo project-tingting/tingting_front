@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import TingTingLogo from '../public/assets/icons/tingting_logo.svg';
 
-import Button from '../components/common/Button';
+import LoginButton from '../components/Login/LoginButton';
 
 export default function index() {
   const handleClickLoginButton = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,10 +19,20 @@ export default function index() {
 
   return (
     <StyledContainer>
-      <Image src={TingTingLogo} alt="팅팅 로고" />
+      <Image src={TingTingLogo} alt="팅팅 로고" priority />
       <ButtonContainer>
-        <Button text="로그인" isRound={true} disabled={false} onClick={handleClickLoginButton} />
-        <Button text="회원가입" isRound={true} disabled={false} onClick={handleClickJoinButton} />
+        <LoginButton
+          text="로그인"
+          isRound={true}
+          disabled={false}
+          onClick={handleClickLoginButton}
+        />
+        <LoginButton
+          text="회원가입"
+          isRound={true}
+          disabled={false}
+          onClick={handleClickJoinButton}
+        />
       </ButtonContainer>
     </StyledContainer>
   );
@@ -30,10 +40,7 @@ export default function index() {
 
 const StyledContainer = styled.section`
   padding: 14.3125rem 1rem 2.125rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.form`
@@ -43,4 +50,7 @@ const ButtonContainer = styled.form`
     background-color: ${({ theme }) => theme.colors.whiteColor};
     color: ${({ theme }) => theme.colors.inputTextUserColor};
   }
+  width: calc(100% - 2rem);
+  position: fixed;
+  bottom: 0;
 `;

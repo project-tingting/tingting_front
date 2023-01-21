@@ -13,7 +13,7 @@ import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
 import Button from '../../components/common/Button';
 
-export default function nickname() {
+export default function userinfo() {
   const [userId, handleUserId] = useInput('');
   const [password, handlePassword] = useInput('');
 

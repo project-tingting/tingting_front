@@ -1,6 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import Back from '../../public/assets/icons/back.svg';
 
 interface TopTextProps {
@@ -8,13 +9,12 @@ interface TopTextProps {
 }
 
 export default function Top({ text }: TopTextProps) {
-  const router = useRouter();
   const onClickBack = () => {
-    router.back();
+    Router.back();
   };
   return (
     <TopComponent>
-      <Back onClick={onClickBack} />
+      <Image src={Back} onClick={onClickBack} alt="뒤로 가기 버튼" />
       <span>{text}</span>
     </TopComponent>
   );
