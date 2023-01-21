@@ -1,15 +1,14 @@
 import Image from 'next/image';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendchat.svg';
 import notice from '../../public/assets/icons/notice.svg';
-import { usePostChat } from '../../util/hooks/usePostChat';
-import { useGetChat } from '../../util/hooks/useGetChat';
 import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
+import { useGetChat, usePostChat } from '../../components/Chat/apiHooks/chat';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
