@@ -1,21 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
-import back from '../public/assets/icons/back.svg';
+import styled from 'styled-components';
+import Router from 'next/router';
+import Back from '../../public/assets/icons/back.svg';
 
 interface TopTextProps {
   text: string;
 }
 
 export default function Top({ text }: TopTextProps) {
-  const router = useRouter();
   const onClickBack = () => {
-    router.back();
+    Router.back();
   };
   return (
     <TopComponent>
-      <Image src={back} alt="go back" onClick={onClickBack}></Image>
+      <Image src={Back} onClick={onClickBack} alt="뒤로 가기 버튼" />
       <span>{text}</span>
     </TopComponent>
   );
@@ -28,7 +27,7 @@ const TopComponent = styled.header`
   font-size: 1.8rem;
   display: flex;
   align-items: center;
-  & img {
+  & svg {
     cursor: pointer;
     margin-right: auto;
   }

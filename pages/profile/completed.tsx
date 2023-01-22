@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
-import InputContainer from '../../components/AnimationContainer';
-import Notice from '../../components/Notice';
+
 import { usePostProfile } from '../../components/Profile/apiHooks/profile';
+import InputContainer from '../../components/common/AnimationContainer';
+import Notice from '../../components/common/Notice';
+import { useRecoilValue } from 'recoil';
+import { userProfileState } from '../../core/recoil/userProfileAtom';
 
 export default function completed() {
+  const userProfile = useRecoilValue(userProfileState);
   const { mutate: postProfileMutate } = usePostProfile();
 
-  useEffect(() => {
-    postProfileMutate();
-  }, []);
+  useEffect(() => postProfileMutate(userProfile), []);
 
   return (
     <InputContainer>

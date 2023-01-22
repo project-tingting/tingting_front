@@ -20,7 +20,6 @@ export default function Button({ text, isRound, disabled, onClick }: BtnProps) {
 }
 
 const StyledButton = styled.button<BtnPatternProps>`
-  width: 100%;
   color: ${({ theme }) => theme.colors.whiteColor};
   font-size: 2.4rem;
   padding: 1.7rem;
@@ -32,6 +31,5 @@ const StyledButton = styled.button<BtnPatternProps>`
       ? ({ theme }) => theme.colors.buttonDisabledColor
       : ({ theme }) => theme.colors.mainColor};
   border-radius: ${(props) => (props.isRound ? '1.8rem' : '0rem')};
-
-  /* color: ${(props) => [props.theme.colors]}; */
+  bottom: 0;
 `;

@@ -1,8 +1,9 @@
 import Router from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../components/Button';
-import Notice from '../../components/Notice';
+
+import Button from '../../components/common/Button';
+import Notice from '../../components/common/Notice';
 
 export default function index() {
   const handleNoButton = () => {
@@ -12,14 +13,12 @@ export default function index() {
     Router.push('/profile/mbti');
   };
   return (
-    <>
-      <Notice message="바로 프로필을 설정하시겠어요?">
-        <ButtonGroup>
-          <Button onClick={handleNoButton} text="아니요" disabled={false} isRound={false} />
-          <Button onClick={handleYesButton} text="예" disabled={false} isRound={false} />
-        </ButtonGroup>
-      </Notice>
-    </>
+    <Notice message="바로 프로필을 설정하시겠어요?">
+      <ButtonGroup>
+        <Button onClick={handleNoButton} text="아니요" disabled={false} isRound={false} />
+        <Button onClick={handleYesButton} text="예" disabled={false} isRound={false} />
+      </ButtonGroup>
+    </Notice>
   );
 }
 
@@ -27,5 +26,8 @@ const ButtonGroup = styled.div`
   display: flex;
   & button:nth-child(1) {
     background-color: ${({ theme }) => theme.colors.buttonDisabledColor};
+  }
+  & button {
+    flex: 1 1 0;
   }
 `;

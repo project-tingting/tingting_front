@@ -17,8 +17,8 @@ export default function useGetAccessToken() {
     } catch (error) {
       console.error(error);
     }
-  }
-  
+  };
+
   const { mutate } = useMutation(getAccessToken);
 
   return { mutate };

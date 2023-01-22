@@ -12,19 +12,11 @@ interface SaveButtonProps {
 
 export default function SaveButton({ disabled }: SaveButtonProps) {
   const { refetch } = useGetUserProfile();
-  const { mutate } = usePutUserProfile({
-    onSuccess: (data: any) => {
-      console.log(data);
-      refetch();
-    },
-  });
+  const { mutate: putUserProfileMutate } = usePutUserProfile({ refetch });
 
-  const handleSaveProfile = () => {
-    mutate;
-  };
   return (
     <Container>
-      <StyledSaveButton disabled={disabled} onClick={handleSaveProfile}>
+      <StyledSaveButton disabled={disabled} onClick={() => putUserProfileMutate()}>
         현재상태 저장
         {disabled ? <Image src={disabledRefresh} /> : <Image src={refresh} />}
       </StyledSaveButton>

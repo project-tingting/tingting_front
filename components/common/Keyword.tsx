@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useGetUserProfile } from './Profile/apiHooks/profile';
+import { useGetUserProfile } from '../Profile/apiHooks/profile';
 
 interface KeywordButtonProps {
   text: string;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Keyword, { interestData } from '../../Keyword';
+import Keyword, { interestData } from '../../common/Keyword';
 import SaveButton from './SaveButton';
 import { Container } from './EditMbti';
 import { SelectedKeyword, Hr } from './EditMbti';

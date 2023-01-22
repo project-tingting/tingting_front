@@ -6,16 +6,17 @@ import { useRecoilState } from 'recoil';
 
 import { userProfileState } from '../../core/recoil/userProfileAtom';
 
-import Button from '../../components/Button';
-import ProgressBar from '../../components/ProgressBar';
-import Top from '../../components/Top';
+import Button from '../../components/common/Button';
+import ProgressBar from '../../components/common/ProgressBar';
+import Top from '../../components/common/Top';
 import purpleO from '../../public/assets/icons/purpleO.svg';
 import purpleX from '../../public/assets/icons/purpleX.svg';
 import whiteO from '../../public/assets/icons/whiteO.svg';
 import whiteX from '../../public/assets/icons/whiteX.svg';
-import InputContainer from '../../components/AnimationContainer';
-import Container from '../../components/Container';
-import Guide from '../../components/Guide';
+
+import InputContainer from '../../components/common/AnimationContainer';
+import Container from '../../components/common/Container';
+import Guide from '../../components/common/Guide';
 
 export default function alcohol() {
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);

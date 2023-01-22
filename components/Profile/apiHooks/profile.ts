@@ -6,11 +6,7 @@ import { getUserProfile, postUserProfile, putUserProfile } from '../../../core/a
 type Props = UseMutationOptions<AxiosResponse<any>, Error, any>;
 
 export const useGetUserProfile = () => {
-  return useQuery({
-    queryKey: ['userProfile'],
-    queryFn: () => {
-      return getUserProfile();
-    },
+  return useQuery(['userProfile'], getUserProfile, {
     onError: (error) => {
       console.error(error);
     },
@@ -18,21 +14,20 @@ export const useGetUserProfile = () => {
 };
 
 // export const useGetUserProfile = () => {
-//     const { data, refetch } = useQuery({
-//       queryKey: ['userProfile'],
-//       queryFn: () => {
-//         return getUserProfile();
-//       },
-//       onError: (error) => {
-//           console.error(error);
-//         },
-//     });
-//     return { data, refetch };
-//   };
+//   const { data, refetch } = useQuery({
+//     queryKey: ['userProfile'],
+//     queryFn: () => {
+//       return getUserProfile();
+//     },
+//     onError: (error) => {
+//       console.error(error);
+//     },
+//   });
+//   return { data, refetch };
+// };
 
 export const usePostProfile = () => {
-  return useMutation({
-    mutationFn: () => postUserProfile(),
+  return useMutation(postUserProfile, {
     onError: (error) => {
       console.error(error);
     },
@@ -44,12 +39,15 @@ export const usePostProfile = () => {
   });
 };
 
-export const usePutUserProfile = ({ onSuccess }: Props) => {
-  return useMutation({
-    mutationFn: () => putUserProfile(),
+export const usePutUserProfile = ({ refetch }: any) => {
+  return useMutation(putUserProfile, {
     onError: (error) => {
       console.error(error);
     },
-    onSuccess,
+
+    onSuccess: (data: any) => {
+      console.log(data);
+      refetch();
+    },
   });
 };

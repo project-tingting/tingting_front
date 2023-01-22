@@ -1,8 +1,6 @@
 import { useRecoilValue } from 'recoil';
-import { userProfileState } from '../recoil/userProfileAtom';
+import { ProfileType, userProfileState } from '../recoil/userProfileAtom';
 import { baseAPI } from './baseInstance';
-
-const userProfile = useRecoilValue(userProfileState);
 
 export const getUserProfile = async () => {
   const { data: userProfileData } = await baseAPI.get('/userprofile', {
@@ -13,7 +11,7 @@ export const getUserProfile = async () => {
   return userProfileData;
 };
 
-export const postUserProfile = async () => {
+export const postUserProfile = async (userProfile: ProfileType[]) => {
   const { data } = await baseAPI.post('/userprofile', userProfile, {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('access-token'),
@@ -23,6 +21,7 @@ export const postUserProfile = async () => {
 };
 
 export const putUserProfile = async () => {
+  const userProfile = useRecoilValue(userProfileState);
   const { data: putUserProfileData } = await baseAPI.put('/userprofile', userProfile, {
     headers: {
       Authorization: 'Bearer ' + localStorage.getItem('access-token'),
