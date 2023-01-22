@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
 import sendchat from '../../public/assets/icons/sendchat.svg';
 import notice from '../../public/assets/icons/notice.svg';
-import { usePostChat } from '../../util/hooks/usePostChat';
-import { useGetChat } from '../../util/hooks/useGetChat';
 import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
+import { useGetChat, usePostChat } from '../../components/Chat/apiHooks/chat';
+import { chatProps } from '../../types/chat';
 import { FiexdSection } from '../../components/Layout/FixedLayout';
 
 export default function chat() {
@@ -22,19 +22,16 @@ export default function chat() {
   const { data: userData } = useGetUserInfo();
   console.log('userData', userData?.data);
 
-  const { data: messages, refetch } = useGetChat(roomKey);
+  const { data: messages, refetch } = useGetChat({ roomKey });
   console.log(messages);
 
-  const { mutate } = usePostChat({
-    onError: (error) => {
-      console.error(error);
-    },
+  const { mutate: postChatMutate } = usePostChat({
     onSuccess: async () => {
       await refetch();
-      ref.current?.scrollIntoView({
-        behavior: 'auto',
-        block: 'nearest',
-      });
+      // ref.current?.scrollIntoView({
+      //   behavior: 'auto',
+      //   block: 'nearest',
+      // });
     },
   });
 
@@ -47,8 +44,8 @@ export default function chat() {
     setChatMessage(e.target.value);
   };
 
-  const handleSend = (chatMessage: string) => {
-    mutate(chatMessage);
+  const handleSend = ({ chatMessage }: chatProps) => {
+    postChatMutate(chatMessage);
     setChatMessage('');
   };
 
@@ -68,9 +65,9 @@ export default function chat() {
             {messages?.data?.messageList.map((item: any) => {
               console.log(item.uuid);
               return item?.uuid === userData?.data?.data?.user?.uuid ? (
-                <MyChatBubble text={item.message} key={item.id} />
+                <MyChatBubble chatMessage={item.message} key={item.id} />
               ) : (
-                <OtherChatBubble userId={item.userId} text={item.message} key={item.id} />
+                <OtherChatBubble userId={item.userId} chatMessage={item.message} key={item.id} />
               );
             })}
           </>
@@ -85,7 +82,7 @@ export default function chat() {
             onChange={handleChat}
             value={chatMessage}
           />
-          <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
+          <Image src={sendchat} onClick={() => handleSend({ chatMessage })} />
         </StyledFixed>
       </SendChat>
     </Container>

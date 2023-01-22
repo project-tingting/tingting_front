@@ -4,9 +4,9 @@ import Keyword, { interestData } from '../../common/Keyword';
 import SaveButton from './SaveButton';
 import { Container } from './EditMbti';
 import { SelectedKeyword, Hr } from './EditMbti';
-import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 import { useSetRecoilState } from 'recoil';
 import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
+import { useGetUserProfile } from '../../Profile/apiHooks/profile';
 
 export default function EditInterest() {
   const { data } = useGetUserProfile();

@@ -27,4 +27,7 @@ const ButtonGroup = styled.div`
   & button:nth-child(1) {
     background-color: ${({ theme }) => theme.colors.buttonDisabledColor};
   }
+  & button {
+    flex: 1 1 0;
+  }
 `;

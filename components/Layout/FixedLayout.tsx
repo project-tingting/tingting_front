@@ -18,5 +18,5 @@ export const FiexdSection = styled.section`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  margin: 0 1.6rem;
+  padding: 0 1.6rem;
 `;

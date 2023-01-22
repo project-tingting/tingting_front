@@ -1,36 +1,24 @@
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import refresh from '../../../public/assets/icons/refresh.svg';
 import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
-import { usePutUserProfile } from '../../../util/hooks/usePutUserProfile';
-import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
+import { useGetUserProfile, usePutUserProfile } from '../../Profile/apiHooks/profile';
+import { useRecoilValue } from 'recoil';
+import { userProfileState } from '../../../core/recoil/userProfileAtom';
 
 interface SaveButtonProps {
   disabled?: boolean;
-  // value?: string;
 }
 
 export default function SaveButton({ disabled }: SaveButtonProps) {
+  const userProfile = useRecoilValue(userProfileState);
   const { refetch } = useGetUserProfile();
-  const { mutate } = usePutUserProfile({
-    onError: () => {
-      console.log('error');
-    },
-    onSuccess: (data) => {
-      console.log(data);
-      refetch();
-    },
-  });
+  const { mutate: putUserProfileMutate } = usePutUserProfile({ refetch });
 
-  const handleSaveProfile = () => {
-    mutate({});
-  };
   return (
     <Container>
-      <StyledSaveButton disabled={disabled} onClick={handleSaveProfile}>
+      <StyledSaveButton disabled={disabled} onClick={() => putUserProfileMutate(userProfile)}>
         현재상태 저장
         {disabled ? <Image src={disabledRefresh} /> : <Image src={refresh} />}
       </StyledSaveButton>

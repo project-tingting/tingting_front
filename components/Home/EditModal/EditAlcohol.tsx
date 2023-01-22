@@ -10,21 +10,18 @@ import whiteX from '../../../public/assets/icons/whiteX.svg';
 import { Container } from './EditMbti';
 import SaveButton from './SaveButton';
 import styled from 'styled-components';
-import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 import { useSetRecoilState } from 'recoil';
 import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
+import { useGetUserProfile } from '../../Profile/apiHooks/profile';
 
 export default function EditAlcohol() {
   const { data } = useGetUserProfile();
-  const userAlcoholData = data?.data?.userProfileList.find((item: any) => item.topic === 'isDrink')
-    ?.valueList[0];
+  const userAlcoholData = data?.data?.userProfileList.find(
+    (item: ProfileType) => item.topic === 'isDrink',
+  )?.valueList[0];
   const setUserProfile = useSetRecoilState(userProfileState);
   const [alcohol, setAlcohol] = useState(userAlcoholData);
   const [selected, setSelected] = useState(Boolean);
-
-  useEffect(() => {
-    console.log(alcohol);
-  }, [alcohol]);
 
   useEffect(() => {
     setUserProfile((prev: ProfileType[]) => {

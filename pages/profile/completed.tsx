@@ -1,25 +1,16 @@
-import Router from 'next/router';
 import React, { useEffect } from 'react';
 
+import { usePostProfile } from '../../components/Profile/apiHooks/profile';
 import InputContainer from '../../components/common/AnimationContainer';
 import Notice from '../../components/common/Notice';
-import { usePostProfile } from '../../util/hooks/usePostProfile';
+import { useRecoilValue } from 'recoil';
+import { userProfileState } from '../../core/recoil/userProfileAtom';
 
 export default function completed() {
-  const { mutate } = usePostProfile({
-    onError: () => {
-      console.log('error');
-    },
-    onSuccess: (data) => {
-      setTimeout(() => {
-        Router.push('/login');
-      }, 2000);
-    },
-  });
+  const userProfile = useRecoilValue(userProfileState);
+  const { mutate: postProfileMutate } = usePostProfile();
 
-  useEffect(() => {
-    mutate({});
-  }, []);
+  useEffect(() => postProfileMutate(userProfile), []);
 
   return (
     <InputContainer>
