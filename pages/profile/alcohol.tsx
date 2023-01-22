@@ -13,6 +13,7 @@ import purpleO from '../../public/assets/icons/purpleO.svg';
 import purpleX from '../../public/assets/icons/purpleX.svg';
 import whiteO from '../../public/assets/icons/whiteO.svg';
 import whiteX from '../../public/assets/icons/whiteX.svg';
+
 import InputContainer from '../../components/common/AnimationContainer';
 import Container from '../../components/common/Container';
 import Guide from '../../components/common/Guide';

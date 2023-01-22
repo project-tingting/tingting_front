@@ -41,16 +41,17 @@ export default function index() {
 const StyledContainer = styled.section`
   padding: 14.3125rem 1rem 2.125rem;
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ButtonContainer = styled.form`
   display: flex;
   flex-direction: column;
+  margin: auto 2rem 0;
   button:last-child {
     background-color: ${({ theme }) => theme.colors.whiteColor};
     color: ${({ theme }) => theme.colors.inputTextUserColor};
   }
-  width: calc(100% - 2rem);
-  position: fixed;
-  bottom: 0;
 `;
