@@ -42,7 +42,7 @@ export default function userinfo() {
             text={
               isIdValid
                 ? '아이디가 이름으로 설정됩니다! *'
-                : '아이디는 대, 소문자, 특수기호만 가능합니다 *'
+                : '아이디는 대, 소문자, 특수기호만 5~15자 이내로 가능합니다 *'
             }
           />
           {isIdValid && (

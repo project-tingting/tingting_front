@@ -38,8 +38,9 @@ export const useUserLogin = ({ userId, password }: userInfo) => {
       e.preventDefault();
     },
     onSuccess: (data) => {
+      console.log(data);
       localStorage.setItem('access-token', data.data.data.accessToken);
-      Router.push(`/home/${data.data.uuid}`);
+      Router.push(`/home/${data.data.data.uuid}`);
     },
     onError: (error) => {
       console.error(error);

@@ -25,11 +25,12 @@ const StyledButton = styled.button<BtnPatternProps>`
   padding: 1.7rem;
   line-height: 2.9rem;
   margin-bottom: 2.1rem;
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
-  background-color: ${(props) =>
-    props.disabled
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
+  background-color: ${({ disabled }) =>
+    disabled
       ? ({ theme }) => theme.colors.buttonDisabledColor
       : ({ theme }) => theme.colors.mainColor};
-  border-radius: ${(props) => (props.isRound ? '1.8rem' : '0rem')};
+  border-radius: ${({ isRound }) => (isRound ? '1.8rem' : '0rem')};
+  position: fixed;
   bottom: 0;
 `;
