@@ -8,7 +8,8 @@ import Func from '../../components/Home/Func';
 import BottomNavigation from '../../components/Home/BottomNavigation';
 import Party from '../../components/Home/Party';
 import PartyNum from '../../components/Home/PartyNum';
-import { Wrap } from '../../components/common/Wrap';
+import AppLayout from '../../components/Layout/AppLayout';
+import { FixedAppLayout } from '../../components/Layout/FixedLayout';
 
 export default function Home() {
   const { data: userInfo } = useGetUserInfo();
@@ -22,12 +23,14 @@ export default function Home() {
     <>
       <TopNavigation tokenNum={userInfo?.data.data.tingTingToken} />
       <Banner />
-      <Wrap>
+      <AppLayout>
         <Party />
         <PartyNum />
         <Func />
-      </Wrap>
+      </AppLayout>
       <BottomNavigation />
     </>
   );
 }
+
+Home.Layout = FixedAppLayout;

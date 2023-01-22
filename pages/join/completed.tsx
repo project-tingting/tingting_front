@@ -1,8 +1,8 @@
 import Router from 'next/router';
 import useGetAccessToken from '../../util/hooks/useGetAccessToken';
 import React, { useEffect } from 'react';
-import Notice from '../../components/Notice';
-import { Wrap } from '../../components/common/Wrap';
+
+import Notice from '../../components/common/Notice';
 
 export default function completed() {
   const { mutate: getAccessToken } = useGetAccessToken();
@@ -12,9 +12,5 @@ export default function completed() {
       Router.push('/profile');
     }, 2000);
   }, []);
-  return (
-    <Wrap>
-      <Notice message="팅팅에 가입되었어요!" />
-    </Wrap>
-  );
+  return <Notice message="팅팅에 가입되었어요!" />;
 }

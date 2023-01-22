@@ -4,17 +4,17 @@ import styled from 'styled-components';
 import useInput from '../../util/hooks/useInput';
 import useCheckUserInfo from '../../util/hooks/useCheckUserInfo';
 
-import Top from '../../components/Top';
-import ProgressBar from '../../components/ProgressBar';
-import Container from '../../components/Container';
-import InputContainer from '../../components/AnimationContainer';
-import Guide from '../../components/Guide';
+import Top from '../../components/common/Top';
+import ProgressBar from '../../components/common/ProgressBar';
+import Container from '../../components/common/Container';
+import InputContainer from '../../components/common/AnimationContainer';
+import Guide from '../../components/common/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
-import Button from '../../components/Button';
-import { Wrap } from '../../components/common/Wrap';
 
-export default function nickname() {
+import Button from '../../components/common/Button';
+
+export default function userinfo() {
   const [userId, handleUserId] = useInput('');
   const [password, handlePassword] = useInput('');
 
@@ -24,7 +24,7 @@ export default function nickname() {
     Router.push('/join/year');
   }, []);
   return (
-    <Wrap>
+    <>
       <Top text="회원가입" />
       <ProgressBar stage={1} total={4} />
       <Container>
@@ -67,7 +67,7 @@ export default function nickname() {
           text="계속하기"
         />
       </Container>
-    </Wrap>
+    </>
   );
 }
 

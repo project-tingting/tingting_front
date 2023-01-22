@@ -4,16 +4,15 @@ import Router from 'next/router';
 import useInput from '../../util/hooks/useInput';
 import useValidateUniversity from '../../util/hooks/useValidateUniversity';
 
-import Top from '../../components/Top';
-import ProgressBar from '../../components/ProgressBar';
-import Container from '../../components/Container';
-import InputContainer from '../../components/AnimationContainer';
-import Guide from '../../components/Guide';
+import Top from '../../components/common/Top';
+import ProgressBar from '../../components/common/ProgressBar';
+import Container from '../../components/common/Container';
+import InputContainer from '../../components/common/AnimationContainer';
+import Guide from '../../components/common/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
-import Button from '../../components/Button';
+import Button from '../../components/common/Button';
 import { ValidateButton } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
-import { Wrap } from '../../components/common/Wrap';
 
 export default function school() {
   const [schoolEmail, handleSchoolEmail] = useInput('');
@@ -24,7 +23,7 @@ export default function school() {
     Router.push('/join/completed');
   }, []);
   return (
-    <Wrap>
+    <>
       <Top text="회원가입" />
       <ProgressBar stage={4} total={4} />
       <Container>
@@ -51,7 +50,7 @@ export default function school() {
           text="계속하기"
         />
       </Container>
-    </Wrap>
+    </>
   );
 }
 

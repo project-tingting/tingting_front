@@ -4,14 +4,13 @@ import { useSetRecoilState } from 'recoil';
 
 import { ProfileType, userProfileState } from '../../core/recoil/userProfileAtom';
 
-import InputContainer from '../../components/AnimationContainer';
-import Button from '../../components/Button';
-import Container from '../../components/Container';
-import Guide from '../../components/Guide';
-import ProgressBar from '../../components/ProgressBar';
-import Top from '../../components/Top';
-import UserInput, { ErrorText } from '../../components/UserInput';
-import { Wrap } from '../../components/common/Wrap';
+import InputContainer from '../../components/common/AnimationContainer';
+import Button from '../../components/common/Button';
+import Container from '../../components/common/Container';
+import Guide from '../../components/common/Guide';
+import ProgressBar from '../../components/common/ProgressBar';
+import Top from '../../components/common/Top';
+import UserInput, { ErrorText } from '../../components/common/UserInput';
 
 export default function mbti() {
   const setUserProfile = useSetRecoilState(userProfileState);
@@ -50,7 +49,7 @@ export default function mbti() {
     Router.push('/profile/interest');
   };
   return (
-    <Wrap>
+    <>
       <Top text="프로필" />
       <ProgressBar stage={1} total={3} />
       <Container>
@@ -76,6 +75,6 @@ export default function mbti() {
           isRound={true}
         />
       </Container>
-    </Wrap>
+    </>
   );
 }

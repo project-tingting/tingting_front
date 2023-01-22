@@ -10,7 +10,7 @@ import { useGetChat } from '../../util/hooks/useGetChat';
 import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
-import { Wrap } from '../../components/common/Wrap';
+import { FiexdSection } from '../../components/Layout/FixedLayout';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
@@ -53,44 +53,42 @@ export default function chat() {
   };
 
   return (
-    <Wrap>
-      <Container>
-        <TopNavigation isChat={true} tokenNum={null} />
-        <ChatContainer>
-          <ChatNotice>
-            <Image src={notice} />
-            <NoticeContents>
-              <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
-              <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
-            </NoticeContents>
-          </ChatNotice>
-          <Chatting>
-            <>
-              {messages?.data?.messageList.map((item: any) => {
-                console.log(item.uuid);
-                return item?.uuid === userData?.data?.data?.user?.uuid ? (
-                  <MyChatBubble text={item.message} key={item.id} />
-                ) : (
-                  <OtherChatBubble userId={item.userId} text={item.message} key={item.id} />
-                );
-              })}
-            </>
-          </Chatting>
-        </ChatContainer>
-        <div ref={ref}></div>
-        <SendChat>
-          <StyledWrap>
-            <ChatInput
-              type="text"
-              placeholder="채팅을 팅팅!"
-              onChange={handleChat}
-              value={chatMessage}
-            />
-            <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
-          </StyledWrap>
-        </SendChat>
-      </Container>
-    </Wrap>
+    <Container>
+      <TopNavigation isChat={true} tokenNum={null} />
+      <ChatContainer>
+        <ChatNotice>
+          <Image src={notice} />
+          <NoticeContents>
+            <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
+            <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
+          </NoticeContents>
+        </ChatNotice>
+        <Chatting>
+          <>
+            {messages?.data?.messageList.map((item: any) => {
+              console.log(item.uuid);
+              return item?.uuid === userData?.data?.data?.user?.uuid ? (
+                <MyChatBubble text={item.message} key={item.id} />
+              ) : (
+                <OtherChatBubble userId={item.userId} text={item.message} key={item.id} />
+              );
+            })}
+          </>
+        </Chatting>
+      </ChatContainer>
+      <div ref={ref}></div>
+      <SendChat>
+        <StyledFixed>
+          <ChatInput
+            type="text"
+            placeholder="채팅을 팅팅!"
+            onChange={handleChat}
+            value={chatMessage}
+          />
+          <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
+        </StyledFixed>
+      </SendChat>
+    </Container>
   );
 }
 
@@ -122,7 +120,7 @@ const SendChat = styled.div`
   right: 0;
 `;
 
-const StyledWrap = styled(Wrap)`
+const StyledFixed = styled(FiexdSection)`
   display: flex;
   gap: 1.4rem;
   & img {
