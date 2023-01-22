@@ -12,8 +12,9 @@ export default function EditMbti() {
   const [text, setText] = useState<string | undefined>(undefined);
   console.log(text);
 
-  const mbtiDisplayText = data?.data?.userProfileList?.find((item: any) => item.topic === 'mbti')
-    ?.valueList[0];
+  const mbtiDisplayText = data?.data?.userProfileList?.find(
+    (item: ProfileType) => item.topic === 'mbti',
+  )?.valueList[0];
   const selected = text || mbtiDisplayText;
 
   console.log('mbtiDisaply', mbtiDisplayText);

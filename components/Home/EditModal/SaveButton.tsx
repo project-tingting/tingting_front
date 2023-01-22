@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import refresh from '../../../public/assets/icons/refresh.svg';
 import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
@@ -9,7 +9,6 @@ import { userProfileState } from '../../../core/recoil/userProfileAtom';
 
 interface SaveButtonProps {
   disabled?: boolean;
-  // value?: string;
 }
 
 export default function SaveButton({ disabled }: SaveButtonProps) {
