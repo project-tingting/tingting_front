@@ -66,7 +66,7 @@ const FormContainer = styled.section`
 const SubGuide = styled.p`
   color: ${({ theme }) => theme.colors.descriptionColor};
   font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 1.9rem;
+  font-size: 2rem;
+  line-height: 2.4rem;
   margin-top: -3.8rem;
 `;
