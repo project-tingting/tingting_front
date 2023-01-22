@@ -10,7 +10,9 @@ import '../public/assets/fonts/style.css';
 
 import AppLayout from '../components/Layout/AppLayout';
 
-export default function _app({ Component, pageProps }: AppProps) {
+export default function _app({ Component, pageProps }: any) {
+  const Layout = Component.Layout || AppLayout;
+
   function setScreenSize() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -36,9 +38,9 @@ export default function _app({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <RecoilRoot>
-            <AppLayout>
+            <Layout>
               <Component {...pageProps} />
-            </AppLayout>
+            </Layout>
           </RecoilRoot>
         </ThemeProvider>
       </QueryClientProvider>
