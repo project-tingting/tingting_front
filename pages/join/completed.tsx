@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import useGetAccessToken from '../../util/hooks/useGetAccessToken';
 
 import Notice from '../../components/common/Notice';
-
 import FinishIcon from '../../public/assets/icons/finish.svg';
 
 export default function completed() {

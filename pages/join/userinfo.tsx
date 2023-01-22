@@ -11,6 +11,7 @@ import InputContainer from '../../components/common/AnimationContainer';
 import Guide from '../../components/common/Guide';
 import { StyledInput } from '../../components/Join/FormElement';
 import InputMessage from '../../components/Join/InputMessage';
+
 import Button from '../../components/common/Button';
 
 export default function userinfo() {

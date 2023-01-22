@@ -10,6 +10,7 @@ import { useGetChat } from '../../util/hooks/useGetChat';
 import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
+import { FiexdSection } from '../../components/Layout/FixedLayout';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
@@ -52,32 +53,32 @@ export default function chat() {
   };
 
   return (
-    <>
-      <Container>
-        <TopNavigation isChat={true} tokenNum={null} />
-        <ChatContainer>
-          <ChatNotice>
-            <Image src={notice} />
-            <NoticeContents>
-              <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
-              <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
-            </NoticeContents>
-          </ChatNotice>
-          <Chatting>
-            <>
-              {messages?.data?.messageList.map((item: any) => {
-                console.log(item.uuid);
-                return item?.uuid === userData?.data?.data?.user?.uuid ? (
-                  <MyChatBubble text={item.message} key={item.id} />
-                ) : (
-                  <OtherChatBubble userId={item.userId} text={item.message} key={item.id} />
-                );
-              })}
-            </>
-          </Chatting>
-        </ChatContainer>
-        <div ref={ref}></div>
-        <SendChat>
+    <Container>
+      <TopNavigation isChat={true} tokenNum={null} />
+      <ChatContainer>
+        <ChatNotice>
+          <Image src={notice} />
+          <NoticeContents>
+            <NoticeText>나가기 전까지 새로운 팀과</NoticeText>
+            <NoticeText>매칭을 이용할 수 없습니다</NoticeText>
+          </NoticeContents>
+        </ChatNotice>
+        <Chatting>
+          <>
+            {messages?.data?.messageList.map((item: any) => {
+              console.log(item.uuid);
+              return item?.uuid === userData?.data?.data?.user?.uuid ? (
+                <MyChatBubble text={item.message} key={item.id} />
+              ) : (
+                <OtherChatBubble userId={item.userId} text={item.message} key={item.id} />
+              );
+            })}
+          </>
+        </Chatting>
+      </ChatContainer>
+      <div ref={ref}></div>
+      <SendChat>
+        <StyledFixed>
           <ChatInput
             type="text"
             placeholder="채팅을 팅팅!"
@@ -85,9 +86,9 @@ export default function chat() {
             value={chatMessage}
           />
           <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
-        </SendChat>
-      </Container>
-    </>
+        </StyledFixed>
+      </SendChat>
+    </Container>
   );
 }
 
@@ -98,19 +99,33 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.bgColor};
 `;
 
+const ChatContainer = styled.div`
+  padding-top: 4.4rem;
+  padding-bottom: 5.4rem;
+  height: 100%;
+`;
+
 const Chatting = styled.section`
   padding: 2.7rem 2rem;
+  background-color: ${({ theme }) => theme.colors.bgColor};
+  height: 100%;
 `;
 
 const SendChat = styled.div`
   background-color: ${({ theme }) => theme.colors.whiteColor};
   padding: 0.6rem 1.2rem;
-  display: flex;
-  gap: 1.4rem;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+`;
+
+const StyledFixed = styled(FiexdSection)`
+  display: flex;
+  gap: 1.4rem;
+  & img {
+    cursor: pointer;
+  }
 `;
 
 const ChatInput = styled.input`
@@ -139,9 +154,4 @@ const NoticeText = styled.p`
   font-weight: 400;
   font-size: 1.6rem;
   color: #353535;
-`;
-
-const ChatContainer = styled.div`
-  padding-top: 4.4rem;
-  padding-bottom: 5.4rem;
 `;
