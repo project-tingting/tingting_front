@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export const baseAPI = axios.create({
-  baseURL: 'http://15.164.224.151:8080/tingting',
+  baseURL: BASE_URL,
 });
 
 export const userAPI = axios.create({
-  baseURL: 'http://15.164.224.151:8080/tingting/user',
+  baseURL: `${BASE_URL}/user`,
 });

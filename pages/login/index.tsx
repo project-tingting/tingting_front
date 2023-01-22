@@ -2,11 +2,11 @@ import React from 'react';
 import Router from 'next/router';
 import styled from 'styled-components';
 import Image from 'next/image';
-import useLoginForm from '../../util/hooks/useLoginForm';
+import { useUserLogin } from '../../core/apiHooks/user';
 
 import TingTingLogo from '../../public/assets/icons/SmallLogo.svg';
 import { StyledInput } from '../../components/Join/FormElement';
-import Button from '../../components/Button';
+import Button from '../../components/common/Button';
 import useInput from '../../util/hooks/useInput';
 import ErrorMessage from '../../components/Join/ErrorMessage';
 
@@ -14,7 +14,7 @@ export default function index() {
   const [userId, handleUserId] = useInput('');
   const [password, handlePassword] = useInput('');
 
-  const { mutate: submitLogin, data: status_code } = useLoginForm(userId, password);
+  const { mutate: submitLogin, data: status_code } = useUserLogin({ userId, password });
 
   const handleClickJoinButton = () => {
     Router.push('/join/userinfo');
@@ -23,7 +23,7 @@ export default function index() {
   return (
     <StyledContainer>
       <Image src={TingTingLogo} alt="팅팅 로고" priority={true} />
-      <FormContainer onSubmit={submitLogin}>
+      <FormContainer>
         <InputContainer>
           <StyledInput sizing="small" placeholder="아이디" type="text" onChange={handleUserId} />
           <StyledInput
@@ -32,9 +32,16 @@ export default function index() {
             type="password"
             onChange={handlePassword}
           />
-          {status_code === 400 && <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />}
+          {status_code?.data.data.code === 400 && (
+            <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />
+          )}
         </InputContainer>
-        <Button text="로그인" isRound={true} disabled={!userId || !password} />
+        <Button
+          text="로그인"
+          isRound={true}
+          disabled={!userId || !password}
+          onClick={submitLogin}
+        />
         <OptionContainer>
           <Option>아이디 찾기</Option>
           <Option>비밀번호 찾기</Option>

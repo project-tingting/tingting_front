@@ -3,6 +3,10 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
+    :root {
+        --vh: 100%;
+    }
+
     html {
         font-size: 62.5%;
         font-family: 'Pretendard';
