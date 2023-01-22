@@ -52,15 +52,15 @@ const StyledBackground = styled.section`
 
 const BackGround = styled.div`
   height: 100vh;
-  position: relative;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-end;
 `;
 
 const Wrapper = styled.article`
-  position: absolute;
-  width: 100%;
-  bottom: 0;
+  max-width: 43rem;
+  margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.whiteColor};
   border-radius: 2rem 2rem 0 0;
   padding: 4.2rem 1.9rem;

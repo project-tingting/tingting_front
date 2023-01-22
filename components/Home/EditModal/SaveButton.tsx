@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components';
 import refresh from '../../../public/assets/icons/refresh.svg';
 import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
 import { useGetUserProfile, usePutUserProfile } from '../../Profile/apiHooks/profile';
+import { useRecoilValue } from 'recoil';
+import { userProfileState } from '../../../core/recoil/userProfileAtom';
 
 interface SaveButtonProps {
   disabled?: boolean;
@@ -11,12 +13,13 @@ interface SaveButtonProps {
 }
 
 export default function SaveButton({ disabled }: SaveButtonProps) {
+  const userProfile = useRecoilValue(userProfileState);
   const { refetch } = useGetUserProfile();
   const { mutate: putUserProfileMutate } = usePutUserProfile({ refetch });
 
   return (
     <Container>
-      <StyledSaveButton disabled={disabled} onClick={() => putUserProfileMutate()}>
+      <StyledSaveButton disabled={disabled} onClick={() => putUserProfileMutate(userProfile)}>
         현재상태 저장
         {disabled ? <Image src={disabledRefresh} /> : <Image src={refresh} />}
       </StyledSaveButton>
