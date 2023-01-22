@@ -29,6 +29,7 @@ export default function school() {
       <Container>
         <InputContainer>
           <Guide text="다니는 학교를 알려주세요" />
+          <SubGuide>추후 변경이 불가하니 신중히 선택해주세요</SubGuide>
           <FormContainer>
             <StyledInput
               type="email"
@@ -58,4 +59,14 @@ const FormContainer = styled.section`
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+
+  margin-top: 2.8rem;
+`;
+
+const SubGuide = styled.p`
+  color: ${({ theme }) => theme.colors.descriptionColor};
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  margin-top: -3.8rem;
 `;

@@ -67,6 +67,6 @@ const SubGuide = styled.p`
   color: ${({ theme }) => theme.colors.descriptionColor};
   font-weight: 500;
   font-size: 1.6rem;
-  line-height: 2rem;
-  margin-top: -4.2rem;
+  line-height: 1.9rem;
+  margin-top: -3.8rem;
 `;
