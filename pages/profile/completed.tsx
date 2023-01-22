@@ -1,23 +1,13 @@
-import Router from 'next/router';
 import React, { useEffect } from 'react';
 import InputContainer from '../../components/AnimationContainer';
 import Notice from '../../components/Notice';
-import { usePostProfile } from '../../util/hooks/usePostProfile';
+import { usePostProfile } from '../../components/Profile/apiHooks/profile';
 
 export default function completed() {
-  const { mutate } = usePostProfile({
-    onError: () => {
-      console.log('error');
-    },
-    onSuccess: (data) => {
-      setTimeout(() => {
-        Router.push('/login');
-      }, 2000);
-    },
-  });
+  const { mutate: postProfileMutate } = usePostProfile();
 
   useEffect(() => {
-    mutate({});
+    postProfileMutate();
   }, []);
 
   return (

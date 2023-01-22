@@ -3,10 +3,7 @@ import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import refresh from '../../../public/assets/icons/refresh.svg';
 import disabledRefresh from '../../../public/assets/icons/disabledRefresh.svg';
-import { usePutUserProfile } from '../../../util/hooks/usePutUserProfile';
-import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
+import { useGetUserProfile, usePutUserProfile } from '../../Profile/apiHooks/profile';
 
 interface SaveButtonProps {
   disabled?: boolean;
@@ -16,17 +13,14 @@ interface SaveButtonProps {
 export default function SaveButton({ disabled }: SaveButtonProps) {
   const { refetch } = useGetUserProfile();
   const { mutate } = usePutUserProfile({
-    onError: () => {
-      console.log('error');
-    },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       console.log(data);
       refetch();
     },
   });
 
   const handleSaveProfile = () => {
-    mutate({});
+    mutate;
   };
   return (
     <Container>

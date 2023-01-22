@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
-import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
+import { useGetUserProfile } from '../../Profile/apiHooks/profile';
 import MbtiKeyword from '../MbtiKeyword';
 import SaveButton from './SaveButton';
 

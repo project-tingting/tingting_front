@@ -10,9 +10,9 @@ import whiteX from '../../../public/assets/icons/whiteX.svg';
 import { Container } from './EditMbti';
 import SaveButton from './SaveButton';
 import styled from 'styled-components';
-import { useGetUserProfile } from '../../../util/hooks/useGetUserProfile';
 import { useSetRecoilState } from 'recoil';
 import { ProfileType, userProfileState } from '../../../core/recoil/userProfileAtom';
+import { useGetUserProfile } from '../../Profile/apiHooks/profile';
 
 export default function EditAlcohol() {
   const { data } = useGetUserProfile();

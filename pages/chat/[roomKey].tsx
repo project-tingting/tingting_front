@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import { useGetChat, usePostChat } from '../../components/Chat/apiHooks/chat';
+import { chatProps } from '../../types/chat';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
@@ -23,16 +24,13 @@ export default function chat() {
   const { data: messages, refetch } = useGetChat({ roomKey });
   console.log(messages);
 
-  const { mutate } = usePostChat({
-    onError: (error) => {
-      console.error(error);
-    },
+  const { mutate: postChatMutate } = usePostChat({
     onSuccess: async () => {
       await refetch();
-      ref.current?.scrollIntoView({
-        behavior: 'auto',
-        block: 'nearest',
-      });
+      // ref.current?.scrollIntoView({
+      //   behavior: 'auto',
+      //   block: 'nearest',
+      // });
     },
   });
 
@@ -45,8 +43,8 @@ export default function chat() {
     setChatMessage(e.target.value);
   };
 
-  const handleSend = (chatMessage: string) => {
-    mutate(chatMessage);
+  const handleSend = ({ chatMessage }: chatProps) => {
+    postChatMutate(chatMessage);
     setChatMessage('');
   };
 
@@ -83,7 +81,7 @@ export default function chat() {
             onChange={handleChat}
             value={chatMessage}
           />
-          <Image src={sendchat} onClick={() => handleSend(chatMessage)} />
+          <Image src={sendchat} onClick={() => handleSend({ chatMessage })} />
         </SendChat>
       </Container>
     </>
