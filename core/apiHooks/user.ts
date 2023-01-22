@@ -34,7 +34,7 @@ export const useSetUserRegister = (userInfo: object) => {
 // 로그인
 export const useUserLogin = ({ userId, password }: userInfo) => {
   return useMutation(() => submitLogin(userId, password), {
-    onMutate: (e: React.MouseEvent<HTMLButtonElement>) => {
+    onMutate: (e: React.MouseEvent<HTMLFormElement>) => {
       e.preventDefault();
     },
     onSuccess: (data) => {

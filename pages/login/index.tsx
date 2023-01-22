@@ -23,7 +23,7 @@ export default function index() {
   return (
     <StyledContainer>
       <Image src={TingTingLogo} alt="팅팅 로고" priority={true} />
-      <FormContainer>
+      <FormContainer onSubmit={submitLogin}>
         <InputContainer>
           <StyledInput sizing="small" placeholder="아이디" type="text" onChange={handleUserId} />
           <StyledInput
@@ -36,12 +36,7 @@ export default function index() {
             <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />
           )}
         </InputContainer>
-        <LoginButton
-          text="로그인"
-          isRound={true}
-          disabled={!userId || !password}
-          onClick={submitLogin}
-        />
+        <LoginButton text="로그인" isRound={true} disabled={!userId || !password} />
         <OptionContainer>
           <Option>아이디 찾기</Option>
           <Option>비밀번호 찾기</Option>
