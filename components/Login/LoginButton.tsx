@@ -11,7 +11,7 @@ interface BtnProps extends BtnPatternProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Button({ text, isRound, disabled, onClick }: BtnProps) {
+export default function LoginButton({ text, isRound, disabled, onClick }: BtnProps) {
   return (
     <StyledButton isRound={isRound} disabled={disabled} onClick={onClick}>
       {text}

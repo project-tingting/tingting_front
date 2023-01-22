@@ -6,7 +6,7 @@ import { useUserLogin } from '../../core/apiHooks/user';
 
 import TingTingLogo from '../../public/assets/icons/SmallLogo.svg';
 import { StyledInput } from '../../components/Join/FormElement';
-import Button from '../../components/common/Button';
+import LoginButton from '../../components/Login/LoginButton';
 import useInput from '../../util/hooks/useInput';
 import ErrorMessage from '../../components/Join/ErrorMessage';
 
@@ -36,7 +36,7 @@ export default function index() {
             <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />
           )}
         </InputContainer>
-        <Button
+        <LoginButton
           text="로그인"
           isRound={true}
           disabled={!userId || !password}
@@ -57,7 +57,9 @@ const StyledContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 100vh;
+  width: 100%;
 `;
 
 const FormContainer = styled.form`
@@ -66,6 +68,7 @@ const FormContainer = styled.form`
   justify-content: space-around;
   padding: 3.2rem 2.4rem;
   height: 39rem;
+  width: 100%;
 `;
 
 const InputContainer = styled.section`
@@ -79,11 +82,15 @@ const OptionContainer = styled.ul`
   width: 100%;
   justify-content: space-between;
 
+  li {
+    text-align: center;
+  }
+
   li:first-child,
   li:nth-child(2) {
     border-right: 1px solid #adb3bc;
   }
-
+  /* 
   li:first-child {
     text-align: right;
   }
@@ -94,7 +101,7 @@ const OptionContainer = styled.ul`
 
   li:last-child {
     text-align: left;
-  }
+  } */
 `;
 
 const Option = styled.li`
@@ -102,6 +109,6 @@ const Option = styled.li`
   line-height: 2.8rem;
   color: ${({ theme }) => theme.colors.subTitleColor};
   width: calc(100% / 3);
-  padding: 0 1.2rem;
+  /* padding: 0 1.2rem; */
   cursor: pointer;
 `;
