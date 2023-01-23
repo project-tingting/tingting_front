@@ -56,6 +56,7 @@ const GenderButtonContainer = styled.section`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  height: 100%;
 `;
 
 const SubGuide = styled.p`
