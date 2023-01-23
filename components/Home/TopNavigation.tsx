@@ -12,7 +12,7 @@ import outChat from '../../public/assets/icons/outChat.svg';
 import ChatModal from '../Chat/ChatModal';
 import TokenIcon from '../../public/assets/icons/token.svg';
 import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
-import { FixedLayout } from '../Layout/FixedLayout';
+import { FixedTopLayout } from '../Layout/FixedLayout';
 
 interface TopNavProps {
   isChat?: boolean;
@@ -60,7 +60,7 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
   return (
     <StyledContainer>
       {modal && <ChatModal handleContinue={handleContinue} />}
-      <FixedLayout>
+      <FixedTopLayout>
         {isChat ? (
           <Image src={outChat} alt="go back" onClick={onClickBack} />
         ) : (
@@ -82,7 +82,7 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
             <Image src={No_Chat} alt="채팅 알림 버튼" onClick={handleGoChat} />
           )}
         </Func>
-      </FixedLayout>
+      </FixedTopLayout>
     </StyledContainer>
   );
 }

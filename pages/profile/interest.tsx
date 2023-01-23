@@ -8,10 +8,10 @@ import InputContainer from '../../components/common/AnimationContainer';
 import Button from '../../components/common/Button';
 import Container from '../../components/common/Container';
 import Guide from '../../components/common/Guide';
-import Keyword, { interestData } from '../../components/common/Keyword';
 import ProgressBar from '../../components/common/ProgressBar';
 import Top from '../../components/common/Top';
 import { ErrorText } from '../../components/common/UserInput';
+import Keyword, { interestData } from '../../components/common/Keyword';
 
 export default function interest() {
   const profile = useRecoilValue(userProfileState);
@@ -68,7 +68,7 @@ export default function interest() {
       <Container>
         <InputContainer>
           <Guide text="관심사 키워드를 선택해주세요" />
-          {interestData.map((text) => (
+          {interestData.map((text: string) => (
             <Keyword key={text} text={text} onClicked={handleOnClicked} />
           ))}
           {isError && (
@@ -76,13 +76,13 @@ export default function interest() {
               {msg} <span>*</span>
             </ErrorText>
           )}
+          <Button
+            onClick={handleContinueButton}
+            text="계속하기"
+            disabled={isDisabled}
+            isRound={true}
+          />
         </InputContainer>
-        <Button
-          onClick={handleContinueButton}
-          text="계속하기"
-          disabled={isDisabled}
-          isRound={true}
-        />
       </Container>
     </>
   );
