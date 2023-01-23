@@ -18,8 +18,8 @@ export default function Notice({ message, children }: NoticeProps) {
 const NoticeWrap = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
+  align-items: center;
 `;
 
 const NoticeMessage = styled.p`

@@ -11,7 +11,6 @@ import Guide from '../../components/common/Guide';
 import ProgressBar from '../../components/common/ProgressBar';
 import Top from '../../components/common/Top';
 import UserInput, { ErrorText } from '../../components/common/UserInput';
-import styled from 'styled-components';
 
 export default function mbti() {
   const setUserProfile = useSetRecoilState(userProfileState);
