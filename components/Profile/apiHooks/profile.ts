@@ -16,6 +16,7 @@ export const usePostProfile = () => {
       console.error(error);
     },
     onSuccess: () => {
+      Router.push('/profile/completed');
       setTimeout(() => {
         Router.push('/login');
       }, 2000);
