@@ -29,8 +29,7 @@ export default function alcohol() {
       <ProgressBar stage={3} total={4} />
       <Container>
         <InputContainer>
-          <Guide text="술은 얼마나 드시나요?"></Guide>
-          <SubGuide>대답에 따라 유형캐릭터가 달라집니다</SubGuide>
+          <Guide text="술은 얼마나 드시나요?" subText="대답에 따라 유형캐릭터가 달라집니다"></Guide>
         </InputContainer>
         <AlcoholButtonContainer>
           <AlcoholButton
@@ -67,12 +66,4 @@ const AlcoholButtonContainer = styled.section`
   align-items: center;
   gap: 1rem;
   height: 100%;
-`;
-
-const SubGuide = styled.p`
-  color: ${({ theme }) => theme.colors.descriptionColor};
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 2.4rem;
-  margin-top: -3.8rem;
 `;

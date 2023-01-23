@@ -12,6 +12,7 @@ import ProgressBar from '../../components/common/ProgressBar';
 import Top from '../../components/common/Top';
 import { ErrorText } from '../../components/common/UserInput';
 import Keyword, { interestData } from '../../components/common/Keyword';
+import styled from 'styled-components';
 
 export default function interest() {
   const profile = useRecoilValue(userProfileState);
@@ -64,13 +65,18 @@ export default function interest() {
   return (
     <>
       <Top text="프로필" />
-      <ProgressBar stage={2} total={3} />
+      <ProgressBar stage={2} total={4} />
       <Container>
         <InputContainer>
-          <Guide text="관심사 키워드를 선택해주세요" />
-          {interestData.map((text: string) => (
-            <Keyword key={text} text={text} onClicked={handleOnClicked} />
-          ))}
+          <Guide
+            text="관심사 키워드를 선택해주세요"
+            subText="대답에 따라 유형캐릭터가 달라집니다"
+          />
+          <KeywordContainer>
+            {interestData.map((text: string) => (
+              <Keyword key={text} text={text} onClicked={handleOnClicked} />
+            ))}
+          </KeywordContainer>
           {isError && (
             <ErrorText>
               {msg} <span>*</span>
@@ -87,3 +93,7 @@ export default function interest() {
     </>
   );
 }
+
+const KeywordContainer = styled.article`
+  margin-top: 2.8rem;
+`;

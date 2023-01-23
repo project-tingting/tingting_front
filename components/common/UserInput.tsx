@@ -48,6 +48,7 @@ export const InputBox = styled.input<IInnerScreen>`
   line-height: 3.3rem;
   font-size: 2.8rem;
   color: ${({ theme }) => theme.colors.inputTextUserColor};
+  margin-top: 2.8rem;
   &:focus {
     border: 0.2rem solid ${({ theme }) => theme.colors.mainColor};
   }

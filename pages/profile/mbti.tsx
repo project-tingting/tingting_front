@@ -11,6 +11,7 @@ import Guide from '../../components/common/Guide';
 import ProgressBar from '../../components/common/ProgressBar';
 import Top from '../../components/common/Top';
 import UserInput, { ErrorText } from '../../components/common/UserInput';
+import styled from 'styled-components';
 
 export default function mbti() {
   const setUserProfile = useSetRecoilState(userProfileState);
@@ -51,10 +52,10 @@ export default function mbti() {
   return (
     <>
       <Top text="프로필" />
-      <ProgressBar stage={1} total={3} />
+      <ProgressBar stage={1} total={4} />
       <Container>
         <InputContainer>
-          <Guide text="MBTI를 알려주세요" />
+          <Guide text="MBTI를 알려주세요" subText="대답에 따라 유형캐릭터가 달라집니다" />
           <UserInput
             type="text"
             sizing="small"
