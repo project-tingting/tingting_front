@@ -10,7 +10,7 @@ import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import { useGetChat, usePostChat } from '../../components/Chat/apiHooks/chat';
 import { chatProps } from '../../types/chat';
-import { FiexdSection } from '../../components/Layout/FixedLayout';
+import { FixedBottomSection } from '../../components/Layout/FixedLayout';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
@@ -111,14 +111,9 @@ const Chatting = styled.section`
 const SendChat = styled.div`
   background-color: ${({ theme }) => theme.colors.whiteColor};
   padding: 0.6rem 1.2rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
 `;
 
-const StyledFixed = styled(FiexdSection)`
-  display: flex;
+const StyledFixed = styled(FixedBottomSection)`
   gap: 1.4rem;
   & img {
     cursor: pointer;
