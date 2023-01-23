@@ -26,19 +26,19 @@ export default function gende() {
         <InputContainer>
           <Guide text="성별을 알려주세요" />
           <SubGuide>추후 변경이 불가하니 신중히 선택해주세요</SubGuide>
-          <GenderButtonContainer>
-            <GenderButton
-              gender="male"
-              onClick={handleClickMaleButton}
-              className={gender === 'm' ? 'maleClicked' : ''}
-            />
-            <GenderButton
-              gender="female"
-              onClick={handleClickFemaleButton}
-              className={gender === 'w' ? 'femaleClicked' : ''}
-            />
-          </GenderButtonContainer>
         </InputContainer>
+        <GenderButtonContainer>
+          <GenderButton
+            gender="male"
+            onClick={handleClickMaleButton}
+            className={gender === 'm' ? 'maleClicked' : ''}
+          />
+          <GenderButton
+            gender="female"
+            onClick={handleClickFemaleButton}
+            className={gender === 'w' ? 'femaleClicked' : ''}
+          />
+        </GenderButtonContainer>
         <Button
           onClick={handleClickContinueButton}
           isRound={true}
@@ -52,15 +52,10 @@ export default function gende() {
 
 const GenderButtonContainer = styled.section`
   display: flex;
-  width: calc(100% - 4rem);
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 const SubGuide = styled.p`
