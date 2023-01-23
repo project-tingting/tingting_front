@@ -25,6 +25,4 @@ export default function InputContainer({ children }: Props) {
   );
 }
 
-const StyledInputContainer = styled(motion.section)<MotionProps>`
-  padding-bottom: 9.5rem;
-`;
+const StyledInputContainer = styled(motion.section)<MotionProps>``;
