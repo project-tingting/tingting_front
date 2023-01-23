@@ -31,6 +31,5 @@ const StyledButton = styled.button<BtnPatternProps>`
       ? ({ theme }) => theme.colors.buttonDisabledColor
       : ({ theme }) => theme.colors.mainColor};
   border-radius: ${({ isRound }) => (isRound ? '1.8rem' : '0rem')};
-  position: fixed;
   bottom: 0;
 `;

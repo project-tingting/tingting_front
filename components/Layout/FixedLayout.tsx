@@ -10,10 +10,10 @@ export function FixedAppLayout({ children }: LayoutProps) {
 }
 
 export function FixedLayout({ children }: LayoutProps) {
-  return <FiexdSection>{children}</FiexdSection>;
+  return <FixedSection>{children}</FixedSection>;
 }
 
-export const FiexdSection = styled.section`
+export const FixedSection = styled.section`
   max-width: 43rem;
   display: flex;
   justify-content: space-between;
