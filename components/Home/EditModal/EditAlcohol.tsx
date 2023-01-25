@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { OXButton, OXButtonGroup } from '../../../pages/profile/alcohol';
+// import { OXButton, OXButtonGroup } from '../../../pages/profile/alcohol';
 import { Hr } from './EditMbti';
 
 import purpleO from '../../../public/assets/icons/purpleO.svg';
@@ -65,14 +65,14 @@ export default function EditAlcohol() {
           </>
         )}
 
-        <ButtonGroup>
+        {/* <ButtonGroup>
           <OXButton onClick={handleOButton} className={alcohol === '1' ? 'clicked' : ''}>
             <Image src={alcohol === '1' ? whiteO : purpleO} />
           </OXButton>
           <OXButton onClick={handleXButton} className={alcohol === '0' ? 'clicked' : ''}>
             <Image src={alcohol === '0' ? whiteX : purpleX} />
           </OXButton>
-        </ButtonGroup>
+        </ButtonGroup> */}
       </div>
       <SaveButton />
     </Container>
@@ -84,6 +84,6 @@ const SelectedImg = styled.div`
   margin-top: 2.8rem;
 `;
 
-const ButtonGroup = styled(OXButtonGroup)`
-  margin-top: 1.6rem;
-`;
+// const ButtonGroup = styled(OXButtonGroup)`
+//   margin-top: 1.6rem;
+// `;
