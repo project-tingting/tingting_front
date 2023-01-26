@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import SearchLogo from '../../../public/assets/icons/search.svg';
 import UserList from './UserList';
-import AppLayout from '../../Layout/AppLayout';
 
 type Props = {
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
