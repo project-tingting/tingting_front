@@ -6,8 +6,6 @@ import TopNavigation from '../../components/Home/TopNavigation';
 import Banner from '../../components/Home/Banner';
 import Func from '../../components/Home/Func';
 import BottomNavigation from '../../components/Home/BottomNavigation';
-import Party from '../../components/Home/Party/PartyMember';
-import PartyNum from '../../components/Home/PartyNum';
 import AppLayout from '../../components/Layout/AppLayout';
 import { FixedAppLayout } from '../../components/Layout/FixedLayout';
 import HomeGuide from '../../components/Home/HomeGuide';
@@ -28,7 +26,6 @@ export default function Home() {
       <AppLayout>
         <HomeGuide />
         <PartyMember />
-        {/* <PartyNum /> */}
         <Func />
       </AppLayout>
       <BottomNavigation />
