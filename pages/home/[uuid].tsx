@@ -6,10 +6,12 @@ import TopNavigation from '../../components/Home/TopNavigation';
 import Banner from '../../components/Home/Banner';
 import Func from '../../components/Home/Func';
 import BottomNavigation from '../../components/Home/BottomNavigation';
-import Party from '../../components/Home/Party';
+import Party from '../../components/Home/Party/PartyMember';
 import PartyNum from '../../components/Home/PartyNum';
 import AppLayout from '../../components/Layout/AppLayout';
 import { FixedAppLayout } from '../../components/Layout/FixedLayout';
+import HomeGuide from '../../components/Home/HomeGuide';
+import PartyMember from '../../components/Home/Party/PartyMember';
 
 export default function Home() {
   const { data: userInfo } = useGetUserInfo();
@@ -24,8 +26,9 @@ export default function Home() {
       <TopNavigation tokenNum={userInfo?.data.data.tingTingToken} />
       <Banner />
       <AppLayout>
-        <Party />
-        <PartyNum />
+        <HomeGuide />
+        <PartyMember />
+        {/* <PartyNum /> */}
         <Func />
       </AppLayout>
       <BottomNavigation />

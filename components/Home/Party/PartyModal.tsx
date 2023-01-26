@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import SearchLogo from '../../../public/assets/icons/search.svg';
 import UserList from './UserList';
+import AppLayout from '../../Layout/AppLayout';
 
 type Props = {
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -52,7 +53,9 @@ const ModalContainer = styled.article`
   padding: 24px 16px;
   width: 100%;
   text-align: center;
+  max-width: 43rem;
 `;
+
 const ModalTitle = styled.h1`
   font-size: 24px;
   line-height: 150%;
