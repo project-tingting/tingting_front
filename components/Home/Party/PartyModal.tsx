@@ -1,30 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import SearchLogo from '../../../public/assets/icons/search.svg';
 import UserList from './UserList';
+import { useGetPartyUsers } from './apiHooks/party';
+import { PartyUserProps } from '../../../types/party';
 
 type Props = {
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function PartyModal({ setIsOpenModal }: Props) {
+  const { data: partyUsers } = useGetPartyUsers();
+  const [searchText, setSearchText] = useState('');
+
   const handleClickCancelButton = () => {
     setIsOpenModal(false);
   };
+  const filteredUser = partyUsers?.data.filter((user: PartyUserProps) => {
+    return user.userId.includes(searchText);
+  });
   return (
     <Container>
       <ModalContainer>
         <ModalTitle>초대목록</ModalTitle>
         <InputContainer>
           <Image src={SearchLogo} alt="돋보기 로고" />
-          <ModalInput placeholder="검색어를 입력해주세요" />
+          <ModalInput
+            placeholder="검색어를 입력해주세요"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
         </InputContainer>
-        <UserList />
-        <UserList />
-        <UserList />
-        <UserList />
+        {filteredUser?.map((user: PartyUserProps) => (
+          <UserList key={user.userId} userId={user.userId} />
+        ))}
         <CancelButton onClick={handleClickCancelButton}>취소</CancelButton>
       </ModalContainer>
     </Container>
@@ -75,7 +85,6 @@ const ModalInput = styled.input`
   border-radius: 30px;
   padding: 9px 16px;
   background-color: #f5f4f9;
-  color: #827397;
   font-size: 18px;
   line-height: 17px;
   border: none;

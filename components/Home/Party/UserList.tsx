@@ -5,13 +5,14 @@ import Image from 'next/image';
 import UserLogo from '../../../public/assets/icons/user.svg';
 import PaperPlaneIcon from '../../../public/assets/icons/paperPlane.svg';
 import CheckIcon from '../../../public/assets/icons/check.svg';
+import { PartyUserProps } from '../../../types/party';
 
-export default function UserList() {
+export default function UserList({ userId }: PartyUserProps) {
   return (
     <UserListContainer>
       <UserProfile>
         <Image src={UserLogo} alt="유저 사진" />
-        <UserName>User1</UserName>
+        <UserName>{userId}</UserName>
       </UserProfile>
       <InviteButton>
         <Image src={PaperPlaneIcon} /> 초대
