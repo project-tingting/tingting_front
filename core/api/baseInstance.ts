@@ -9,3 +9,7 @@ export const baseAPI = axios.create({
 export const userAPI = axios.create({
   baseURL: `${BASE_URL}/user`,
 });
+
+export const partyAPI = axios.create({
+  baseURL: `${BASE_URL}/party`,
+});

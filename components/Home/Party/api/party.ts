@@ -1,10 +1,26 @@
-import { baseAPI } from '../../../../core/api/baseInstance';
+import { partyAPI } from '../../../../core/api/baseInstance';
+import { PartyUserProps } from '../../../../types/party';
 
 export const getPartyUsers = async () => {
-  const { data: users } = await baseAPI.get('/party/user/list', {
+  const { data: partyUsers } = await partyAPI.get('/user/list', {
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('access-token'),
+      Authorization: `Bearer ${localStorage.getItem('access-token')}`,
     },
   });
-  return users;
+  return partyUsers;
+};
+
+export const postInvitation = async ({ userId }: PartyUserProps) => {
+  const { data: invitationData } = await partyAPI.post(
+    '/invitation',
+    {
+      guest: userId,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+      },
+    },
+  );
+  return invitationData;
 };
