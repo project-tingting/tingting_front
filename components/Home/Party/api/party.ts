@@ -24,3 +24,12 @@ export const postInvitation = async ({ userId }: PartyUserProps) => {
   );
   return invitationData;
 };
+
+export const postPartyAccept = async () => {
+  const { data: partyAcceptData } = await partyAPI.post('/accept', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+    },
+  });
+  return partyAcceptData;
+};

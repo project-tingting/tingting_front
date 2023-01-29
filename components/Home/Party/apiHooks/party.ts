@@ -14,3 +14,10 @@ export const usePostInvitation = () => {
     onError: (error) => console.error(error),
   });
 };
+
+export const usePostPartyAccept = () => {
+  return useMutation(postInvitation, {
+    onSuccess: (data) => console.log(data),
+    onError: (error) => console.error(error),
+  });
+};
