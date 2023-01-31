@@ -35,7 +35,7 @@ export default function year() {
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={2} total={4} />
+      <ProgressBar stage={2} total={5} />
       <Container>
         <InputContainer>
           <Guide text="출생연도를 입력해주세요" />

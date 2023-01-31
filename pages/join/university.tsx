@@ -20,12 +20,12 @@ export default function school() {
     useValidateUniversity(schoolEmail);
 
   const handleClickContinueButton = useCallback(() => {
-    Router.push('/join/completed');
+    Router.push('/join/phone');
   }, []);
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={4} total={4} />
+      <ProgressBar stage={4} total={5} />
       <Container>
         <InputContainer>
           <Guide text="다니는 학교를 알려주세요" />

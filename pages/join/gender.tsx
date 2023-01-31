@@ -21,7 +21,7 @@ export default function gende() {
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={3} total={4} />
+      <ProgressBar stage={3} total={5} />
       <Container>
         <InputContainer>
           <Guide text="성별을 알려주세요" />
