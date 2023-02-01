@@ -25,7 +25,7 @@ export default function alcohol() {
 
   return (
     <>
-      <Top text="프로필" />
+      <Top text="팅팅 프로필" />
       <ProgressBar stage={3} total={4} />
       <Container>
         <InputContainer>

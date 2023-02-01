@@ -55,8 +55,8 @@ export default function Keyword({ text, onClicked, disabled }: KeywordButtonProp
 const StyledKeywordButton = styled.button<ButtonProps>`
   font-size: 2rem;
   color: ${(props) =>
-    props.clicked ? ({ theme }) => theme.colors.whiteColor : ({ theme }) => theme.colors.mainColor};
-  border: 0.1rem solid ${({ theme }) => theme.colors.mainColor};
+    props.clicked ? ({ theme }) => theme.colors.whiteColor : ({ theme }) => theme.colors.textColor};
+  border: 0.1rem solid #adb3bc;
   border-radius: 3rem;
   padding: 1.2rem 1.6rem;
   margin-right: 0.8rem;
