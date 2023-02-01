@@ -22,7 +22,7 @@ export default function smoking() {
   };
   return (
     <>
-      <Top text="프로필" />
+      <Top text="팅팅 프로필" />
       <ProgressBar stage={4} total={4} />
       <Container>
         <InputContainer>
