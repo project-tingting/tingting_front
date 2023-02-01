@@ -2,21 +2,26 @@ import Image from 'next/image';
 import Router from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import Guide from '../../components/common/Guide';
 
-import Notice from '../../components/common/Notice';
-import characters from '../../public/assets/images/characters.svg';
+import profileFrame from '../../public/assets/images/profileFrame.svg';
 
 export default function index() {
   return (
-    <Notice message="바로 프로필을 설정하시겠어요?">
+    <>
+      <Guide
+        text="바로 매칭 프로필을 설정하시겠어요?"
+        subText="선호에 가까운 친구들을 추천해드려요"
+        isNotice={true}
+      />
       <ImageContainer>
-        <Image src={characters} />
+        <Image src={profileFrame} />
       </ImageContainer>
       <ButtonGroup>
-        <StyledButton onClick={() => Router.push('/')}>아니요</StyledButton>
+        <StyledButton onClick={() => Router.push('/')}>나중에</StyledButton>
         <StyledButton onClick={() => Router.push('/profile/mbti')}>예</StyledButton>
       </ButtonGroup>
-    </Notice>
+    </>
   );
 }
 
@@ -49,4 +54,5 @@ const ButtonGroup = styled.div`
 
 const ImageContainer = styled.div`
   margin: 7.5rem 2.2rem;
+  text-align: center;
 `;
