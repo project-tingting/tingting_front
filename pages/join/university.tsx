@@ -16,7 +16,7 @@ import InputMessage from '../../components/Join/InputMessage';
 
 export default function school() {
   const [schoolEmail, handleSchoolEmail] = useInput('');
-  const { handleClickValidateButton, data, isClickValidateButton } =
+  const { handleClickValidateButton, data, isClickValidateButton, isEmailValid } =
     useValidateUniversity(schoolEmail);
 
   const handleClickContinueButton = useCallback(() => {
@@ -36,9 +36,13 @@ export default function school() {
               sizing="large"
               placeholder="학교 웹메일"
               onChange={handleSchoolEmail}
+              isIdValid={isEmailValid}
             />
-            <ValidateButton onClick={handleClickValidateButton}>인증</ValidateButton>
+            <ValidateButton onClick={handleClickValidateButton} disabled={!isEmailValid}>
+              인증
+            </ValidateButton>
           </FormContainer>
+          {!isEmailValid && <InputMessage text="이메일 양식에 맞지 않습니다." />}
           {isClickValidateButton && !data && (
             <InputMessage text="인증메일을 보냈습니다. 메일을 확인해주세요." />
           )}

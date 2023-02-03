@@ -8,11 +8,11 @@ type InputProps = {
 };
 
 export const StyledInput = styled.input<InputProps>`
-  ${(props) =>
-    props.sizing === 'large'
+  ${({ sizing }) =>
+    sizing === 'large'
       ? css`
           height: 5.6rem;
-          border-radius: 2rem;
+          border-radius: 1rem;
           padding: 1.2rem 0 1.1rem 1.2rem;
           background-color: ${({ theme }) => theme.colors.inputColor};
           color: #a7a7a7;
@@ -32,6 +32,7 @@ export const StyledInput = styled.input<InputProps>`
   &:focus {
     outline: none;
     border: 0.2rem solid ${({ theme }) => theme.colors.mainColor};
+    border-color: ${({ isIdValid, theme }) => !isIdValid && theme.colors.inputErrorColor};
   }
 
   &.error {
@@ -41,7 +42,7 @@ export const StyledInput = styled.input<InputProps>`
 
 export const ValidateButton = styled.button`
   width: 59px;
-  border-radius: 1.25rem;
+  border-radius: 1rem;
   background-color: ${({ theme }) => theme.colors.mainColor};
   color: ${({ theme }) => theme.colors.whiteColor};
   font-size: 1.25rem;

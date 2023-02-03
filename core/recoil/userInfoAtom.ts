@@ -10,5 +10,6 @@ export const userInfoState = atom<RegisterProps>({
     gender: '',
     userEmail: '',
     university: '',
+    phoneNumber: '',
   },
 });

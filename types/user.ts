@@ -10,4 +10,5 @@ export interface RegisterProps {
   gender: string;
   userEmail: string;
   university: string;
+  phoneNumber: string;
 }
