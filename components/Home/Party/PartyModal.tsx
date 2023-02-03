@@ -7,17 +7,25 @@ import UserList from './UserList';
 import { useGetPartyUsers } from './apiHooks/party';
 import { PartyUserProps } from '../../../types/party';
 
-type Props = {
+type PartyModalProps = {
   setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function PartyModal({ setIsOpenModal }: Props) {
+export default function PartyModal({ setIsOpenModal }: PartyModalProps) {
   const { data: partyUsers } = useGetPartyUsers();
   const [searchText, setSearchText] = useState('');
 
   const handleClickCancelButton = () => {
     setIsOpenModal(false);
   };
+
+  partyUsers?.data.sort((a: PartyUserProps, b: PartyUserProps) => {
+    const userA = a.userId;
+    const userB = b.userId;
+    if (userA < userB) return -1;
+    if (userA > userB) return 1;
+    return 0;
+  });
   const filteredUser = partyUsers?.data.filter((user: PartyUserProps) => {
     return user.userId.includes(searchText);
   });
@@ -33,7 +41,7 @@ export default function PartyModal({ setIsOpenModal }: Props) {
           />
         </InputContainer>
         {filteredUser?.map((user: PartyUserProps) => (
-          <UserList key={user.userId} userId={user.userId} />
+          <UserList key={user.userId} userId={user.userId} invitationState={user.invitationState} />
         ))}
         <CancelButton onClick={handleClickCancelButton}>취소</CancelButton>
       </ModalContainer>
