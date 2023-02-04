@@ -9,13 +9,13 @@ import { useRouter } from 'next/router';
 import { useGetUserInfo } from '../../core/apiHooks/user';
 import OtherChatBubble from '../../components/Chat/OtherChatBubble';
 import { useGetChat, usePostChat } from '../../components/Chat/apiHooks/chat';
-import { chatProps } from '../../types/chat';
+import { ChatListProps, chatProps } from '../../types/chat';
 import { FixedBottomSection } from '../../components/Layout/FixedLayout';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
   const ref = useRef<HTMLDivElement>(null);
-
+  console.log(ref);
   const router = useRouter();
   const { roomKey } = router.query;
 
@@ -28,10 +28,10 @@ export default function chat() {
   const { mutate: postChatMutate } = usePostChat({
     onSuccess: async () => {
       await refetch();
-      // ref.current?.scrollIntoView({
-      //   behavior: 'auto',
-      //   block: 'nearest',
-      // });
+      ref.current?.scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest',
+      });
     },
   });
 
@@ -42,6 +42,13 @@ export default function chat() {
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
+  };
+
+  const handleSendKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log(e);
+    if (e.code === 'Enter' && chatMessage !== '') {
+      handleSend({ chatMessage });
+    }
   };
 
   const handleSend = ({ chatMessage }: chatProps) => {
@@ -62,7 +69,7 @@ export default function chat() {
         </ChatNotice>
         <Chatting>
           <>
-            {messages?.data?.messageList.map((item: any) => {
+            {messages?.data?.messageList.map((item: ChatListProps) => {
               console.log(item.uuid);
               return item?.uuid === userData?.data?.data?.user?.uuid ? (
                 <MyChatBubble chatMessage={item.message} key={item.id} />
@@ -72,19 +79,18 @@ export default function chat() {
             })}
           </>
         </Chatting>
+        <div ref={ref}></div>
       </ChatContainer>
-      <div ref={ref}></div>
-      <SendChat>
-        <StyledFixed>
-          <ChatInput
-            type="text"
-            placeholder="채팅을 팅팅!"
-            onChange={handleChat}
-            value={chatMessage}
-          />
-          <Image src={sendchat} onClick={() => handleSend({ chatMessage })} />
-        </StyledFixed>
-      </SendChat>
+      <StyledFixed>
+        <ChatInput
+          type="text"
+          placeholder="채팅을 팅팅!"
+          onChange={handleChat}
+          value={chatMessage}
+          onKeyDown={handleSendKeyDown}
+        />
+        <Image src={sendchat} onClick={() => handleSend({ chatMessage })} />
+      </StyledFixed>
     </Container>
   );
 }
@@ -97,20 +103,16 @@ const Container = styled.div`
 `;
 
 const ChatContainer = styled.div`
-  padding-top: 4.4rem;
-  padding-bottom: 5.4rem;
+  margin-top: 4.4rem;
+  margin-bottom: 8.45rem;
   height: 100%;
+  overflow: scroll;
 `;
 
 const Chatting = styled.section`
-  padding: 2.7rem 2rem;
+  padding: 2.7rem 2rem 0;
   background-color: ${({ theme }) => theme.colors.bgColor};
-  height: 100%;
-`;
-
-const SendChat = styled.div`
-  background-color: ${({ theme }) => theme.colors.whiteColor};
-  padding: 0.6rem 1.2rem;
+  height: calc(100% - 8.45rem);
 `;
 
 const StyledFixed = styled(FixedBottomSection)`
