@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import MyChatBubble from '../../components/Chat/MyChatBubble';
 import TopNavigation from '../../components/Home/TopNavigation';
@@ -14,38 +14,31 @@ import { FixedBottomSection } from '../../components/Layout/FixedLayout';
 
 export default function chat() {
   const [chatMessage, setChatMessage] = useState('');
-  const ref = useRef<HTMLDivElement>(null);
-  console.log(ref);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const { roomKey } = router.query;
 
   const { data: userData } = useGetUserInfo();
-  console.log('userData', userData?.data);
 
   const { data: messages, refetch } = useGetChat({ roomKey });
-  console.log(messages);
 
   const { mutate: postChatMutate } = usePostChat({
     onSuccess: async () => {
       await refetch();
-      ref.current?.scrollIntoView({
+      scrollRef.current?.scrollIntoView({
         behavior: 'auto',
         block: 'nearest',
       });
     },
   });
 
-  // useEffect(() => {
-  //   // ref.current!.scrollTop = ref.current!.scrollHeight;
-  //   ref.current && (ref.current.scrollTop = ref.current.scrollHeight);
-  // }, [chatMessage]);
-
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
+    console.log(e.target.value);
+    console.log(chatMessage);
   };
 
   const handleSendKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(e);
     if (e.code === 'Enter' && chatMessage !== '') {
       handleSend({ chatMessage });
     }
@@ -56,10 +49,16 @@ export default function chat() {
     setChatMessage('');
   };
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current?.scrollHeight;
+    }
+  });
+
   return (
     <Container>
       <TopNavigation isChat={true} tokenNum={null} />
-      <ChatContainer>
+      <ChatContainer ref={scrollRef}>
         <ChatNotice>
           <Image src={notice} />
           <NoticeContents>
@@ -79,7 +78,6 @@ export default function chat() {
             })}
           </>
         </Chatting>
-        <div ref={ref}></div>
       </ChatContainer>
       <StyledFixed>
         <ChatInput
