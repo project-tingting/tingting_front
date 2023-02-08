@@ -34,13 +34,12 @@ export default function chat() {
 
   const handleChat = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChatMessage(e.target.value);
-    console.log(e.target.value);
-    console.log(chatMessage);
   };
 
-  const handleSendKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>, { chatMessage }: chatProps) => {
     if (e.code === 'Enter' && chatMessage !== '') {
-      handleSend({ chatMessage });
+      postChatMutate(chatMessage);
+      setChatMessage('');
     }
   };
 
@@ -69,7 +68,6 @@ export default function chat() {
         <Chatting>
           <>
             {messages?.data?.messageList.map((item: ChatListProps) => {
-              console.log(item.uuid);
               return item?.uuid === userData?.data?.data?.user?.uuid ? (
                 <MyChatBubble chatMessage={item.message} key={item.id} />
               ) : (
@@ -85,7 +83,7 @@ export default function chat() {
           placeholder="채팅을 팅팅!"
           onChange={handleChat}
           value={chatMessage}
-          onKeyDown={handleSendKeyDown}
+          onKeyUp={(e) => handleKeyUp(e, { chatMessage })}
         />
         <Image src={sendchat} onClick={() => handleSend({ chatMessage })} />
       </StyledFixed>

@@ -26,7 +26,7 @@ export const useGetChat = ({ roomKey }: chatProps) => {
 export const usePostChat = ({ onSuccess }: Props) => {
   const router = useRouter();
   const { roomKey } = router.query;
-  console.log('roomkey', roomKey);
+  // console.log('roomkey', roomKey);
 
   return useMutation({
     mutationFn: (chatMessage) => postChat({ chatMessage, roomKey }),
