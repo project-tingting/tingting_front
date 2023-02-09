@@ -14,6 +14,7 @@ export default function Banner() {
 
 const BannerContainer = styled.section`
   position: relative;
+  width: 100vw;
   height: 40rem;
   margin-top: 4.4rem;
   & img {
