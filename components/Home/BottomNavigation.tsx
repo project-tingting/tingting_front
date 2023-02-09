@@ -1,41 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import ProfileIcon from '../../public/assets/icons/profile.svg';
-import EditProfile from './EditModal/EditProfile';
+import { FixedBottomLayout } from '../Layout/FixedLayout';
+import SpotLogo from '../../public/assets/icons/bottom_spot.svg';
+import HomeLogo from '../../public/assets/icons/bottom_home.svg';
+import MyPageLogo from '../../public/assets/icons/bottom_myPage.svg';
 
 export default function BottomNavigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleClickLogoButton = () => {
-    setIsOpen((prev) => !prev);
-    console.log(isOpen);
-  };
   return (
-    <>
-      <StyledContainer>
-        <LogoContainer>
-          <Image src={ProfileIcon} alt="구름 로고" onClick={handleClickLogoButton} />
-        </LogoContainer>
-      </StyledContainer>
-      {isOpen && <EditProfile onClick={setIsOpen}></EditProfile>}
-    </>
+    <StyledContainer>
+      <FixedBottomLayout>
+        <Image src={SpotLogo} alt="추천스팟 버튼" />
+        <Image src={HomeLogo} alt="홈 버튼" />
+        <Image src={MyPageLogo} alt="마이페이지 버튼" />
+      </FixedBottomLayout>
+    </StyledContainer>
   );
 }
 
-const StyledContainer = styled.article`
+const StyledContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.whiteColor};
-  height: 68px;
+  box-shadow: 0 -0.4rem 0.6rem rgba(0, 0, 0, 0.04);
+
+  height: 8.1rem;
+  text-align: center;
+
   position: fixed;
   bottom: 0;
-  width: 100%;
-  text-align: center;
-  img {
-    vertical-align: 20px;
-  }
-`;
-
-const LogoContainer = styled.article`
-  display: inline-block;
-  margin-top: -20px;
+  left: 0;
+  right: 0;
 `;
