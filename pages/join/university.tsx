@@ -48,13 +48,8 @@ export default function school() {
           )}
           {data && <InputMessage text="인증이 완료되었습니다." />}
         </InputContainer>
-        <Button
-          onClick={handleClickContinueButton}
-          isRound={true}
-          disabled={!data}
-          text="계속하기"
-        />
       </Container>
+      <Button onClick={handleClickContinueButton} isRound={true} disabled={!data} text="계속하기" />
     </>
   );
 }
