@@ -42,6 +42,10 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
     Router.push(`/chat/${data?.data?.data?.meetingRoomUser?.roomKey}`);
   };
 
+  const handleGoAlert = () => {
+    Router.push('/alert');
+  };
+
   const handleClickLogo = () => {
     setIsLogoClicked((prev) => !prev);
   };
@@ -75,7 +79,7 @@ export default function TopNavigation({ isChat, tokenNum }: TopNavProps) {
           </Container>
         )}
         <Func>
-          <Image src={Bell} alt="알림 버튼" />
+          <Image src={Bell} alt="알림 버튼" onClick={handleGoAlert} />
           {isChat ? (
             <Image src={Symbol} alt="로고 버튼" onClick={handleGoHome} />
           ) : (
