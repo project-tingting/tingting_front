@@ -48,13 +48,13 @@ export default function year() {
             onChange={onChangeYearInput}
           />
         </InputContainer>
-        <Button
-          onClick={handleClickContinueButton}
-          isRound={true}
-          disabled={isButtonDisabled}
-          text="계속하기"
-        />
       </Container>
+      <Button
+        onClick={handleClickContinueButton}
+        isRound={true}
+        disabled={isButtonDisabled}
+        text="계속하기"
+      />
     </>
   );
 }

@@ -39,13 +39,13 @@ export default function gende() {
             className={gender === 'w' ? 'femaleClicked' : ''}
           />
         </GenderButtonContainer>
-        <Button
-          onClick={handleClickContinueButton}
-          isRound={true}
-          disabled={!gender}
-          text="계속하기"
-        />
       </Container>
+      <Button
+        onClick={handleClickContinueButton}
+        isRound={true}
+        disabled={!gender}
+        text="계속하기"
+      />
     </>
   );
 }

@@ -34,11 +34,12 @@ export const FixedBottomSection = styled.section`
   display: flex;
   justify-content: space-between;
   max-width: 43rem;
-  padding: 2.1rem 1.6rem;
+  padding: 0 1.6rem;
   position: fixed;
   margin: 0 auto;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
+  height: inherit;
 `;

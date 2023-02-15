@@ -60,13 +60,13 @@ export default function userinfo() {
             </>
           )}
         </InputContainer>
-        <Button
-          onClick={handleClickContinueButton}
-          isRound={true}
-          disabled={!(isIdValid && isPasswordValid)}
-          text="계속하기"
-        />
       </Container>
+      <Button
+        onClick={handleClickContinueButton}
+        isRound={true}
+        disabled={!(isIdValid && isPasswordValid)}
+        text="계속하기"
+      />
     </>
   );
 }
