@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { useGetMatchingInfo } from '../../../core/apiHooks/matching';
+import { useGetMatchingInfo, useStartMatch } from '../../../core/apiHooks/matching';
 import { useSetMatchAccept } from '../../../core/apiHooks/matching';
 import { useGetRoomKeyInfo } from '../../../core/apiHooks/matching';
 
@@ -20,6 +20,7 @@ type ButtonProps = {
 export default function LoadingModal({ setIsLoadingModal }: Props) {
   const { data: roomKey } = useGetRoomKeyInfo();
   const { data } = useGetMatchingInfo(roomKey?.data.data.meetingRoomUser?.roomKey);
+  const { mutate: startMatch } = useStartMatch();
   const { mutate: setMatchAccept } = useSetMatchAccept();
 
   const handleClickCloseButton = () => {
@@ -38,11 +39,11 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
 
   return (
     <>
-      {!!roomKey?.data.data.meetingRoomUser?.roomKey && (
-        <LoadingModalContainer>
-          <CloseButton>
-            <Image src={X} onClick={handleClickCloseButton} />
-          </CloseButton>
+      <LoadingModalContainer>
+        <CloseButton>
+          <Image src={X} onClick={handleClickCloseButton} />
+        </CloseButton>
+        {roomKey?.data.data.meetingRoomUser?.roomKey ? (
           <ContentsContainer>
             {data?.data.data.manCount + data?.data.data.womanCount <
             Number(data?.data.data.type[0]) * 2 ? (
@@ -67,8 +68,8 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
               </>
             )}
           </ContentsContainer>
-        </LoadingModalContainer>
-      )}
+        ) : null}
+      </LoadingModalContainer>
     </>
   );
 }
