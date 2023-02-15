@@ -4,6 +4,7 @@ import { userInfoState } from '../../core/recoil/userInfoAtom';
 import { useQuery } from '@tanstack/react-query';
 
 import { userAPI } from '../../core/api/baseInstance';
+import { checkSchoolEmailValid } from '../checkIdValid';
 
 const checkValidation = async (schoolEmail: string) => {
   try {
@@ -16,10 +17,12 @@ const checkValidation = async (schoolEmail: string) => {
 
 export default function useValidateUniversity(schoolEmail: string) {
   const [isClickValidateButton, setIsClickValidateButton] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
     setUserInfo({ ...userInfo, userEmail: schoolEmail, university: '' });
+    setIsEmailValid(checkSchoolEmailValid(schoolEmail));
   }, [schoolEmail]);
 
   const handleClickValidateButton = async () => {
@@ -39,5 +42,5 @@ export default function useValidateUniversity(schoolEmail: string) {
     enabled: !!isClickValidateButton,
     refetchOnWindowFocus: 'always',
   });
-  return { handleClickValidateButton, data, isClickValidateButton };
+  return { handleClickValidateButton, data, isClickValidateButton, isEmailValid };
 }

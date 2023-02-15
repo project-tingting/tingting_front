@@ -26,7 +26,7 @@ export default function userinfo() {
   return (
     <>
       <Top text="회원가입" />
-      <ProgressBar stage={1} total={4} />
+      <ProgressBar stage={1} total={5} />
       <Container>
         <InputContainer>
           <Guide text={isIdValid ? '비밀번호를 설정해주세요' : '아이디를 설정해주세요'} />

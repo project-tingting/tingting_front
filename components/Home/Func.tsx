@@ -38,4 +38,6 @@ const StyledContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.bgColor};
   padding: 8rem 0 4.4rem;
   text-align: center;
+  margin-bottom: 6rem;
+  /* width: 100%; */
 `;

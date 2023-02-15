@@ -45,12 +45,11 @@ export default function mbti() {
         valueList: userMbti,
       },
     ]);
-    console.log('mbti', userMbti);
     Router.push('/profile/interest');
   };
   return (
     <>
-      <Top text="프로필" />
+      <Top text="팅팅 프로필" />
       <ProgressBar stage={1} total={4} />
       <Container>
         <InputContainer>
