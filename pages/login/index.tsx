@@ -25,12 +25,19 @@ export default function index() {
       <Image src={TingTingLogo} alt="팅팅 로고" priority={true} />
       <FormContainer>
         <InputContainer>
-          <StyledInput sizing="small" placeholder="아이디" type="text" onChange={handleUserId} />
+          <StyledInput
+            sizing="small"
+            placeholder="아이디"
+            type="text"
+            onChange={handleUserId}
+            isIdValid={true}
+          />
           <StyledInput
             sizing="small"
             placeholder="비밀번호"
             type="password"
             onChange={handlePassword}
+            isIdValid={true}
           />
           {status_code?.data.data.code === 400 && (
             <ErrorMessage text="아이디 혹은 비밀번호를 잘못 입력했습니다." />

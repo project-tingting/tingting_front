@@ -27,7 +27,7 @@ export default function Func() {
       {isLoadingModalOpen && <LoadingModal setIsLoadingModal={setIsLoadingModalOpen} />}
       <StyledContainer>
         <StartButton onClick={handleClickStartButton}>
-          {!data?.data?.data?.meetingRoomUser?.roomKey ? 'START' : '매칭중'}
+          {!data?.data?.data?.meetingRoomUser?.roomKey ? '팅' : '매칭중'}
         </StartButton>
       </StyledContainer>
     </>
@@ -38,6 +38,6 @@ const StyledContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.bgColor};
   padding: 8rem 0 4.4rem;
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 7rem;
   /* width: 100%; */
 `;

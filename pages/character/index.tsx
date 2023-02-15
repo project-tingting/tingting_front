@@ -1,25 +1,21 @@
-import Image from 'next/image';
-import Router from 'next/router';
 import React from 'react';
+import Router from 'next/router';
+import Image from 'next/image';
 import styled from 'styled-components';
-import Guide from '../../components/common/Guide';
 
-import profileFrame from '../../public/assets/images/profileFrame.svg';
+import Guide from '../../components/common/Guide';
+import CharacterImg from '../../public/assets/icons/character.png';
 
 export default function index() {
   return (
     <>
-      <Guide
-        text="바로 매칭 프로필을 설정하시겠어요?"
-        // subText="선호에 가까운 친구들을 추천해드려요"
-        // isNotice={true}
-      />
+      <Guide text="캐릭터유형을 알아볼까요?" isCenter={true} />
       <ImageContainer>
-        <Image src={profileFrame} />
+        <Image src={CharacterImg} />
       </ImageContainer>
       <ButtonGroup>
-        <StyledButton onClick={() => Router.push('/')}>나중에</StyledButton>
-        <StyledButton onClick={() => Router.push('/profile/mbti')}>예</StyledButton>
+        <StyledButton onClick={() => Router.back()}>나중에</StyledButton>
+        <StyledButton onClick={() => Router.push('/character/test')}>네</StyledButton>
       </ButtonGroup>
     </>
   );
@@ -52,7 +48,9 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
-  margin: 7.5rem 2.2rem;
-  text-align: center;
+const ImageContainer = styled.section`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
