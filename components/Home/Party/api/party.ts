@@ -1,13 +1,13 @@
 import { partyAPI } from '../../../../core/api/baseInstance';
 import { PartyUserProps } from '../../../../types/party';
 
-export const getPartyUsers = async () => {
-  const { data: partyUsers } = await partyAPI.get('/user/list', {
+export const getUsers = async () => {
+  const { data: toInviteUsers } = await partyAPI.get('/user/list', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('access-token')}`,
     },
   });
-  return partyUsers;
+  return toInviteUsers;
 };
 
 export const postInvitation = async ({ userId }: PartyUserProps) => {
@@ -32,4 +32,13 @@ export const postPartyAccept = async () => {
     },
   });
   return partyAcceptData;
+};
+
+export const getPartyUsers = async () => {
+  const { data: partyUsers } = await partyAPI.get('/host/list', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+    },
+  });
+  return partyUsers;
 };

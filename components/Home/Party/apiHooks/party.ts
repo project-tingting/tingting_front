@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getPartyUsers, postInvitation } from '../api/party';
+import { getPartyUsers, getUsers, postInvitation } from '../api/party';
 
-export const useGetPartyUsers = () => {
-  return useQuery(['PartyUsers'], getPartyUsers, {
+export const useGetUsers = () => {
+  return useQuery(['InvitationUsers'], getUsers, {
     onSuccess: (data) => console.log(data),
     onError: (error) => console.error(error),
   });
@@ -13,7 +13,7 @@ export const usePostInvitation = () => {
   return useMutation(postInvitation, {
     onSuccess: (data) => {
       console.log(data);
-      queryClient.invalidateQueries(['PartyUsers']);
+      queryClient.invalidateQueries(['InvitationUsers']);
     },
     onError: (error) => console.error(error),
   });
@@ -24,7 +24,16 @@ export const usePostPartyAccept = () => {
   return useMutation(postInvitation, {
     onSuccess: (data) => {
       console.log(data);
-      queryClient.invalidateQueries(['PartyUsers']);
+      queryClient.invalidateQueries(['InvitationUsers']);
+    },
+    onError: (error) => console.error(error),
+  });
+};
+
+export const useGetPartyUsers = () => {
+  return useQuery(['PartyUsers'], getPartyUsers, {
+    onSuccess: (data) => {
+      console.log(data);
     },
     onError: (error) => console.error(error),
   });

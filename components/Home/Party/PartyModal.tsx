@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import SearchLogo from '../../../public/assets/icons/search.svg';
 import UserList from './UserList';
-import { useGetPartyUsers } from './apiHooks/party';
+import { useGetUsers } from './apiHooks/party';
 import { PartyUserProps } from '../../../types/party';
 
 type PartyModalProps = {
@@ -12,21 +12,21 @@ type PartyModalProps = {
 };
 
 export default function PartyModal({ setIsOpenModal }: PartyModalProps) {
-  const { data: partyUsers } = useGetPartyUsers();
+  const { data: toInviteUsers } = useGetUsers();
   const [searchText, setSearchText] = useState('');
 
   const handleClickCancelButton = () => {
     setIsOpenModal(false);
   };
 
-  partyUsers?.data.sort((a: PartyUserProps, b: PartyUserProps) => {
+  toInviteUsers?.data.sort((a: PartyUserProps, b: PartyUserProps) => {
     const userA = a.userId;
     const userB = b.userId;
     if (userA < userB) return -1;
     if (userA > userB) return 1;
     return 0;
   });
-  const filteredUser = partyUsers?.data.filter((user: PartyUserProps) => {
+  const filteredUser = toInviteUsers?.data.filter((user: PartyUserProps) => {
     return user.userId.includes(searchText);
   });
   return (
