@@ -10,7 +10,7 @@ import MinusIcon from '../../../public/assets/icons/Minus.svg';
 
 export default function MatchContent() {
   const [partyNum, setPartyNum] = useState(1);
-  const { mutate: handleClickStartButton } = useStartMatch(partyNum);
+  const { mutate } = useStartMatch(partyNum);
 
   const handleClickMinusButton = () => {
     partyNum > 1 && setPartyNum((prev) => prev - 1);
@@ -18,6 +18,10 @@ export default function MatchContent() {
 
   const handleClickPlusButton = () => {
     partyNum < 4 && setPartyNum((prev) => prev + 1);
+  };
+
+  const handleClickStartButton = () => {
+    mutate();
   };
 
   return (
@@ -37,7 +41,7 @@ export default function MatchContent() {
         </FuncContainer>
       </ContentsContainer>
       <ButtonContainer>
-        <StartButton>팅팅</StartButton>
+        <StartButton onClick={handleClickStartButton}>팅팅</StartButton>
       </ButtonContainer>
     </>
   );
