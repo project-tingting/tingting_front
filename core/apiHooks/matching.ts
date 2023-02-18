@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { matchStart, getMatchInfo, setMatchAccept, getRoomKeyInfo } from './../api/matching';
 
 type matchInfo = {
@@ -7,9 +7,13 @@ type matchInfo = {
 };
 
 export const useStartMatch = (matchingNum: number) => {
+  const queryClient = useQueryClient();
   return useMutation(() => matchStart(matchingNum), {
     onError: (error) => {
       console.error(error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(['meetingroomuser']);
     },
   });
 };
