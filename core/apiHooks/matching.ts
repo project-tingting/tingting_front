@@ -6,8 +6,8 @@ type matchInfo = {
   acceptNum: string;
 };
 
-export const useStartMatch = () => {
-  return useMutation((matchingNum: number) => matchStart(matchingNum), {
+export const useStartMatch = (matchingNum: number) => {
+  return useMutation(() => matchStart(matchingNum), {
     onError: (error) => {
       console.error(error);
     },
