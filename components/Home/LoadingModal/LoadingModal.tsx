@@ -7,6 +7,7 @@ import { useSetMatchAccept } from '../../../core/apiHooks/matching';
 import { useGetRoomKeyInfo } from '../../../core/apiHooks/matching';
 
 import X from '../../../public/assets/icons/X.svg';
+import MatchContent from './MatchContent';
 import LoadingComponent from '../../../public/assets/icons/Loading.svg';
 
 type Props = {
@@ -38,11 +39,11 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
 
   return (
     <>
-      {!!roomKey?.data.data.meetingRoomUser?.roomKey && (
-        <LoadingModalContainer>
-          <CloseButton>
-            <Image src={X} onClick={handleClickCloseButton} />
-          </CloseButton>
+      <LoadingModalContainer>
+        <CloseButton>
+          <Image src={X} onClick={handleClickCloseButton} />
+        </CloseButton>
+        {roomKey?.data.data.meetingRoomUser?.roomKey ? (
           <ContentsContainer>
             {data?.data.data.manCount + data?.data.data.womanCount <
             Number(data?.data.data.type[0]) * 2 ? (
@@ -67,14 +68,16 @@ export default function LoadingModal({ setIsLoadingModal }: Props) {
               </>
             )}
           </ContentsContainer>
-        </LoadingModalContainer>
-      )}
+        ) : (
+          <MatchContent />
+        )}
+      </LoadingModalContainer>
     </>
   );
 }
 
 const LoadingModalContainer = styled.section`
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;

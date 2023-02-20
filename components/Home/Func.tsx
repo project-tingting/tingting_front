@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { useGetRoomKeyInfo } from '../../core/apiHooks/matching';
-import { useStartMatch } from '../../core/apiHooks/matching';
-import { matchingInfoState } from '../../core/recoil/matchingInfoAtom';
 
 import LoadingModal from './LoadingModal/LoadingModal';
 import { StartButton } from './HomeComponents';
 
 export default function Func() {
-  const matchInfo = useRecoilValue(matchingInfoState);
   const { data } = useGetRoomKeyInfo();
-  console.log(data);
-  const { mutate: startMatch } = useStartMatch();
   const [isLoadingModalOpen, setIsLoadingModalOpen] = useState(false);
 
   const handleClickStartButton = () => {
-    if (!data?.data.data?.meetingRoomUser) {
-      startMatch(matchInfo.partyNum / 2);
-    }
     setIsLoadingModalOpen((prev) => !prev);
   };
 
@@ -39,5 +30,4 @@ const StyledContainer = styled.section`
   padding: 8rem 0 4.4rem;
   text-align: center;
   margin-bottom: 7rem;
-  /* width: 100%; */
 `;
