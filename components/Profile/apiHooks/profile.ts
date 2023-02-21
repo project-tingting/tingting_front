@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Router from 'next/router';
 import { getUserProfile, postUserProfile, putUserProfile } from '../../../core/api/userProfile';
 
@@ -24,14 +24,15 @@ export const usePostProfile = () => {
   });
 };
 
-export const usePutUserProfile = ({ refetch }: any) => {
+export const usePutUserProfile = () => {
+  const queryClient = useQueryClient();
   return useMutation(putUserProfile, {
     onError: (error) => {
       console.error(error);
     },
     onSuccess: (data) => {
       console.log(data);
-      refetch();
+      queryClient.invalidateQueries(['userProfile']);
     },
   });
 };
