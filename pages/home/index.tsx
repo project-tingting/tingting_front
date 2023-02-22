@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import Router from 'next/router';
-import { useGetUserInfo } from '../../core/apiHooks/user';
+import { useGetUserInfo, useGetNewToken } from '../../core/apiHooks/user';
 
 import TopNavigation from '../../components/Home/TopNavigation';
 import Banner from '../../components/Home/Banner';
@@ -13,12 +12,14 @@ import PartyMember from '../../components/Home/Party/PartyMember';
 
 export default function Home() {
   const { data: userInfo } = useGetUserInfo();
+  const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refreshToken') : null;
+  console.log(refreshToken);
+  const { mutate: handleRegenerateToken } = useGetNewToken(refreshToken);
+
   useEffect(() => {
-    if (!localStorage.getItem('access-token')) {
-      alert('로그인이 필요합니다!');
-      Router.push('/');
-    }
+    handleRegenerateToken();
   }, []);
+
   return (
     <>
       <TopNavigation tokenNum={userInfo?.data.data.tingTingToken} />

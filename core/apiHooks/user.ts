@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Router from 'next/router';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
@@ -6,7 +7,9 @@ import {
   submitLogin,
   submitLogout,
   getUserInfo,
+  getNewToken,
 } from '../api/user';
+import { baseAPI, userAPI } from '../api/baseInstance';
 
 type userInfo = {
   userId: string;
@@ -38,9 +41,15 @@ export const useUserLogin = ({ userId, password }: userInfo) => {
       e.preventDefault();
     },
     onSuccess: (data) => {
-      console.log(data);
-      localStorage.setItem('access-token', data.data.data.accessToken);
-      Router.push(`/home/${data.data.data.uuid}`);
+      const { accessToken } = data.data.data;
+
+      if (data.data.code === 200) {
+        userAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        baseAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        localStorage.setItem('refreshToken', data.data.data.refreshToken);
+      }
+
+      Router.push('/home');
     },
     onError: (error) => {
       console.error(error);
@@ -54,6 +63,22 @@ export const useUserLogout = () => {
     onSuccess: () => {
       localStorage.clear();
       Router.push('/');
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+};
+
+// 토큰 재발급
+export const useGetNewToken = (refreshToken: string | null) => {
+  return useMutation(() => getNewToken(refreshToken), {
+    onSuccess: (data) => {
+      const { accessToken } = data.data;
+      console.log(accessToken);
+      userAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+      baseAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+      // localStorage.setItem('refreshToken', data.data.refreshToken);
     },
     onError: (error) => {
       console.error(error);
