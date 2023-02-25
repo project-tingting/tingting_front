@@ -15,13 +15,11 @@ export const StyledInput = styled.input<InputProps>`
           border-radius: 1rem;
           padding: 1.2rem 0 1.1rem 1.2rem;
           background-color: ${({ theme }) => theme.colors.inputColor};
-          color: #a7a7a7;
         `
       : css`
           height: 4.8rem;
           border-radius: 1rem;
           padding: 1rem 0 0.9rem 1.6rem;
-          color: #646464;
           background-color: #dedede;
         `}
   width: 100%;

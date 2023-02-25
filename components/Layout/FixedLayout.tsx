@@ -41,5 +41,4 @@ export const FixedBottomSection = styled.section`
   right: 0;
   bottom: 0;
   width: 100%;
-  height: inherit;
 `;
