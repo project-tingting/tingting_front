@@ -5,9 +5,11 @@ import { ProfileType } from '../../core/recoil/userProfileAtom';
 import { useGetUserProfile, usePutUserProfile } from '../Profile/apiHooks/profile';
 
 import editPencil from '../../public/assets/icons/editPencil.svg';
+import EditTitle from './common/EditTitle';
 
 export default function EditMbti() {
   const { data: userProfile } = useGetUserProfile();
+  console.log(userProfile);
 
   const mbtiDisplayText = userProfile?.data?.userProfileList?.find(
     (item: ProfileType) => item.topic === 'mbti',
@@ -18,7 +20,7 @@ export default function EditMbti() {
 
   return (
     <EditMbtiContainer>
-      <EditTitle>MBTI</EditTitle>
+      <EditTitle title="MBTI" />
       <Contents>
         <MbtiInput
           type="text"
@@ -36,12 +38,6 @@ export default function EditMbti() {
 }
 
 const EditMbtiContainer = styled.div``;
-
-const EditTitle = styled.h2`
-  font-weight: 600;
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
-`;
 
 const Contents = styled.div`
   display: flex;
