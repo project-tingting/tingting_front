@@ -1,6 +1,11 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Router from 'next/router';
-import { getUserProfile, postUserProfile, putUserProfile } from '../../../core/api/userProfile';
+import {
+  getCodeList,
+  getUserProfile,
+  postUserProfile,
+  putUserProfile,
+} from '../../../core/api/userProfile';
 
 export const useGetUserProfile = () => {
   return useQuery(['userProfile'], getUserProfile, {
@@ -24,14 +29,26 @@ export const usePostProfile = () => {
   });
 };
 
-export const usePutUserProfile = ({ refetch }: any) => {
+export const usePutUserProfile = () => {
+  const queryClient = useQueryClient();
   return useMutation(putUserProfile, {
     onError: (error) => {
       console.error(error);
     },
     onSuccess: (data) => {
       console.log(data);
-      refetch();
+      queryClient.invalidateQueries(['userProfile']);
+    },
+  });
+};
+
+export const useGetCodeList = (profileTopic: string) => {
+  return useQuery(['codeList'], () => getCodeList(profileTopic), {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 };
