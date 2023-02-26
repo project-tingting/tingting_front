@@ -9,15 +9,16 @@ import ProgressBar from '../../components/common/ProgressBar';
 import Top from '../../components/common/Top';
 import { usePostProfile } from '../../components/Profile/apiHooks/profile';
 import SmokingButton from '../../components/Profile/SmokingButton';
+import { PreferType } from '../../components/Profile/types/profile';
 import { userProfileState } from '../../core/recoil/userProfileAtom';
 
 export default function smoking() {
-  const [preferSmoke, setPreferSmoke] = useState<string[]>([]);
+  const [preferSmoke, setPreferSmoke] = useState<PreferType[]>([]);
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
   const { mutate: postProfileMutate } = usePostProfile();
 
   const handleContinueButton = () => {
-    setUserProfile([...userProfile, { topic: 'preferSmoking', valueList: preferSmoke }]);
+    setUserProfile([...userProfile, { topic: 'isSmoke', valueList: preferSmoke }]);
     postProfileMutate(userProfile);
   };
   return (
@@ -31,18 +32,18 @@ export default function smoking() {
         <SmokingButtonContainer>
           <SmokingButton
             prefer="네"
-            onClick={() => setPreferSmoke(['네'])}
-            className={preferSmoke[0] === '네' ? 'selectedYes' : ''}
+            onClick={() => setPreferSmoke(['10'])}
+            isActive={preferSmoke[0] === '10'}
           />
           <SmokingButton
             prefer="아니요"
-            onClick={() => setPreferSmoke(['아니요'])}
-            className={preferSmoke[0] === '아니요' ? 'selectedNo' : ''}
+            onClick={() => setPreferSmoke(['20'])}
+            isActive={preferSmoke[0] === '20'}
           />
           <SmokingButton
             prefer="상관없어요"
-            onClick={() => setPreferSmoke(['상관없어요'])}
-            className={preferSmoke[0] === '상관없어요' ? 'selectedNo' : ''}
+            onClick={() => setPreferSmoke(['30'])}
+            isActive={preferSmoke[0] === '30'}
           />
         </SmokingButtonContainer>
         <Button

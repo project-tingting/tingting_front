@@ -13,10 +13,11 @@ import InputContainer from '../../components/common/AnimationContainer';
 import Container from '../../components/common/Container';
 import Guide from '../../components/common/Guide';
 import AlcoholButton from '../../components/Profile/AlcoholButton';
+import { PreferType } from '../../components/Profile/types/profile';
 
 export default function alcohol() {
   const [userProfile, setUserProfile] = useRecoilState(userProfileState);
-  const [alcohol, setAlcohol] = useState<string[]>([]);
+  const [alcohol, setAlcohol] = useState<PreferType[]>([]);
 
   const handleContinueButton = () => {
     setUserProfile([...userProfile, { topic: 'isDrink', valueList: alcohol }]);
@@ -34,18 +35,18 @@ export default function alcohol() {
         <AlcoholButtonContainer>
           <AlcoholButton
             drinking="안함"
-            onClick={() => setAlcohol(['안함'])}
-            className={alcohol[0] === '안함' ? 'selectedNever' : ''}
+            onClick={() => setAlcohol(['10'])}
+            isActive={alcohol[0] === '10'}
           />
           <AlcoholButton
             drinking="가끔"
-            onClick={() => setAlcohol(['가끔'])}
-            className={alcohol[0] === '가끔' ? 'selectedSometimes' : ''}
+            onClick={() => setAlcohol(['20'])}
+            isActive={alcohol[0] === '20'}
           />
           <AlcoholButton
             drinking="자주"
-            onClick={() => setAlcohol(['자주'])}
-            className={alcohol[0] === '자주' ? 'selectedOften' : ''}
+            onClick={() => setAlcohol(['30'])}
+            isActive={alcohol[0] === '30'}
           />
         </AlcoholButtonContainer>
         <Button

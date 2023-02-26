@@ -3,16 +3,18 @@ import Router from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import Guide from '../../components/common/Guide';
+import { useGetCodeList } from '../../components/Profile/apiHooks/profile';
 
 import profileFrame from '../../public/assets/images/profileFrame.svg';
 
 export default function index() {
+  const { data } = useGetCodeList('isDrink');
+  console.log(data);
   return (
     <>
       <Guide
         text="바로 매칭 프로필을 설정하시겠어요?"
-        // subText="선호에 가까운 친구들을 추천해드려요"
-        // isNotice={true}
+        subText="선호에 가까운 친구들을 추천해드려요"
       />
       <ImageContainer>
         <Image src={profileFrame} />
