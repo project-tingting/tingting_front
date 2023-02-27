@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import AlcoholRadioButton from './AlcoholRadioButton';
-import { data } from './context/AlcoholProvider';
+import { AlcoholData } from './context/providerData';
 import { InputElementProps } from './types/input';
 
 export default function EditAlcohol() {
@@ -9,7 +9,7 @@ export default function EditAlcohol() {
     <fieldset>
       <Legend>음주여부</Legend>
       <RadioGroup>
-        {data.map((statusItem: InputElementProps) => (
+        {AlcoholData.map((statusItem: InputElementProps) => (
           <AlcoholRadioButton key={statusItem.id} {...statusItem} />
         ))}
       </RadioGroup>

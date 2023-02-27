@@ -11,7 +11,7 @@ export default function AlcoholRadioButton({
   disabled = false,
 }: InputElementProps) {
   const { alcoholData, setAlcoholData } = useStateContext();
-  console.log(alcoholData.value);
+  console.log(alcoholData?.value);
   const onClickbutton = () => {
     const newData = data.filter((item: InputElementProps) => item.id === id);
     setAlcoholData(newData[0]);

@@ -27,3 +27,12 @@ export const putUserProfile = async (userProfile: ProfileType[]) => {
   });
   return putUserProfileData;
 };
+
+export const getCodeList = async (profileTopic: string) => {
+  const { data: codeList } = await baseAPI.get(`/code/list/${profileTopic}`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('access-token'),
+    },
+  });
+  return codeList;
+};

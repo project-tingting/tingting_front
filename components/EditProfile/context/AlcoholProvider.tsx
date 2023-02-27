@@ -1,30 +1,42 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useGetCodeList } from '../../Profile/apiHooks/profile';
 import { InputElementProps } from '../types/input';
+import { AlcoholData, providerData } from './providerData';
 
 export const RadioContext = createContext<{
   alcoholData: InputElementProps;
   setAlcoholData: React.Dispatch<React.SetStateAction<InputElementProps>>;
 } | null>(null);
 
-export const data: InputElementProps[] = [
-  {
-    label: '네',
-    id: '1',
-    value: '네',
-    name: '음주여부',
-    disabled: false,
-  },
-  { label: '아니요', id: '2', value: '아니요', name: '음주여부', disabled: false },
-  { label: '상관없어요', id: '3', value: '상관없어요', name: '음주여부', disabled: false },
-];
-
 interface StatusContextProviderProps {
   children: React.ReactNode;
 }
 
 export function AlcoholProvider({ children }: StatusContextProviderProps) {
-  const [alcoholData, setAlcoholData] = useState(data[0]);
-
+  const { data: codeList } = useGetCodeList('isDrink');
+  console.log(codeList?.data?.codeList);
+  const AlcoholData: InputElementProps[] = [
+    {
+      label: '네',
+      id: '1',
+      value: '네',
+      name: '음주여부',
+      disabled: false,
+    },
+  ];
+  const data = codeList?.data?.codeList?.map((v: any) => {
+    const AlcoholData: InputElementProps[] = [
+      {
+        label: v.codeName,
+        id: v.codeOrderNo,
+        value: v.code,
+        name: v.codeGroup,
+        disabled: false,
+      },
+    ];
+  });
+  console.log(AlcoholData);
+  const [alcoholData, setAlcoholData] = useState(AlcoholData[0]); // 서버 데이터로 변경
   return (
     <RadioContext.Provider value={{ alcoholData, setAlcoholData }}>
       {children}
