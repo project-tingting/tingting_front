@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStateContext } from './context/AlcoholProvider';
-import { alcohol } from './context/providerData';
+import { useStateContext } from './context/SmokeProvide';
 import { InputElementProps } from './types/input';
+import { smoke } from './context/providerData';
 
-export default function AlcoholRadioButton({
+export default function SmokeRadioButton({
   label,
   id,
   value,
   name,
   disabled = false,
 }: InputElementProps) {
-  const { alcoholData, setAlcoholData } = useStateContext();
+  const { smokeData, setSmokeData } = useStateContext();
   const onClickbutton = () => {
-    const newData = alcohol.filter((item: InputElementProps) => item.id === id);
-    setAlcoholData(newData[0]);
+    const newData = smoke.filter((item: InputElementProps) => item.id === id);
+    setSmokeData(newData[0]);
   };
 
   return (
@@ -25,7 +25,7 @@ export default function AlcoholRadioButton({
         value={value}
         name={name}
         disabled={disabled}
-        checked={value === alcoholData?.value}
+        checked={value === smokeData?.value}
         onClick={onClickbutton}
       />
       <RadioLabel htmlFor={id}>{label}</RadioLabel>

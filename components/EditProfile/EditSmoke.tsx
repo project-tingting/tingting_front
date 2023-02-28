@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import AlcoholRadioButton from './AlcoholRadioButton';
-import { alcohol } from './context/providerData';
+import { smoke } from './context/providerData';
+import SmokeRadioButton from './SmokeRadioButton';
 import { InputElementProps } from './types/input';
 
-export default function EditAlcohol() {
+export default function EditSmoke() {
   return (
     <fieldset>
-      <Legend>음주여부</Legend>
+      <Legend>흡연선호</Legend>
       <RadioGroup>
-        {alcohol.map((statusItem: InputElementProps) => (
-          <AlcoholRadioButton key={statusItem.id} {...statusItem} />
+        {smoke.map((statusItem: InputElementProps) => (
+          <SmokeRadioButton key={statusItem.id} {...statusItem} />
         ))}
       </RadioGroup>
     </fieldset>
