@@ -12,3 +12,8 @@ export interface RegisterProps {
   university: string;
   phoneNumber: string;
 }
+
+export interface ProfileProps {
+  topic: string;
+  valueList: string[];
+}

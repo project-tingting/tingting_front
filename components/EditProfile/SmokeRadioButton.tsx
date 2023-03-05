@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useStateContext } from './context/SmokeProvide';
 import { InputElementProps } from './types/input';
 import { smoke } from './context/providerData';
+import { useGetUserProfile } from '../Profile/apiHooks/profile';
+import { ProfileProps } from '../../types/user';
 
 export default function SmokeRadioButton({
   label,
@@ -11,6 +13,16 @@ export default function SmokeRadioButton({
   name,
   disabled = false,
 }: InputElementProps) {
+  const { data: userProfile } = useGetUserProfile();
+
+  const isSmokeData = smoke.filter((data: InputElementProps) => {
+    const isSmoke = userProfile?.data?.userProfileList.filter((profile: ProfileProps) => {
+      if (profile.topic === 'isSmoke') return profile;
+    });
+    console.log(isSmoke);
+    if (data.id === isSmoke?.[0].valueList?.[0]) return data;
+  });
+  console.log(isSmokeData);
   const { smokeData, setSmokeData } = useStateContext();
   const onClickbutton = () => {
     const newData = smoke.filter((item: InputElementProps) => item.id === id);

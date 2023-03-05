@@ -1,10 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
 import { InputElementProps } from '../types/input';
-import { alcohol } from './providerData';
 
 export const RadioContext = createContext<{
-  alcoholData: InputElementProps;
-  setAlcoholData: React.Dispatch<React.SetStateAction<InputElementProps>>;
+  alcoholData: InputElementProps | undefined;
+  setAlcoholData: React.Dispatch<React.SetStateAction<InputElementProps | undefined>>;
 } | null>(null);
 
 interface StatusContextProviderProps {
@@ -12,7 +11,8 @@ interface StatusContextProviderProps {
 }
 
 export function AlcoholProvider({ children }: StatusContextProviderProps) {
-  const [alcoholData, setAlcoholData] = useState(alcohol[0]); // 서버 데이터로 변경
+  const [alcoholData, setAlcoholData] = useState<InputElementProps>(); // 서버 데이터로 변경
+
   return (
     <RadioContext.Provider value={{ alcoholData, setAlcoholData }}>
       {children}
