@@ -12,6 +12,9 @@ export const useGetUserProfile = () => {
     onError: (error) => {
       console.error(error);
     },
+    onSuccess: (data) => {
+      console.log(data);
+    },
   });
 };
 

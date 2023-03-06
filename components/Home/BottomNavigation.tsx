@@ -6,6 +6,7 @@ import { FixedBottomLayout } from '../Layout/FixedLayout';
 import SpotLogo from '../../public/assets/icons/bottom_spot.svg';
 import HomeLogo from '../../public/assets/icons/bottom_home.svg';
 import MyPageLogo from '../../public/assets/icons/bottom_myPage.svg';
+import Router from 'next/router';
 
 export default function BottomNavigation() {
   return (
@@ -13,7 +14,7 @@ export default function BottomNavigation() {
       <FixedBottomLayout>
         <Image src={SpotLogo} alt="추천스팟 버튼" />
         <Image src={HomeLogo} alt="홈 버튼" />
-        <Image src={MyPageLogo} alt="마이페이지 버튼" />
+        <Image src={MyPageLogo} alt="마이페이지 버튼" onClick={() => Router.push('/editprofile')} />
       </FixedBottomLayout>
     </StyledContainer>
   );
