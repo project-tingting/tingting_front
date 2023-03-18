@@ -41,11 +41,8 @@ export const useUserLogin = ({ userId, password }: userInfo) => {
       e.preventDefault();
     },
     onSuccess: (data) => {
-      const { accessToken } = data.data.data;
-
       if (data.data.code === 200) {
-        userAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        baseAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        localStorage.setItem('accessToekn', data.data.data.accessToken);
         localStorage.setItem('refreshToken', data.data.data.refreshToken);
       }
 
@@ -75,7 +72,6 @@ export const useGetNewToken = (refreshToken: string | null) => {
   return useMutation(() => getNewToken(refreshToken), {
     onSuccess: (data) => {
       const { accessToken } = data.data;
-      console.log(accessToken);
       userAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       baseAPI.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       // localStorage.setItem('refreshToken', data.data.refreshToken);

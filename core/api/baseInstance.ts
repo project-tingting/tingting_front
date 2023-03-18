@@ -18,28 +18,13 @@ export const userAPI = axios.create({
   },
 });
 
-// baseAPI.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     console.log(error);
-//     // const { data } = await baseAPI.post('/regenerateToken', {
-
-//     // })s
-//     return Promise.reject(error);
-//   },
-// );
-
-// userAPI.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     console.log(error);
-//     // const { data } = await baseAPI.post('/regenerateToken', {
-
-//     // })
-//     return Promise.reject(error);
-//   },
-// );
+baseAPI.interceptors.request.use(
+  (config) => {
+    console.log(config);
+    return config;
+  },
+  (error) => {
+    console.error(error);
+    return Promise.reject(error);
+  },
+);

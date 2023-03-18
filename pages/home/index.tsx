@@ -13,7 +13,6 @@ import PartyMember from '../../components/Home/Party/PartyMember';
 export default function Home() {
   const { data: userInfo } = useGetUserInfo();
   const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refreshToken') : null;
-  console.log(refreshToken);
   const { mutate: handleRegenerateToken } = useGetNewToken(refreshToken);
 
   useEffect(() => {
