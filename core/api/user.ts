@@ -1,4 +1,4 @@
-import { userAPI } from './baseInstance';
+import { userAPI, baseAPI } from './baseInstance';
 
 // 학교 웹메일 인증
 export const setUniversityValidate = async (schoolEmail: string) => {
@@ -12,7 +12,7 @@ export const setUserRegister = async (userInfo: object) => {
   });
 };
 
-// 로그인은 개발 중
+// 로그인
 export const submitLogin = async (userId: string, password: string) => {
   return await userAPI.post('/login', {
     userId: userId,
@@ -20,16 +20,20 @@ export const submitLogin = async (userId: string, password: string) => {
   });
 };
 
+// 로그아웃
 export const submitLogout = async (accessToken: string | null) => {
   return await userAPI.post('/logout', {
     accessToken: accessToken,
   });
 };
 
-export const getUserInfo = async () => {
-  return await userAPI.get('/', {
-    headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-    },
+// 토큰 재발급
+export const getNewToken = async (refreshToken: string | null) => {
+  return await baseAPI.post('/regenerateToken', {
+    refreshToken: refreshToken,
   });
+};
+
+export const getUserInfo = async () => {
+  return await userAPI.get('/');
 };

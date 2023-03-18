@@ -1,17 +1,9 @@
 import { baseAPI } from './baseInstance';
 
 export const matchStart = async (matchingNum: number) => {
-  return await baseAPI.post(
-    '/meetingroom',
-    {
-      type: `${matchingNum}:${matchingNum}`,
-    },
-    {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-      },
-    },
-  );
+  return await baseAPI.post('/meetingroom', {
+    type: `${matchingNum}:${matchingNum}`,
+  });
 };
 
 export const getMatchInfo = async (roomKey: string | null) => {
@@ -23,9 +15,5 @@ export const setMatchAccept = async (roomKey: string | null, acceptNum: string) 
 };
 
 export const getRoomKeyInfo = async () => {
-  return await baseAPI.get('/meetingroomuser/', {
-    headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('access-token'),
-    },
-  });
+  return await baseAPI.get('/meetingroomuser/');
 };
