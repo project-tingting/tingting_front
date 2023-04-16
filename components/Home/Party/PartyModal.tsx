@@ -40,9 +40,15 @@ export default function PartyModal({ setIsOpenModal }: PartyModalProps) {
             onChange={(e) => setSearchText(e.target.value)}
           />
         </InputContainer>
-        {filteredUser?.map((user: PartyUserProps) => (
-          <UserList key={user.userId} userId={user.userId} invitationState={user.invitationState} />
-        ))}
+        <ListContainer>
+          {filteredUser?.map((user: PartyUserProps) => (
+            <UserList
+              key={user.userId}
+              userId={user.userId}
+              invitationState={user.invitationState}
+            />
+          ))}
+        </ListContainer>
         <CancelButton onClick={handleClickCancelButton}>취소</CancelButton>
       </ModalContainer>
     </Container>
@@ -71,6 +77,10 @@ const ModalContainer = styled.article`
   width: 100%;
   text-align: center;
   max-width: 43rem;
+  height: 70%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ModalTitle = styled.h1`
@@ -110,4 +120,9 @@ const CancelButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.mainColor};
   display: block;
   margin-top: 20px;
+`;
+
+const ListContainer = styled.div`
+  overflow: scroll;
+  flex-grow: 1;
 `;

@@ -44,7 +44,7 @@ const UserListContainer = styled.section`
   align-items: center;
   width: 100%;
   border-bottom: 0.4px solid #adb3bc;
-  padding: 12px 0;
+  padding: 1.2rem 1.5rem;
 `;
 
 const UserProfile = styled.div`
