@@ -6,9 +6,12 @@ import PartyModal from './PartyModal';
 
 import HostIcon from '../../../public/assets/icons/host.svg';
 import AddLogo from '../../../public/assets/icons/add.svg';
+import { useGetPartyUsers } from './apiHooks/party';
 
 export default function PartyMember() {
+  const { data: partyUsers } = useGetPartyUsers();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  console.log(partyUsers);
 
   const handleClickPlusButton = () => {
     setIsOpenModal(true);

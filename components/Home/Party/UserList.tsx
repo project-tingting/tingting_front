@@ -5,17 +5,35 @@ import Image from 'next/image';
 import UserLogo from '../../../public/assets/icons/user.svg';
 import PaperPlaneIcon from '../../../public/assets/icons/paperPlane.svg';
 import CheckIcon from '../../../public/assets/icons/check.svg';
+import InvitingIcon from '../../../public/assets/icons/inviting.svg';
+import { PartyUserProps } from '../../../types/party';
+import { usePostInvitation } from './apiHooks/party';
 
-export default function UserList() {
+export default function UserList({ userId, invitationState }: PartyUserProps) {
+  const { mutate: InvitationMutate } = usePostInvitation();
   return (
     <UserListContainer>
       <UserProfile>
         <Image src={UserLogo} alt="유저 사진" />
-        <UserName>User1</UserName>
+        <UserName>{userId}</UserName>
       </UserProfile>
-      <InviteButton>
-        <Image src={PaperPlaneIcon} /> 초대
-      </InviteButton>
+      {invitationState === '1' && (
+        <InviteButton type="button" onClick={() => InvitationMutate({ userId })}>
+          <Image src={PaperPlaneIcon} alt="초대 전송 아이콘" /> 초대
+        </InviteButton>
+      )}
+      {invitationState === '-1' && (
+        <InvitingButton type="button">
+          <Image src={InvitingIcon} alt="초대 중 아이콘" />
+          초대
+        </InvitingButton>
+      )}
+      {invitationState === '9' && (
+        <CompleteButton type="button">
+          <Image src={CheckIcon} alt="초대 완료 아이콘" />
+          완료
+        </CompleteButton>
+      )}
     </UserListContainer>
   );
 }
@@ -26,7 +44,7 @@ const UserListContainer = styled.section`
   align-items: center;
   width: 100%;
   border-bottom: 0.4px solid #adb3bc;
-  padding: 12px 0;
+  padding: 1.2rem 1.5rem;
 `;
 
 const UserProfile = styled.div`
@@ -41,7 +59,7 @@ const UserName = styled.p`
   line-height: 48px;
 `;
 
-const InviteButton = styled.button`
+const InviteButton = styled.button<React.ButtonHTMLAttributes<HTMLButtonElement>>`
   background-color: ${({ theme }) => theme.colors.mainColor};
   color: ${({ theme }) => theme.colors.whiteColor};
   font-weight: 400;
